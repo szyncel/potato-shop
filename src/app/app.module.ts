@@ -10,6 +10,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     ProductsComponent,
     LoginComponent,
     RegisterComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ProductFilterComponent
   ],
   imports: [
     BrowserModule,
