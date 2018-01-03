@@ -1,34 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="container">
-
-    <app-navbar></app-navbar>
-
-
-  <!-- <nav>
-    <h3>CATEGORY</h3><hr>
-    <div class="categories">
-      <ul>
-        <li class="active">Młode</li>
-        <li>Wczesne</li>
-        <li>Młode</li>
-        <li>Stare</li>
-        <li>Młode</li>
-      </ul>
-    </div>
-  </nav> -->
-
-  <main>
-    <div id="mainContainer">
-        <router-outlet></router-outlet>
-    </div>
-    
-  <!-- Main content -->
-
-
+<div class="container" fxLayout="column" >
+  
+  <app-navbar ></app-navbar>
+  
+  <main class="content">
+    <router-outlet></router-outlet>
   </main>
-
-
-  <footer>
+  
+ 
+  <div class="footer">
     Footer content
-  </footer>
+  
+  </div>
 </div>

@@ -5,55 +5,20 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 /* Box-sizing border-box */
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
+/* ......layout......... */
 .container{
-    display: grid;
-    grid-template-areas:
-    " header "
-    " main "
-    " footer ";
+  min-height: 100vh;
+}
 
-    /* grid-template-columns: 300px 1fr ; */
-    grid-template-rows: auto 1fr ;
-    grid-gap: 20px;
-
-    height: 100vh;
+.content{
+  flex: 1;
 }
 
 
-  app-navbar{
-    grid-area: header;
-    background: orange;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  /* nav {
-    grid-area: nav;
-    margin-left: 3rem;
-  } */
-  
-  main {
-    grid-area: main;
-    /* margin-right: 3rem; */
-  }
 
-  #mainContainer{
-    margin-left: 3rem;
-    margin-right: 3rem;
-  }
-  
-  
-  footer {
-    grid-area: footer;
-    background: #321313;
+.footer {
+  background: #321313;
     padding: 1.5rem;
-  }
-
-
-
-footer {
     text-transform: uppercase;
     color: lightslategray;
     display: flex;
@@ -119,8 +84,11 @@ footer {
 
 .box{
     color: white;
-    font-size: 100px;
+    font-size: 80px;
     font-weight: bolder;
+    width: 200px;
+    height: 150px;
+    margin: 10px;
     text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
     display: flex;
     padding: 20px;
@@ -128,48 +96,7 @@ footer {
     justify-content: center;
 }
 
-@media (max-width: 768px) {
-    .container {
-      grid-template-areas:
-        "header"
-        "nav"
-        "content"
-        "footer";
-  
-      grid-template-columns: 1fr;
-      grid-template-rows:
-        auto /* Header */
-        minmax(75px, auto) /* Nav */
-        1fr /* Content */
-        minmax(75px, auto) /* Sidebar */
-        auto; /* Footer */
-    }
 
-    nav {
-      margin: 0;
-    }
-  }
-
-  /* @media (max-width: 60.000em) {
-    main{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-column-gap: 10px;
-      grid-row-gap: 15px; 
-  }
-  }
-
-  @media (max-width: 40.000em) {
-    main{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      grid-column-gap: 10px;
-      grid-row-gap: 15px; 
-  }
-  } */
-
-
-  /* ..................... */
 
   .categories ul{
     list-style: none;
