@@ -26,8 +26,10 @@ router.get('/', function(req, res, next) {
 /* .............USERS............. */
 
 router.post('/users', (req, res) => {
-  var body = _.pick(req.body, ['email', 'password']);
+  var body = _.pick(req.body, ['email', 'password','name','surname']);
   var user = new User({
+    name:body.name,
+    surname:body.surname,
     email: body.email,
     password: body.password,
     role: 'user'
@@ -41,7 +43,7 @@ router.post('/users', (req, res) => {
     });
   }).catch((e) => {
     res.status(400).json({
-      title: 'Error fucking',
+      title: 'Error',
       error: e
     });
   })
@@ -49,7 +51,6 @@ router.post('/users', (req, res) => {
 
 router.post('/users/login', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
-
   User.findbyCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
       res.header('x-auth', token).send({

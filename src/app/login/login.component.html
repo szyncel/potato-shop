@@ -1,3 +1,52 @@
-<p>
-  login works!
-</p>
+<div class="login" fxLayout="column">
+  <div class="header">
+    <h2 fxLayoutAlign="center">WITAJ W POTATO SHOP</h2>
+    <hr>
+  </div>
+  <div class="row" fxFlex="auto" fxLayout="column" fxLayout.lg="row" fxLayoutAlign="space-around">
+    <div class="col" fxFlex="45">
+      <h3>JESTEM JUŻ KLIENTEM POTATO</h3>
+      <hr class="loginHr">
+
+      <form #l="ngForm" (ngSubmit)="login(l)">
+
+        <label for="fname">Adres Email</label>
+        <input ngModel #email="ngModel" type="text" id="fname" name="email">
+
+        <label for="lname">Hasło</label>
+        <input ngModel #password="ngModel" type="password" id="lname" name="password">
+
+
+        <input type="submit" value="ZALOGUJ">
+
+      </form>
+
+    </div>
+    <div class="col" fxFlex="45">
+      <h3>PO RAZ PIERWSZY W POTATO?</h3>
+      <hr>
+      <form #f="ngForm" (ngSubmit)="submit(f)">
+
+        <label for="fname">Imie</label>
+        <input ngModel #name="ngModel" type="text"  name="name">
+
+        <label for="lname">Nazwisko</label>
+        <input ngModel #surname="ngModel" type="text"  name="surname">
+
+        <label for="lname">Adres e-mail</label>
+        <input ngModel #email="ngModel" type="email"  name="email">
+
+        <label for="lname">Hasło</label>
+        <input ngModel #password="ngModel" type="password"  name="password">
+
+        <input type="submit" value="ZAREJESTRUJ SIE">
+
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+</div>

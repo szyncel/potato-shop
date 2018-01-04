@@ -1,7 +1,89 @@
-.nav{
-    background: orange;
-    padding: 1rem;
+.nav {
+  background: rgb(250, 250, 250);
+  border-bottom: 2px solid orange;
+  /* padding: 1rem; */
+  /* padding-bottom: 1rem;
+    padding-top: 1rem; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  min-height: 71px;
+
+}
+
+.fa-3{
+  font-size: 3em;
+  padding: 0.4em;
+}
+
+
+/* .title {
+  font-size: 12px;
+  letter-spacing: .05em;
+  height: 20px;
+  font-weight: 700;
+} */
+
+.fa-2 {
+  font-size: 3em;
+}
+
+a {
+  padding: 0.5em;
+  font-size: 12px;
+  letter-spacing: .05em;
+  color: rgb(34, 34, 34);
+}
+.nav-right ul li a:hover{
+  background: orange;
+}
+
+.single{
+  font-size: 18px;
+  height: 100%;
+  padding: 1.5em;
+}
+
+/* ......NAVBAR....... */
+
+
+
+.nav-right ul{
+  list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+  
+}
+
+
+.nav-right ul li {
+  /* padding-left: 1em; */
+  float: left;
+}
+
+.nav-right a,
+.nav-left a {
+  font-family: "Oswald", sans-serif;
+  
+  font-weight: bold;
+  line-height: 1.8em;
+  
+  text-decoration: none;
+  transition: all .3s ease-in-out;
+}
+
+.nav-left {
+  margin-left: 5rem;
+}
+
+.nav-right {
+  margin-right: 5rem;
+}
+
+.nav-left a {
+  font-size: 24px;
 }

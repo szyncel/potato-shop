@@ -19,6 +19,14 @@ var userSchema = mongoose.Schema({
       message: '{VALUE} is not a valid email!'
     }
   },
+  name:{
+    type: String,
+    minlenth: 6
+  },
+  surname:{
+    type: String,
+    minlenth: 6
+  },
   password: {
     type: String,
     required: true,

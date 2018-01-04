@@ -6,13 +6,20 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 /* ......layout......... */
+
+
 .container{
-  min-height: 100vh;
+  min-height: 101vh;
+  width: 90%;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
-.content{
+
+
+/* .content{
   flex: 1;
-}
+} */
 
 
 
@@ -36,37 +43,9 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
     
 }
 
-/* ......NAVBAR....... */
-.nav-right li {
-  
-  padding-left: 1em;
-  list-style: none;
-  display: inline-block;
-}
-
-.nav-right a, .nav-left a {
-  font-family: "Oswald", sans-serif;
-  letter-spacing: 1px;
-  font-weight: bold;
-  line-height: 1.8em;
-  color: rgba(255,255,255,.8);
-  text-decoration: none;
-  transition: all .5s;
-}
 
 
 
-.nav-left a{
-  font-size: 24px;
-}
-
-#nav-menu{
-  margin-right: 3rem;
-}
-
-.nav-left{
-  margin-left: 3rem;
-}
 
 
 

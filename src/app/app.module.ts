@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 
@@ -12,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { AuthService } from './auth.service';
 
 
 @NgModule({
@@ -23,14 +27,17 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
     LoginComponent,
     RegisterComponent,
     ShoppingCartComponent,
-    ProductFilterComponent
+    ProductFilterComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
