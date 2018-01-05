@@ -16,6 +16,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { AuthService } from './auth.service';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { MyAccountComponent } from './my-account/my-account.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 @NgModule({
@@ -28,7 +31,9 @@ import { AuthService } from './auth.service';
     RegisterComponent,
     ShoppingCartComponent,
     ProductFilterComponent,
-    WishlistComponent
+    WishlistComponent,
+    MyOrdersComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,7 @@ import { AuthService } from './auth.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

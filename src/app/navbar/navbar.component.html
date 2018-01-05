@@ -3,27 +3,37 @@
     <a routerLink="/">POTATOshop</a>
   </div>
   <div class="nav-mobile" fxHide="false" fxHide.gt-sm>
-    <a id="nav-toggle" href="#!" ><i class="fa fa-bars fa-3" aria-hidden="true"></i></a>
+    <a id="nav-toggle" href="#!">
+      <i class="fa fa-bars fa-3" aria-hidden="true"></i>
+    </a>
   </div>
   <div class="nav-right" fxShow="false" fxShow.gt-sm>
     <ul class="list">
       <li>
-        <a routerLink="/products" class="single" >Products</a>
+        <a routerLink="/products" class="single">Products</a>
       </li>
-      <li>
-          <a routerLink="/login" fxLayout="column" fxLayoutAlign="center center">
-            <i class="fa fa-user fa-2" aria-hidden="true"></i>
-            <!-- <i class="fa fa-caret-down" aria-hidden="true"></i> -->
+      <li class="dropdown">
+        <a class="dropbtn" routerLink="/login" fxLayout="column" fxLayoutAlign="center center">
+          <i class="fa fa-user fa-2" aria-hidden="true"></i>
+          <ng-container *ngIf="!authService.isLoggedIn()">
             Zaloguj sie
-          </a>
-        </li>
+          </ng-container>
+          <ng-container *ngIf="authService.isLoggedIn()">
+            Moje konto
+          </ng-container>
+        </a>
+        <div class="dropdown-content">
+          <a routerLink="/user/my-account">Moje zestawienie</a>
+          <a routerLink="/user/my-orders">Moje zamówienia</a>
+          <a *ngIf="authService.isLoggedIn()" (click)="authService.logout()">Wyloguj sie</a>
+        </div>
+      </li>
       <li>
         <a routerLink="/wishlist" fxLayout="column" fxLayoutAlign="center center">
           <i class="fa fa-heart fa-2" aria-hidden="true"></i>
-         Lista życzeń
+          Lista życzeń
         </a>
       </li>
-      
 
       <li>
         <a routerLink="/shopping-cart" fxLayout="column" fxLayoutAlign="center center">
