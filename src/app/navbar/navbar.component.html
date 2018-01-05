@@ -23,8 +23,8 @@
           </ng-container>
         </a>
         <div class="dropdown-content">
-          <a routerLink="/user/my-account">Moje zestawienie</a>
-          <a routerLink="/user/my-orders">Moje zamówienia</a>
+          <a routerLink="/my/account">Moje zestawienie</a>
+          <a routerLink="/my/orders">Moje zamówienia</a>
           <a *ngIf="authService.isLoggedIn()" (click)="authService.logout()">Wyloguj sie</a>
         </div>
       </li>
