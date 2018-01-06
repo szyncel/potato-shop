@@ -9,7 +9,7 @@
 }
 
 .has-success{
-    background-color: rgba(137, 255, 122, 0.733);
+    /* background-color: rgba(231, 255, 228, 0.733); */
     border: 1px solid rgba(54, 216, 33, 0.842);
 }
 
@@ -17,10 +17,13 @@
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
+    justify-content: center;
 }
 
 .card-container{
     /* max-width: 50%; */
+    min-width: 400px;
+    /* max-width: 100%; */
     margin-left: 12px;
     margin-top: 12px;
     display: flex;
@@ -30,7 +33,9 @@
 }
 
 .card-container img{
-    max-width: 100%;
+    max-width: 400px;
+    background-repeat: no-repeat;
+    background-size: contain;
     height: auto;
 }
 

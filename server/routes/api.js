@@ -121,5 +121,44 @@ router.get('/product', (req, res) => {
   });
 });
 
+router.get('/product/:id', (req, res) => {
+  var id = req.params.id;
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send({
+      info: "invalidId"
+    });
+  }
+
+  Product.findById(id).then((product) => {
+    if (!product) {
+      return res.status(404).send({
+        message:"Product not found"
+      });
+    }
+    res.status(200).send({
+      product
+    });
+  }).catch((e) => {
+    res.status(400).send({});
+  });
+});
+
+
+router.put('/product/:id', (req, res) => {
+  var id = req.params.id;
+  Product.findByIdAndUpdate(id, {
+    $set: req.body
+  }, {
+    new: true
+  }).then((product) => {
+    if (!product) {
+      return res.status(404).send();
+    }
+    res.send(product);
+  }).catch((e) => {
+    res.status(400).send({});
+  });
+});
+
 
 module.exports = router;

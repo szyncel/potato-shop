@@ -15,7 +15,12 @@ export class ProductService {
 
   getAll(){
     return this.http.get('/api/product')
-    .map(res => res["product"])
+    .map(res => res["product"]);
+  }
+
+  get(productId){
+    return this.http.get(`/api/product/${productId}`)
+    .map(res=>res["product"]);
   }
 
 }
