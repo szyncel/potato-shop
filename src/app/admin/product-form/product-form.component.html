@@ -1,0 +1,64 @@
+<div fxLayout="column">
+  <div class="header">
+    <h2>NOWY PRODUKT</h2>
+    <hr>
+  </div>
+  <div class="row" fxFlex="auto" fxLayout="column" fxLayout.lg="row" fxLayoutAlign="space-around">
+
+    <div fxFlex="40">
+      <form #f="ngForm" (ngSubmit)="save(f)">
+        <label for="title">Tytuł</label>
+        <input [ngClass]="{'has-danger':title.touched && title.invalid,
+                                'has-success':title.touched && title.valid}" class="has-danger" ngModel #title="ngModel"
+          type="text" id="title" name="title" required [rangeLength]="[3, 15]">
+        <div class="alert-danger" *ngIf="title.touched && title.invalid">
+          <div *ngIf="title.errors.required">Title is Required</div>
+          <div *ngIf="title.errors.rangeLength">Range error min:3 max: 15</div>
+        </div>
+
+        <label for="price">Cena</label>
+        <input [ngClass]="{'has-danger':price.touched && price.invalid,
+                                'has-success':price.touched && price.valid}" ngModel #price="ngModel" type="number" id="price"
+          name="price" required>
+        <div class="alert-danger" *ngIf="price.touched && price.invalid">
+          <div *ngIf="title.errors.required">Title is Required</div>
+        </div>
+
+        <label for="category">Kategoria</label>
+        <select [ngClass]="{'has-danger':category.touched && category.invalid,
+                                'has-success':category.touched && category.valid}" ngModel #category="ngModel" name="category"
+          id="category" required>
+          <option value=""></option>
+          <option *ngFor="let c of categoryList" [value]="c.name">{{c.name}}</option>
+
+        </select>
+
+        <label for="imgUrl">URL</label>
+        <input [ngClass]="{'has-danger':imgUrl.touched && imgUrl.invalid,
+                                'has-success':imgUrl.touched && imgUrl.valid}" ngModel #imgUrl="ngModel" type="text" id="imgUrl"
+          name="imgUrl" required url>
+        <div class="alert-danger" *ngIf="imgUrl.touched && imgUrl.invalid">
+          <div *ngIf="imgUrl.errors.required">Title is Required</div>
+          <div *ngIf="imgUrl.errors?.url">invalid url</div>
+        </div>
+
+        <input type="submit" value="ZAPISZ">
+
+      </form>
+    </div>
+    <div class="col" fxFlex="60" >
+      <div class="card-container">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/41SnI3JpZKL._SX355_.jpg">
+        <div class="content-wrapper">
+          <h4>Ziemniak młody</h4>
+          <p>Kraj pochodzenia: Polska</p>
+        </div>
+        <div class="content-footer">
+          <span class="price">100 Zł</span>
+          <button class="button-price">Dodaj do koszyka</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

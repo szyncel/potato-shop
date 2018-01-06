@@ -17,12 +17,6 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 
 
-/* .content{
-  flex: 1;
-} */
-
-
-
 .footer {
   background: #321313;
     padding: 1.5rem;
@@ -33,46 +27,6 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
     justify-content: center;
 }
 
-.productList{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
- 
-}
-
-
-
-
-
-
-
-
-.box1{background:#34db7f;}
-.box2{background:#3498db;}
-.box3{background:#db348d;}
-.box4{background:#d0db34;}
-.box5{background:#d40000;}
-.box6{background:#47db34;}
-.box7{background:#db34bf;}
-.box8{background:#031d2e;}
-.box9{background:#85e3ff;}
-.box10{background:#dacb00;}
-
-.box{
-    color: white;
-    font-size: 80px;
-    font-weight: bolder;
-    width: 200px;
-    height: 150px;
-    margin: 10px;
-    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
-    display: flex;
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
-}
 
 
 
@@ -98,4 +52,68 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
   .active{
     background: #F2F2F2;
+  }
+
+  /* Form style */
+
+  input[type=text],input[type=password],input[type=email],input[type=number], select, textarea {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+  
+    box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      font: 95% Arial, Helvetica, sans-serif;
+  
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */  
+    border: 1px solid #ccc; /* Gray border */
+   
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+
+
+  
+  /* Style the submit button with a specific background color etc */
+  input[type=submit] {
+    background-color: orange;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  /* When moving the mouse over the submit button, add a darker green color */
+  input[type=submit]:hover {
+    background-color: orangered;
+  }
+  
+  input[type=text]:focus,
+  input[type=password]:focus,
+  input[type=email]:focus {
+    box-shadow: 0 0 5px orange;
+    border: 1px solid orange;
+    
+  }
+
+  .btn-orange{
+    font-weight: 600;
+    background-color: orange;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  /* width: 100%; */
+  }
+
+  .btn-orange:hover{
+    background-color: orangered;
   }

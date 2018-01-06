@@ -17,19 +17,25 @@ var {
   authenticate
 } = require('../middleware/authenticate');
 
+const {
+  Category
+} = require('../models/category.model');
 
-router.get('/', function(req, res, next) {
-  res.send('Express REST API');
-});
+const {
+  Product
+} = require('../models/product.model');
+
+
+
 
 
 /* .............USERS............. */
 
 router.post('/users', (req, res) => {
-  var body = _.pick(req.body, ['email', 'password','name','surname']);
+  var body = _.pick(req.body, ['email', 'password', 'name', 'surname']);
   var user = new User({
-    name:body.name,
-    surname:body.surname,
+    name: body.name,
+    surname: body.surname,
     email: body.email,
     password: body.password,
     role: 'user'
@@ -73,5 +79,47 @@ router.delete('/users/me/token', authenticate, (req, res) => {
   });
 });
 
-module.exports = router;
+/* .............CATEGORY............. */
 
+router.get('/category', (req, res) => {
+  Category.find().then((category) => {
+    res.send({
+      category
+    });
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
+
+/* .............PRODUCTS............. */
+
+router.post('/product', (req, res) => {
+  var body = _.pick(req.body, ['title', 'price', 'category', 'imgUrl']);
+// console.log(body);
+  var product = new Product({
+    title:body.title,
+    price:body.price,
+    category:body.category,
+    imgUrl:body.imgUrl
+  })
+
+  product.save().then((doc) => {
+    res.send(doc);
+  }, (e) => {
+    res.status(400).send(e);
+  });
+})
+
+
+router.get('/product', (req, res) => {
+  Product.find().then((product) => {
+    res.send({
+      product
+    });
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
+
+
+module.exports = router;

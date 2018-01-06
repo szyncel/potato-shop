@@ -1,24 +1,29 @@
-.cards{
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content:space-between; */
+.alert-danger{
+    color: rgb(0, 0, 0);
+    padding: 16px 32px;
+    background: rgba(216, 33, 33, 0.842);
+}
+
+.has-danger{
+    border: 1px solid rgba(216, 33, 33, 0.842);
+}
+
+.has-success{
+    background-color: rgba(137, 255, 122, 0.733);
+    border: 1px solid rgba(54, 216, 33, 0.842);
+}
+
+.col{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  /* grid-template-rows: 80px auto 80px;  */
-    grid-column-gap: 10px;
-    grid-row-gap: 15px;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));	
-  /* grid-template-rows: 25% 100px auto; */
+    grid-template-columns: 1fr;
+    justify-items: center;
 }
 
 .card-container{
-    /* max-width: 30.3333%; */
+    /* max-width: 50%; */
     margin-left: 12px;
     margin-top: 12px;
     display: flex;
-    flex: 1 1 auto;
     flex-direction: column;
     
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
@@ -26,6 +31,7 @@
 
 .card-container img{
     max-width: 100%;
+    height: auto;
 }
 
 .button-price{
@@ -80,9 +86,3 @@
     font-weight: 600;
     color: green;
 }
-
-.cover img{
-/* position: absolute; */
-    /* max-width: 258px; */
-}
-
