@@ -13,7 +13,7 @@ export class ProductService {
     return this.http.post('/api/product',product);
   }
 
-  getAll(){
+  getAll():Observable<any>{
     return this.http.get('/api/product')
     .map(res => res["product"]);
   }
@@ -21,6 +21,10 @@ export class ProductService {
   get(productId){
     return this.http.get(`/api/product/${productId}`)
     .map(res=>res["product"]);
+  }
+
+  update(productId,product){
+    return this.http.put(`/api/product/${productId}`,product);
   }
 
 }

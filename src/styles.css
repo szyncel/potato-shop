@@ -81,18 +81,18 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
   
   /* Style the submit button with a specific background color etc */
-  input[type=submit] {
+  input[type=submit],button {
     background-color: orange;
     color: white;
     padding: 12px 20px;
     border: none;
     cursor: pointer;
-    width: 100%;
+    /* width: 100%; */
   }
   
   /* When moving the mouse over the submit button, add a darker green color */
   input[type=submit]:hover {
-    background-color: orangered;
+    background-color: rgb(255, 179, 37);
   }
   
   input[type=text]:focus,

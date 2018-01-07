@@ -91,3 +91,16 @@
     font-weight: 600;
     color: green;
 }
+
+input[type="submit"]{
+    /* width: 40%; */
+}
+
+button{
+    background: rgb(209, 0, 0);
+    /* width: 40%; */
+}
+
+button:hover{
+    background: rgb(255, 50, 50);
+}

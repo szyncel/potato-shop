@@ -146,6 +146,7 @@ router.get('/product/:id', (req, res) => {
 
 router.put('/product/:id', (req, res) => {
   var id = req.params.id;
+  console.log(id);
   Product.findByIdAndUpdate(id, {
     $set: req.body
   }, {

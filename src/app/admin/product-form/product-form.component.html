@@ -6,6 +6,10 @@
   <div class="row" fxFlex="auto" fxLayout="column" fxLayout.lg="row" fxLayoutAlign="space-around">
 
     <div fxFlex="40">
+      <!-- <div class="header">
+            <h2>NOWY PRODUKT</h2>
+            <hr>
+          </div> -->
       <form #f="ngForm" (ngSubmit)="save(f)">
         <label for="title">Tytuł</label>
         <input [ngClass]="{'has-danger':title.touched && title.invalid,
@@ -41,9 +45,10 @@
           <div *ngIf="imgUrl.errors.required">Title is Required</div>
           <div *ngIf="imgUrl.errors?.url">invalid url</div>
         </div>
-
-        <input type="submit" value="ZAPISZ">
-
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <input type="submit" value="ZAPISZ">
+          <button type="button">USUŃ</button>
+        </div>
       </form>
     </div>
     <div class="col" fxFlex="60">

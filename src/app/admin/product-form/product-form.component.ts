@@ -15,7 +15,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<any> = new Subject();//niepotrzebne
 
   categoryList;
-  product={};
+  product = {};
+  id;
 
   constructor(
     private categoryService: CategoryService,
@@ -23,17 +24,23 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    let id = this.route.snapshot.paramMap.get('id');
-    if (id) this.productService.get(id).takeUntil(this.ngUnsubscribe).subscribe(p => this.product = p);
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) this.productService.get(this.id).takeUntil(this.ngUnsubscribe).subscribe(p => this.product = p);
   }
 
   save(product) {
     if (product.valid) {
-      this.productService.create(product.value)
+      if (this.id) {
+        this.productService.update(this.id, product.value)
+          .subscribe((res) => console.log(res))
+      }else{
+        this.productService.create(product.value)
         .subscribe((res) => {
           console.log(res);
         })
+      }
       this.router.navigate(['admin/products']);
+
     } else {
       console.log('Invalid');
     }

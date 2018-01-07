@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { CustomFormsModule } from 'ng2-validation';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
+
 
 
 import { AppComponent } from './app.component';
@@ -44,9 +47,11 @@ import { ProductService } from './product.service';
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
-    CustomFormsModule
+    CustomFormsModule,
+    NgProgressModule
   ],
-  providers: [AuthService, AuthGuardService, CategoryService, ProductService],
+  providers: [AuthService, AuthGuardService, CategoryService, ProductService,
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
