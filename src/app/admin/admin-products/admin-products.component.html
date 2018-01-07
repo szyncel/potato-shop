@@ -14,7 +14,7 @@
       <th>Kategoria</th>
       <th></th>
     </tr>
-    <tr *ngFor="let p of productsList">
+    <tr *ngFor="let p of productsList$ | async">
       <td>{{p.title}}</td>
       <td>{{p.price}}</td>
       <td>{{p.category}}</td>

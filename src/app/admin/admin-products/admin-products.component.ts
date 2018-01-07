@@ -8,20 +8,24 @@ import { ProductService } from '../../product.service';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit {
-  productsList;
+  productsList$;
 
   constructor(
     private productService: ProductService,
     // public ngProgress: NgProgress
-  ) { }
-
-  ngOnInit() {
-    // this.ngProgress.start();
+  ) {
+    this.productsList$=this.productService.getAll();
     this.productService.getAll()
     .subscribe(products=>{
-      this.productsList=products;
-      // this.ngProgress.done();
+      console.log(products);    
     })
+   }
+
+  ngOnInit() {
+    // this.productService.getAll()
+    // .subscribe(products=>{
+    //   this.productsList$=products;     
+    // })
   }
 
 }

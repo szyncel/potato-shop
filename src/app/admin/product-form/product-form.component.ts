@@ -3,16 +3,14 @@ import { CategoryService } from '../../category.service';
 import { ProductService } from '../../product.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/takeUntil';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class ProductFormComponent implements OnInit, OnDestroy {
-  private ngUnsubscribe: Subject<any> = new Subject();//niepotrzebne
+export class ProductFormComponent implements OnInit{
+
 
   categoryList;
   product = {};
@@ -25,7 +23,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) this.productService.get(this.id).takeUntil(this.ngUnsubscribe).subscribe(p => this.product = p);
+    if (this.id) this.productService.get(this.id).subscribe(p => this.product = p);
   }
 
   save(product) {
@@ -46,16 +44,21 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  delete(){
+    if(!confirm('Czy jesteś pewny, że chcesz usunać ten produkt?')) return
+    this.productService.delete(this.id)
+    .subscribe((res) => console.log(res))
+    this.router.navigate(['admin/products']);
+    console.log(this.id);
+  }
+
   ngOnInit() {
     this.categoryService.getCategories()
       .subscribe(category =>
         this.categoryList = category)
   }
 
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
+
 
 
 

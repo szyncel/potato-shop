@@ -95,12 +95,12 @@ router.get('/category', (req, res) => {
 
 router.post('/product', (req, res) => {
   var body = _.pick(req.body, ['title', 'price', 'category', 'imgUrl']);
-// console.log(body);
+  // console.log(body);
   var product = new Product({
-    title:body.title,
-    price:body.price,
-    category:body.category,
-    imgUrl:body.imgUrl
+    title: body.title,
+    price: body.price,
+    category: body.category,
+    imgUrl: body.imgUrl
   })
 
   product.save().then((doc) => {
@@ -132,7 +132,7 @@ router.get('/product/:id', (req, res) => {
   Product.findById(id).then((product) => {
     if (!product) {
       return res.status(404).send({
-        message:"Product not found"
+        message: "Product not found"
       });
     }
     res.status(200).send({
@@ -146,7 +146,6 @@ router.get('/product/:id', (req, res) => {
 
 router.put('/product/:id', (req, res) => {
   var id = req.params.id;
-  console.log(id);
   Product.findByIdAndUpdate(id, {
     $set: req.body
   }, {
@@ -160,6 +159,27 @@ router.put('/product/:id', (req, res) => {
     res.status(400).send({});
   });
 });
+
+
+
+router.delete('/product/:id', (req, res) => {
+  var id = req.params.id;
+
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send({
+      info: "invalidId"
+    });
+  }
+  //remove todobyid
+  Product.findByIdAndRemove(id).then((product) => {
+    if (!product) {
+      return res.status(404).send();
+    }
+    res.send(product);
+  }).catch((e) => {
+    res.status(400).send({});
+  })
+})
 
 
 module.exports = router;
