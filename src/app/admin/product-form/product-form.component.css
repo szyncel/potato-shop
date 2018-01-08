@@ -14,81 +14,20 @@
 }
 
 .col{
-    display: grid;
+    /* display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
-    justify-content: center;
-}
-
-.card-container{
-    min-width: 400px;
-    margin-left: 12px;
-    margin-top: 12px;
-    display: flex;
-    flex-direction: column;
-    
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
-}
-
-.card-container img{
-    max-width: 400px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: auto;
-}
-
-.button-price{
-    background-color: orange;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    cursor: pointer;
-    /* width: 100%; */
-}
-
-.content-wrapper h4{
-    font-size: 18px;
-    font-weight: 600;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.3;
+    justify-content: center; */
     display: -webkit-box;
-    padding: 5px;
-    margin: 2px;
-    flex: 1;
-}
-.content-wrapper p{
-    /* padding: 0; */
-    color: rgb(90, 90, 90);
-    font-size: 14px;
-    font-weight: 600;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.3;
-    display: -webkit-box;
-    padding: 5px;
-    margin: 1px;
-    flex: 1;
-}
-
-
-.content-footer{
-    border-top: 1px solid #eee;
+    display: -ms-flexbox;
     display: flex;
-    justify-content:space-between;
-    align-items: center;
-    padding: 12px;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 }
 
-.price{
-    font-size: 18px;
-    font-weight: 600;
-    color: green;
-}
+
 
 
 
@@ -100,3 +39,48 @@ button{
 button:hover{
     background: rgb(255, 50, 50);
 }
+
+
+
+/* .......................... */
+
+
+
+  .cards {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content:center;
+  }
+  
+  .cards_item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 0;
+    padding: 0 1em 2em;
+  }
+  .no-flexbox .cards_item {
+    float: left;
+  }
+  @media screen and (min-width: 42em) and (max-width: 60em) {
+    .cards_item {
+      width: 50%;
+    }
+    .no-flexbox .cards_item:nth-child(2n+1) {
+      clear: both;
+    }
+  }
+  @media screen and (min-width: 60em) {
+    .cards_item {
+      width: 33.3333%;
+    }
+    .no-flexbox .cards_item:nth-child(3n+1) {
+      clear: both;
+    }
+  }

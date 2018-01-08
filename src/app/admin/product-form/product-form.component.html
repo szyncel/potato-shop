@@ -51,19 +51,10 @@
         </div>
       </form>
     </div>
-    <div class="col" fxFlex="60">
-      <app-product-card [product]="product"></app-product-card>
-      <!-- <div class="card-container">
-        <img [src]="product.imgUrl">
-        <div class="content-wrapper">
-          <h4>{{product.title}}</h4>
-          <p>Kraj pochodzenia: {{product.category}}</p>
-        </div>
-        <div class="content-footer">
-          <span class="price">{{product.price}}</span>
-          <button class="button-price">Dodaj do koszyka</button>
-        </div>
-      </div> -->
+    <div fxFlex="60">
+        <ul class="cards">
+            <app-product-card [product]="product" class="cards_item"></app-product-card>
+        </ul>
     </div>
   </div>
 

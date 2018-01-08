@@ -10,12 +10,15 @@
     <h2>Lista dostepnych produktów</h2>
     <!-- <span>Sortowanie:</span> -->
     <hr class="style1">
-    <div class="cards">
-      <ng-container *ngFor="let p of filteredProducts">
-        <app-product-card [product]="p"></app-product-card>
-      </ng-container>
 
-    </div>
+    <!--  t testse ets -->
+    <ul class="cards">
+      <ng-container *ngFor="let p of filteredProducts">
+        <app-product-card [product]="p" class="cards_item"></app-product-card>
+      </ng-container>
+    </ul>
+
+
   </div>
 
 </div>

@@ -1,11 +1,10 @@
-<div class="card-container">
-    <img [src]="product.imgUrl">
-    <div class="content-wrapper">
-      <h4>{{product.title}}</h4>
-      <p>Odmiana: {{product.category}}</p>
-    </div>
-    <div class="content-footer">
-      <span class="price">{{product.price}} Zł</span>
-      <button class="button-price">Dodaj do koszyka</button>
-    </div>
+<div class="card">
+  <div class="card_image">
+    <img [src]="product.imgUrl" />
   </div>
+  <div class="card_content">
+    <h2 class="card_heading">{{product.title}}</h2>
+    <p>Odmiana: {{product.category}}</p>
+    <a href="#" class="card_button">Dodaj do koszyka</a>
+  </div>
+</div>
