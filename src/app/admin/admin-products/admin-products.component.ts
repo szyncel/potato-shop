@@ -15,10 +15,10 @@ export class AdminProductsComponent implements OnInit {
     // public ngProgress: NgProgress
   ) {
     this.productsList$=this.productService.getAll();
-    this.productService.getAll()
-    .subscribe(products=>{
-      console.log(products);    
-    })
+    // this.productService.getAll()
+    // .subscribe(products=>{
+    //   console.log(products);    
+    // })
    }
 
   ngOnInit() {
