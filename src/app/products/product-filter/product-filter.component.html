@@ -1,0 +1,12 @@
+<div class="categories">
+    <ul>
+        <li 
+        routerLink="/"
+        [class.active]="!category">Wszystkie</li>
+      <li
+      *ngFor="let c of categoryList$ | async"
+      routerLink="/"
+      [queryParams]="{category:c.name}" 
+      [class.active]="category===c.name">{{c.name}}</li>
+    </ul>
+  </div>

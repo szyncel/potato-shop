@@ -1,0 +1,21 @@
+<div class="products" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="space-around">
+
+  <div fxFlex="20">
+    <h3>Kategorie</h3>
+    <hr>
+    <app-product-filter [category]="category"></app-product-filter>
+  </div>
+
+  <div fxFlex="75">
+    <h2>Lista dostepnych produktów</h2>
+    <!-- <span>Sortowanie:</span> -->
+    <hr class="style1">
+    <div class="cards">
+      <ng-container *ngFor="let p of filteredProducts">
+        <app-product-card [product]="p"></app-product-card>
+      </ng-container>
+
+    </div>
+  </div>
+
+</div>

@@ -1,40 +1,20 @@
-.alert-danger{
-    color: rgb(0, 0, 0);
-    padding: 16px 32px;
-    background: rgba(216, 33, 33, 0.842);
-}
-
-.has-danger{
-    border: 1px solid rgba(216, 33, 33, 0.842);
-}
-
-.has-success{
-    /* background-color: rgba(231, 255, 228, 0.733); */
-    border: 1px solid rgba(54, 216, 33, 0.842);
-}
-
-.col{
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    justify-content: center;
-}
-
 .card-container{
-    min-width: 400px;
-    margin-left: 12px;
-    margin-top: 12px;
+    /* max-width: 30.3333%; */
+    width: 320px;
+    /* height: 330px; */
+    /* margin-left: 12px;
+    margin-top: 12px; */
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column; 
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
 }
 
 .card-container img{
-    max-width: 400px;
+    max-width: 100%;
+    max-height: 100%;
     background-repeat: no-repeat;
     background-size: contain;
-    height: auto;
+    
 }
 
 .button-price{
@@ -88,15 +68,4 @@
     font-size: 18px;
     font-weight: 600;
     color: green;
-}
-
-
-
-button{
-    background: rgb(209, 0, 0);
-    /* width: 40%; */
-}
-
-button:hover{
-    background: rgb(255, 50, 50);
 }

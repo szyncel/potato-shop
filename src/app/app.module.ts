@@ -25,6 +25,9 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
+import { ProductsComponent } from './products/products.component';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { ProductService } from './product.service';
     MyOrdersComponent,
     MyAccountComponent,
     AdminProductsComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductsComponent,
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,

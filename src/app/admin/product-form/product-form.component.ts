@@ -10,8 +10,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit{
-
-
   categoryList;
   product = {};
   id;

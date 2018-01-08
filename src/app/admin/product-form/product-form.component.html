@@ -52,7 +52,8 @@
       </form>
     </div>
     <div class="col" fxFlex="60">
-      <div class="card-container">
+      <app-product-card [product]="product"></app-product-card>
+      <!-- <div class="card-container">
         <img [src]="product.imgUrl">
         <div class="content-wrapper">
           <h4>{{product.title}}</h4>
@@ -62,7 +63,7 @@
           <span class="price">{{product.price}}</span>
           <button class="button-price">Dodaj do koszyka</button>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 

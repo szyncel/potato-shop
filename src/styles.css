@@ -30,38 +30,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 
 
-  .categories ul{
-    list-style: none;
-    padding: 0;
-  }
-
-  .categories ul li{
-    display: block;
-    text-decoration: none;
-    /* background-color: #FFF; */
-    cursor: pointer;
-    color: #000;
-    font-weight: bold;
-    padding: 1em;
-    border-bottom: 1px solid #E5E5E5;
-  }
-  .categories ul li:hover{
-    background-color: rgb(255, 181, 43);
-    transition: all .3s ease-in-out;
-    /* color: #0094B2; */
-  }
-
-  .categories ul li:focus, .categories ul li:active{
-    background-image: none;
-  outline: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  }
-
-  .active{
-    background: orange;
-    transition: all .3s ease-in-out;
-  }
+  
   
 
   /* Form style */

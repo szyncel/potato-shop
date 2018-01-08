@@ -1,0 +1,28 @@
+.cards{
+    
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+    justify-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));	 */
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    justify-items: center;
+    justify-content: center;
+    align-self: stretch;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  
+}
+
+
+
+.active{
+    background: orange;
+    transition: all .3s ease-in-out;
+  }
+

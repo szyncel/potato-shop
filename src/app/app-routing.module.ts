@@ -10,9 +10,10 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { ProductsComponent } from './products/products.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: ProductsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
