@@ -17,6 +17,16 @@
 
 }
 
+.style1{
+  display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+    margin-bottom: 2rem;
+}
+
 .active{
     background: orange;
     transition: all .3s ease-in-out;
@@ -44,6 +54,7 @@
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     list-style: none;
+    /* margin-top: 3rem; */
     margin: 0;
     padding: 0;
   }

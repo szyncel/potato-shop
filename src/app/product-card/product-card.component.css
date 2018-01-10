@@ -11,6 +11,13 @@
 p {
     font-size: 0.875em;
     color: #777;
+    margin: 0;
+    margin-top:0.5em;
+  }
+
+  h2{
+    margin-top: 0;
+    margin-bottom: 0;
   }
   
   img {
@@ -19,7 +26,7 @@ p {
     vertical-align: middle;
   }
   
-  a {
+  button {
     display: inline-block;
     padding: 0.8em 1em 0.6em;
     font-weight: 700;
@@ -61,7 +68,7 @@ p {
         -ms-flex-direction: column;
             flex-direction: column;
     margin-top: 0;
-    padding: 1em;
+    padding: 0.5em;
   }
   .card_content p {
     -webkit-box-flex: 1;

@@ -28,14 +28,16 @@ export class ProductFormComponent implements OnInit{
     if (product.valid) {
       if (this.id) {
         this.productService.update(this.id, product.value)
-          .subscribe((res) => console.log(res))
+          .subscribe((res) =>{ console.log(res)
+            this.router.navigate(['admin/products']);})
       }else{
         this.productService.create(product.value)
         .subscribe((res) => {
           console.log(res);
+          this.router.navigate(['admin/products']);
         })
       }
-      this.router.navigate(['admin/products']);
+      
 
     } else {
       console.log('Invalid');

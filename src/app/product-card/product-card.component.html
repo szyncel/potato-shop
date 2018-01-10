@@ -5,6 +5,7 @@
   <div class="card_content">
     <h2 class="card_heading">{{product.title}}</h2>
     <p>Odmiana: {{product.category}}</p>
-    <a href="#" class="card_button">Dodaj do koszyka</a>
   </div>
+  <button (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>
+  
 </div>

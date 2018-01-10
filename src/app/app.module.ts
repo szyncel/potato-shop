@@ -28,6 +28,7 @@ import { ProductService } from './product.service';
 import { ProductsComponent } from './products/products.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './shopping-cart.service';
 
 
 @NgModule({
@@ -56,8 +57,13 @@ import { ProductCardComponent } from './product-card/product-card.component';
     CustomFormsModule,
     NgProgressModule
   ],
-  providers: [AuthService, AuthGuardService, CategoryService, ProductService,
-    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }],
+  providers: [AuthService, 
+    AuthGuardService, 
+    CategoryService, 
+    ProductService,
+    ShoppingCartService,
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -25,6 +25,10 @@ const {
   Product
 } = require('../models/product.model');
 
+const {
+  ShoppingCart
+} = require('../models/shoppingCart.model');
+
 
 
 
@@ -180,6 +184,147 @@ router.delete('/product/:id', (req, res) => {
     res.status(400).send({});
   })
 })
+
+// ...........SHOPPING CART.....................//
+router.post('/shopping-carts', (req, res) => {
+  var shoppingCart = new ShoppingCart({
+    dateCreated: req.body.dateCreated
+  })
+
+  shoppingCart.save().then((doc) => {
+    res.send(doc);
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
+
+router.get('/shopping-carts/:id', (req, res) => {
+  var cartId = req.params.id;
+  if (!ObjectID.isValid(cartId)) {
+    return res.status(404).send({
+      info: "invalidId"
+    });
+  }
+
+  ShoppingCart.findById(cartId).then((shoppingCart) => {
+    var id = shoppingCart._id;
+    if (!shoppingCart) {
+      return res.status(404).send({
+        message: "shopping Cart not found"
+      });
+    }
+    res.status(200).send({
+      id
+    });
+  }).catch((e) => {
+    res.status(400).send({});
+  });
+
+})
+
+router.patch('/shopping-carts/add', async(req, res) => { //add to shopping cart
+  var shoppingCartId = req.body.id;
+  var product = req.body.product;
+
+  //check if item exist
+  const test = await ShoppingCart.find({
+    _id: shoppingCartId,
+    "items.product": product
+  })
+  if (test.length) {
+    ShoppingCart.update({
+      _id: shoppingCartId,
+      "items.product": product
+    }, {
+      $inc: {
+        "items.$.price": 1
+      }
+    }).then((cart) => {
+      res.status(200).send({
+        cart
+      });
+    }).catch((e) => {
+      res.status(400).send({
+        e
+      })
+    })
+  } else {
+
+    ShoppingCart.update({
+      _id: shoppingCartId
+    }, {
+      $addToSet: {
+        "items": {
+          'product': product,
+          'price': 1
+        }
+      }
+    }).then((cart) => {
+      res.status(200).send({
+        cart
+      });
+    }).catch((e) => {
+      res.status(400).send({
+        e
+      })
+    });
+  }
+})
+
+//Remove product from shopping card
+router.patch('/shopping-carts/delete', async(req, res) => {
+  var cartId = req.body.id;
+  var product = req.body.product;
+
+  const test = await ShoppingCart.update({
+    _id: cartId,
+    // "items.product": product
+  }, { $pull: { 'items': { product: product } } })
+  res.status(200).send({
+    test
+  });
+})
+
+//decrement item quantity in shopping card
+router.patch('/shopping-carts/decrasse', async (req,res) => {
+  var cartId = req.body.id;
+  var product = req.body.product;
+
+  // 1.check quantity if(1 then delete) else decrase
+
+  //check if price:1
+  const test= await ShoppingCart.find({
+    $and:[{_id: cartId},{items: {product:product,price:1}}]
+  })
+// var result= test.items;
+  //decrase
+// const test= await ShoppingCart.update({
+//   _id: cartId,
+//   "items.product": product
+// },{
+//   $inc: {
+//     "items.$.price": -1
+//   }
+// })
+
+
+if(test.length){
+  res.status(200).send({info:"Trzeba usunąć"});
+//delete
+}else{
+const decrase= await ShoppingCart.update({
+  _id: cartId,
+  "items.product": product
+},{
+  $inc: {
+    "items.$.price": -1
+  }
+})
+res.status(200).send({decrase});
+}
+console.log(test.length);
+
+});
 
 
 module.exports = router;
