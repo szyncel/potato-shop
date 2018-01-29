@@ -21,6 +21,8 @@ export class ShoppingCartService {
     return this.http.get(`/api/shopping-carts/${cartId}`);
   }
 
+
+
   private async getOrCreateCart():Promise<string> {
     let cartId = localStorage.getItem('cartId');
     if (!cartId) {
@@ -32,7 +34,10 @@ export class ShoppingCartService {
     //return this.getCart(cartId).toPromise();
     return cartId;
   }
-
+  async decrasseCart(product:Product){
+    let cartId = await this.getOrCreateCart();
+    return this.http.patch('/api/shopping-carts/decrasse',{ id: cartId, product: product }).toPromise();
+  }
 
   async addToCart(product: Product) {
     let cartId = await this.getOrCreateCart();

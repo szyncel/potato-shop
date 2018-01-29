@@ -12,13 +12,20 @@ import { ProductsComponent } from '../products/products.component';
 export class ProductCardComponent {
   @Input('product') product: Product;
   @Input('shopping-cart') shoppingCart;
+  showActions=true;
 
   constructor(private shoppingCartService: ShoppingCartService,
-    private productComponent: ProductsComponent) {
+    private productComponent: ProductsComponent
+  ) {
   }
 
   async addToCart(product: Product) {
     let res = await this.shoppingCartService.addToCart(product);
+    this.productComponent.refreshData();
+  }
+
+  async decrasseCart(product:Product){
+    let res= await this.shoppingCartService.decrasseCart(product);
     this.productComponent.refreshData();
   }
 

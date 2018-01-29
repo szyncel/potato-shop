@@ -186,7 +186,7 @@ router.delete('/product/:id', (req, res) => {
 })
 
 // ...........SHOPPING CART.....................//
-router.post('/shopping-carts', (req, res) => {//Create shopping cart
+router.post('/shopping-carts', (req, res) => { //Create shopping cart
   var shoppingCart = new ShoppingCart({
     dateCreated: req.body.dateCreated
   })
@@ -198,7 +198,7 @@ router.post('/shopping-carts', (req, res) => {//Create shopping cart
   });
 });
 
-router.get('/shopping-carts/:id', (req, res) => {//get shopping cart?
+router.get('/shopping-carts/:id', (req, res) => { //get shopping cart?
   var cartId = req.params.id;
   if (!ObjectID.isValid(cartId)) {
     return res.status(404).send({
@@ -222,11 +222,11 @@ router.get('/shopping-carts/:id', (req, res) => {//get shopping cart?
 
 })
 
-router.patch('/shopping-carts/add', async(req, res) => { //add product to shopping cart
+router.patch('/shopping-carts/add', async (req, res) => { //add product to shopping cart
   var shoppingCartId = req.body.id;
   var product = req.body.product;
 
-  console.log(`Test: `, product.id);
+  console.log(`Test: `, product._id);
 
   //check if item exist
   const test = await ShoppingCart.find({
@@ -252,7 +252,7 @@ router.patch('/shopping-carts/add', async(req, res) => { //add product to shoppi
     })
   } else {
 
-    ShoppingCart.update({//should return item
+    ShoppingCart.update({ //should return item
       _id: shoppingCartId
     }, {
       $addToSet: {
@@ -274,7 +274,7 @@ router.patch('/shopping-carts/add', async(req, res) => { //add product to shoppi
 })
 
 
-router.patch('/shopping-carts/delete', async(req, res) => {//Remove product from shopping card
+router.patch('/shopping-carts/delete', async (req, res) => { //Remove product from shopping card
   var cartId = req.body.id;
   var product = req.body.product;
 
@@ -294,72 +294,79 @@ router.patch('/shopping-carts/delete', async(req, res) => {//Remove product from
 })
 
 
-router.patch('/shopping-carts/decrasse', async(req, res) => {//decrement item quantity in shopping card
+router.patch('/shopping-carts/decrasse', async (req, res) => { //decrement item quantity in shopping card
   var cartId = req.body.id;
   var product = req.body.product;
 
+  const quantity=await ShoppingCart.aggregate([//działa!!!
+    { $match: {_id: ObjectID(cartId)}},
+    {$project:{
+      items:{$filter:{
+        input:'$items',
+        as:'item',
+        cond:{$eq:['$$item.product._id',product._id]}
+      }},
+      _id:0
+    }}
+  ]);
+  
+    console.log(quantity[0].items[0].count);
 
-// if count 0
-//delete product
-//else
-//decrasse
-
-
-  // if(test.length){
-  //   res.status(200).send({info:"Trzeba usunąć"});
-  // }else{
-  // const decrase = await ShoppingCart.update({
-  //   _id: cartId,
-  //   "items.product.id": product.id
-  // }, {
-  //   $inc: {
-  //     "items.$.count": -1
-  //   }
-  // })
-  // res.status(200).send({
-  //   decrase
-  // });
-
-
-});
-
-router.get('/shopping-carts/item/:id',async (re,res) => {//getQuantity
   
 
-
-});
-
-
-
-router.patch('/test',async (req,res) => {
-  var cartId = req.body.id;
-  var product = req.body.product;
-
-
-
-// const test= await ShoppingCart.find(// almost work
-//   {"items.product._id": "ciulowy8"},
-//   {_id: 0, items: {$elemMatch:{$and:[{'product._id': "ciulowy8"},{'price': 1}]} }});
-
-const test=await ShoppingCart.aggregate([//działa!!!
-  { $match: {_id: ObjectID(cartId)}},
-  {$project:{
-    items:{$filter:{
-      input:'$items',
-      as:'item',
-      cond:{$eq:['$$item.product._id',product.id]}
-    }},
-    _id:0
-  }}
-]);
-
-  console.log(test[0].items.length);
-
+  if (quantity[0].items[0].count==0) {
     res.status(200).send({
-    test
-  });
+      info: "Trzeba usunąć"
+    });
+  } else {
+    const decrase = await ShoppingCart.update({
+      _id: cartId,
+      "items.product._id": product._id
+    }, {
+      $inc: {
+        "items.$.count": -1
+      }
+    });
+    res.status(200).send({
+      ststus:"ok"
+    });
+  };
 
   
+});
+
+
+
+
+router.patch('/test', async (req, res) => {
+  var cartId = req.body.id;
+  var product = req.body.product;
+
+
+
+  // const test= await ShoppingCart.find(// almost work
+  //   {"items.product._id": "ciulowy8"},
+  //   {_id: 0, items: {$elemMatch:{$and:[{'product._id': "ciulowy8"},{'price': 1}]} }});
+
+  const test=await ShoppingCart.aggregate([//działa!!!
+    { $match: {_id: ObjectID(cartId)}},
+    {$project:{
+      items:{$filter:{
+        input:'$items',
+        as:'item',
+        cond:{$eq:['$$item.product._id',product.id]}
+      }},
+      _id:0
+    }}
+  ]);
+  
+    console.log(test[0].items[0].count);
+  
+      res.status(200).send({
+      test
+    });
+
+
 })
 
 
