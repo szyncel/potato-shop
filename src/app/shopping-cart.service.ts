@@ -16,9 +16,9 @@ export class ShoppingCartService {
     });
   }
 
-  getCart():Observable<any> {
-    // let cartId = this.getOrCreateCart();
-    return this.http.get(`/api/shopping-carts/5a69e913755b502560292901`);
+  async getCart() {
+    let cartId = await this.getOrCreateCart();
+    return this.http.get(`/api/shopping-carts/${cartId}`);
   }
 
   private async getOrCreateCart():Promise<string> {

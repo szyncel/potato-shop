@@ -7,8 +7,19 @@
     <p>Odmiana: {{product.category}}</p>
   </div>
   <div class="card-footer">
-    <button (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>
-    <div>{{ getQuantity() }}</div>
+    <button *ngIf="getQuantity()===0;else updateQuantity" (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>
+    <ng-template #updateQuantity>
+      <div class="card-row">
+        <div class="card-col">
+          <button class="card_button" (click)="addToCart(product)">+</button>
+        </div>
+        <div class="card-col quantity">{{ getQuantity() }}</div>
+        <div class="card-col">
+          <button class="card_button">-</button>
+        </div>
+      </div>
+    </ng-template>
+
   </div>
 
 
