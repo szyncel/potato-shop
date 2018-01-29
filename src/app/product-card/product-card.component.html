@@ -6,6 +6,10 @@
     <h2 class="card_heading">{{product.title}}</h2>
     <p>Odmiana: {{product.category}}</p>
   </div>
-  <button (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>
-  
+  <div class="card-footer">
+    <button (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>
+    <div>{{ getQuantity() }}</div>
+  </div>
+
+
 </div>

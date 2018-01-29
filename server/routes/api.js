@@ -186,7 +186,7 @@ router.delete('/product/:id', (req, res) => {
 })
 
 // ...........SHOPPING CART.....................//
-router.post('/shopping-carts', (req, res) => {
+router.post('/shopping-carts', (req, res) => {//Create shopping cart
   var shoppingCart = new ShoppingCart({
     dateCreated: req.body.dateCreated
   })
@@ -198,7 +198,7 @@ router.post('/shopping-carts', (req, res) => {
   });
 });
 
-router.get('/shopping-carts/:id', (req, res) => {
+router.get('/shopping-carts/:id', (req, res) => {//get shopping cart?
   var cartId = req.params.id;
   if (!ObjectID.isValid(cartId)) {
     return res.status(404).send({
@@ -214,7 +214,7 @@ router.get('/shopping-carts/:id', (req, res) => {
       });
     }
     res.status(200).send({
-      id
+      shoppingCart
     });
   }).catch((e) => {
     res.status(400).send({});
@@ -222,22 +222,24 @@ router.get('/shopping-carts/:id', (req, res) => {
 
 })
 
-router.patch('/shopping-carts/add', async(req, res) => { //add to shopping cart
+router.patch('/shopping-carts/add', async(req, res) => { //add product to shopping cart
   var shoppingCartId = req.body.id;
   var product = req.body.product;
+
+  console.log(`Test: `, product.id);
 
   //check if item exist
   const test = await ShoppingCart.find({
     _id: shoppingCartId,
-    "items.product": product
+    "items.product._id": product._id
   })
   if (test.length) {
     ShoppingCart.update({
       _id: shoppingCartId,
-      "items.product": product
+      "items.product._id": product._id
     }, {
       $inc: {
-        "items.$.price": 1
+        "items.$.count": 1
       }
     }).then((cart) => {
       res.status(200).send({
@@ -250,13 +252,13 @@ router.patch('/shopping-carts/add', async(req, res) => { //add to shopping cart
     })
   } else {
 
-    ShoppingCart.update({
+    ShoppingCart.update({//should return item
       _id: shoppingCartId
     }, {
       $addToSet: {
         "items": {
           'product': product,
-          'price': 1
+          'count': 1
         }
       }
     }).then((cart) => {
@@ -271,60 +273,94 @@ router.patch('/shopping-carts/add', async(req, res) => { //add to shopping cart
   }
 })
 
-//Remove product from shopping card
-router.patch('/shopping-carts/delete', async(req, res) => {
+
+router.patch('/shopping-carts/delete', async(req, res) => {//Remove product from shopping card
   var cartId = req.body.id;
   var product = req.body.product;
 
   const test = await ShoppingCart.update({
     _id: cartId,
     // "items.product": product
-  }, { $pull: { 'items': { product: product } } })
+  }, {
+    $pull: {
+      'items': {
+        product: product
+      }
+    }
+  })
   res.status(200).send({
     test
   });
 })
 
-//decrement item quantity in shopping card
-router.patch('/shopping-carts/decrasse', async (req,res) => {
+
+router.patch('/shopping-carts/decrasse', async(req, res) => {//decrement item quantity in shopping card
   var cartId = req.body.id;
   var product = req.body.product;
 
-  // 1.check quantity if(1 then delete) else decrase
 
-  //check if price:1
-  const test= await ShoppingCart.find({
-    $and:[{_id: cartId},{items: {product:product,price:1}}]
-  })
-// var result= test.items;
-  //decrase
-// const test= await ShoppingCart.update({
-//   _id: cartId,
-//   "items.product": product
-// },{
-//   $inc: {
-//     "items.$.price": -1
-//   }
-// })
+// if count 0
+//delete product
+//else
+//decrasse
 
 
-if(test.length){
-  res.status(200).send({info:"Trzeba usunąć"});
-//delete
-}else{
-const decrase= await ShoppingCart.update({
-  _id: cartId,
-  "items.product": product
-},{
-  $inc: {
-    "items.$.price": -1
-  }
-})
-res.status(200).send({decrase});
-}
-console.log(test.length);
+  // if(test.length){
+  //   res.status(200).send({info:"Trzeba usunąć"});
+  // }else{
+  // const decrase = await ShoppingCart.update({
+  //   _id: cartId,
+  //   "items.product.id": product.id
+  // }, {
+  //   $inc: {
+  //     "items.$.count": -1
+  //   }
+  // })
+  // res.status(200).send({
+  //   decrase
+  // });
+
 
 });
+
+router.get('/shopping-carts/item/:id',async (re,res) => {//getQuantity
+  
+
+
+});
+
+
+
+router.patch('/test',async (req,res) => {
+  var cartId = req.body.id;
+  var product = req.body.product;
+
+
+
+// const test= await ShoppingCart.find(// almost work
+//   {"items.product._id": "ciulowy8"},
+//   {_id: 0, items: {$elemMatch:{$and:[{'product._id': "ciulowy8"},{'price': 1}]} }});
+
+const test=await ShoppingCart.aggregate([//działa!!!
+  { $match: {_id: ObjectID(cartId)}},
+  {$project:{
+    items:{$filter:{
+      input:'$items',
+      as:'item',
+      cond:{$eq:['$$item.product._id',product.id]}
+    }},
+    _id:0
+  }}
+]);
+
+  console.log(test[0].items.length);
+
+    res.status(200).send({
+    test
+  });
+
+  
+})
 
 
 module.exports = router;

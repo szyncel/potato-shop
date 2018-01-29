@@ -3,10 +3,7 @@ const validator = require('validator');
 
 var shoppingCartSchema = mongoose.Schema({
   dateCreated: String,
-  items: [
-    // product={},
-    // quantity=1
-  ]
+  items: []
 });
 
 

@@ -16,24 +16,27 @@ export class ShoppingCartService {
     });
   }
 
-  private getCart(cartId: String) {
-    return this.http.get(`/api/shopping-carts/${cartId}`);
+  getCart():Observable<any> {
+    // let cartId = this.getOrCreateCart();
+    return this.http.get(`/api/shopping-carts/5a69e913755b502560292901`);
   }
 
-  private async getOrCreateCart() {
+  private async getOrCreateCart():Promise<string> {
     let cartId = localStorage.getItem('cartId');
     if (!cartId) {
       let result: any = await this.create().toPromise();
       localStorage.setItem('cartId', result._id);
-      return this.getCart(result._id).toPromise();
+      //return this.getCart(result._id).toPromise();
+      return result._id;
     }
-    return this.getCart(cartId).toPromise();
+    //return this.getCart(cartId).toPromise();
+    return cartId;
   }
 
 
   async addToCart(product: Product) {
     let cartId = await this.getOrCreateCart();
-    return this.http.patch('/api/shopping-carts/add', { id: cartId, product: product });
+    return this.http.patch('/api/shopping-carts/add', { id: cartId, product: product }).toPromise();
     // this.http.post()
     // item$.subscribe()
     // return item$;
