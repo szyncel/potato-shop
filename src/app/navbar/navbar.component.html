@@ -1,6 +1,8 @@
 <div class="nav">
   <div class="nav-left">
-    <a routerLink="/">POTATOshop</a>
+    <!-- <img src="https://img.lcpdfr.com/uploads/monthly_2017_04/Potato.thumb.png.2ad68ffee2b867f4d68777a10d5eabd3.png" alt="potato"> -->
+    <a routerLink="/">  
+      POTATOshop</a>
   </div>
   <div class="nav-mobile" fxHide="false" fxHide.gt-sm>
     <a id="nav-toggle" href="#!">
@@ -38,9 +40,11 @@
       <li>
         <a routerLink="/shopping-cart" fxLayout="column" fxLayoutAlign="center center">
           <i class="fa fa-shopping-bag fa-2" aria-hidden="true"></i>
-          Koszyk
+          Koszyk{{shoppingCartItemCount}}
         </a>
       </li>
+      <!-- <li></li> -->
     </ul>
   </div>
 </div>
+

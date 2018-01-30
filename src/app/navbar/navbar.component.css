@@ -91,6 +91,10 @@ a {
   font-size: 24px;
 }
 
+img{
+  max-height: 60px;
+}
+
 
 
 .dropdown {

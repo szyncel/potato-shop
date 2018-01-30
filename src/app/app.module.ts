@@ -63,6 +63,7 @@ import { ShoppingCartService } from './shopping-cart.service';
     ProductService,
     ShoppingCartService,
     ProductsComponent,
+    NavbarComponent,
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { Product } from '../models/product';
 import { ShoppingCartService } from '../shopping-cart.service';
-import { takeWhile } from 'rxjs/operator/takeWhile';
 import { ProductsComponent } from '../products/products.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-product-card',
@@ -12,21 +12,29 @@ import { ProductsComponent } from '../products/products.component';
 export class ProductCardComponent {
   @Input('product') product: Product;
   @Input('shopping-cart') shoppingCart;
-  showActions=true;
+  showActions = true;
+
 
   constructor(private shoppingCartService: ShoppingCartService,
-    private productComponent: ProductsComponent
+    private productComponent: ProductsComponent,
+    private navbarComponent: NavbarComponent
   ) {
+
   }
 
   async addToCart(product: Product) {
     let res = await this.shoppingCartService.addToCart(product);
-    this.productComponent.refreshData();
+    let test = await this.productComponent.refreshData();
+    //this.navbarComponent.refreshCounter();
+    this.shoppingCartService.change();
+
+    //nie działa
   }
 
-  async decrasseCart(product:Product){
-    let res= await this.shoppingCartService.decrasseCart(product);
+  async decrasseCart(product: Product) {
+    let res = await this.shoppingCartService.decrasseCart(product);
     this.productComponent.refreshData();
+    this.shoppingCartService.change();
   }
 
 

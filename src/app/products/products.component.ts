@@ -42,7 +42,7 @@ export class ProductsComponent implements OnInit {
   async refreshData() {
     this.subscription= (await this.shoppingCartService.getCart()).subscribe(cart => {
       this.cart = cart
-      console.log(`Odświeżamy `,this.cart);
+      // console.log(`Odświeżamy `,this.cart);
     });
   }
 
