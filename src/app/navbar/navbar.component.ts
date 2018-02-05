@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'app-navbar',
@@ -9,8 +11,9 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  subscription: any;
-  shoppingCartItemCount: number;
+  cart$: Observable<ShoppingCart>;
+  //subscription: any;
+  //shoppingCartItemCount: number;
 
 
   constructor(public authService: AuthService,
@@ -19,20 +22,15 @@ export class NavbarComponent implements OnInit {
 
 
   async refreshCounter() {
-    this.subscription = (await this.shoppingCartService.getQuantity()).subscribe(cart => {
-      this.shoppingCartItemCount = 0;
-      for (let prodId in cart.items) {
-        this.shoppingCartItemCount += cart.items[prodId].count;
-      };
-      console.log(`Navbar refresh: `, this.shoppingCartItemCount);
-    });
+    this.cart$= await this.shoppingCartService.getCart();
+    console.log('test:',this.cart$);
   }
 
 
 
   ngOnInit() {
-    if (!this.shoppingCartItemCount) this.refreshCounter();
-    this.subscription = this.shoppingCartService.getEmittedValue()
+    if (!this.cart$) this.refreshCounter();
+     this.shoppingCartService.getEmittedValue()
       .subscribe(item => this.refreshCounter())
   };
 }

@@ -40,7 +40,7 @@
       <li>
         <a routerLink="/shopping-cart" fxLayout="column" fxLayoutAlign="center center">
           <i class="fa fa-shopping-bag fa-2" aria-hidden="true"></i>
-          Koszyk{{shoppingCartItemCount}}
+          Koszyk<ng-container *ngIf="cart$ |async as cart">{{cart.totalItemsCount}}</ng-container>
         </a>
       </li>
       <!-- <li></li> -->

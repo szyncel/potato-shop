@@ -40,7 +40,7 @@ export class ProductCardComponent {
 
   getQuantity() {
     if (!this.shoppingCart) return 0;
-    let itemArray = this.shoppingCart.shoppingCart.items;
+    let itemArray = this.shoppingCart.items;
     let item = itemArray.filter(item => item.product._id == this.product._id);//add '_id' to product interface
     return item[0] ? item[0].count : 0;
   }

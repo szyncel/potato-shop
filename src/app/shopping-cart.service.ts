@@ -27,17 +27,18 @@ export class ShoppingCartService {
     });
   }
 
-  async getCart(): Promise<Observable<any>> {
+  async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCart();
-    return this.http.get(`/api/shopping-carts/${cartId}`);
+    let cart: Observable<any> = await this.http.get(`/api/shopping-carts/${cartId}`);
+    return cart.map(cartItem => new ShoppingCart(cartItem.shoppingCart.items));
   }
 
-  async getQuantity() {
-    let cart = await this.getCart();
-    let cartItems:Observable<any>=cart.map(cartItem=>cartItem.shoppingCart)
+  // async getQuantity() {
+  //   let cart = await this.getCart();
+  //   let cartItems: Observable<any> = cart.map(cartItem => cartItem.shoppingCart)
 
-    return cartItems;
-  }
+  //   return cartItems;
+  // }
 
 
 
