@@ -1,0 +1,12 @@
+.card-row {
+  background: rgb(250, 250, 250);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.quantity {
+  font-size: 20px;
+  font-weight: bold;
+}
