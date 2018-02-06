@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../shopping-cart.service';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,17 +8,21 @@ import { ShoppingCartService } from '../shopping-cart.service';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  cart={};
+  cart:ShoppingCart;
 
-  constructor(
-    private shoppingCartService: ShoppingCartService
-  ) { }
+  constructor(private shoppingCartService: ShoppingCartService) { }
+
+
+  async refreshShoppingCart(){
+    (await this.shoppingCartService.getCart()).subscribe(cart => {
+      this.cart = cart
+        console.log(this.cart);
+      })
+  }
+
 
   async ngOnInit() {
-    (await this.shoppingCartService.getCart()).subscribe(cart => {
-    this.cart = cart
-      console.log(this.cart);
-    })
+    await this.refreshShoppingCart();
   }
 
 }

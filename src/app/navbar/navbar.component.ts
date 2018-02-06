@@ -11,10 +11,7 @@ import { ShoppingCart } from '../models/shopping-cart';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  cart$: Observable<ShoppingCart>;
-  //subscription: any;
-  //shoppingCartItemCount: number;
-
+  cart:ShoppingCart;
 
   constructor(public authService: AuthService,
     private shoppingCartService: ShoppingCartService) {
@@ -22,14 +19,14 @@ export class NavbarComponent implements OnInit {
 
 
   async refreshCounter() {
-    this.cart$= await this.shoppingCartService.getCart();
-    console.log('test:',this.cart$);
+    (await this.shoppingCartService.getCart()).subscribe(cart=>{
+      this.cart=cart
+    });   
   }
 
 
-
   ngOnInit() {
-    if (!this.cart$) this.refreshCounter();
+    if (!this.cart) this.refreshCounter();
      this.shoppingCartService.getEmittedValue()
       .subscribe(item => this.refreshCounter())
   };

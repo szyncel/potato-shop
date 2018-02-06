@@ -21,3 +21,9 @@
     background-color: orange;
     color: white;
 }
+
+img {
+    max-width: 300px;
+    height: auto;
+    vertical-align: middle;
+  }

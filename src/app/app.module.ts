@@ -29,6 +29,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartService } from './shopping-cart.service';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { ShoppingCartService } from './shopping-cart.service';
     ProductFormComponent,
     ProductsComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,7 @@ import { ShoppingCartService } from './shopping-cart.service';
     ShoppingCartService,
     ProductsComponent,
     NavbarComponent,
+    ShoppingCartComponent,
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
