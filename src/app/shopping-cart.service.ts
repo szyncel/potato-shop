@@ -33,6 +33,13 @@ export class ShoppingCartService {
     return cart.map(cartItem => new ShoppingCart(cartItem.shoppingCart.items));
   }
 
+
+  async clearCart() {
+    let cartId = await this.getOrCreateCart();
+    let res: Observable<any> = await this.http.delete(`/api/shopping-carts/${cartId}`);
+    return res;
+  }
+
   // async getQuantity() {
   //   let cart = await this.getCart();
   //   let cartItems: Observable<any> = cart.map(cartItem => cartItem.shoppingCart)
@@ -64,6 +71,12 @@ export class ShoppingCartService {
     // this.http.post()
     // item$.subscribe()
     // return item$;
+  }
+
+
+  async removeFromCart(product: Product) {
+    let cartId = await this.getOrCreateCart();
+    return this.http.patch('/api/shopping-carts/delete', { id: cartId, product: product }).toPromise();
   }
 
 }

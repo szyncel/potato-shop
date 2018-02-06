@@ -271,7 +271,7 @@ router.patch('/shopping-carts/add', async (req, res) => { //add product to shopp
       })
     });
   }
-})
+});
 
 
 router.patch('/shopping-carts/delete', async (req, res) => { //Remove product from shopping card
@@ -314,9 +314,20 @@ router.patch('/shopping-carts/decrasse', async (req, res) => { //decrement item 
 
   
 
-  if (quantity[0].items[0].count==0) {
+  if (quantity[0].items[0].count==1) {
+    const test = await ShoppingCart.update({
+      _id: cartId,
+      // "items.product": product
+    }, {
+      $pull: {
+        'items': {
+          product: product
+        }
+      }
+    })
     res.status(200).send({
-      info: "Trzeba usunąć"
+      val:test,
+      info:"Usunieto"
     });
   } else {
     const decrase = await ShoppingCart.update({
@@ -334,6 +345,21 @@ router.patch('/shopping-carts/decrasse', async (req, res) => { //decrement item 
 
   
 });
+
+router.delete('/shopping-carts/:id',async (req,res) => {
+  var cartId = req.params.id;
+  const test = await ShoppingCart.update({
+    _id: cartId,
+  }, {
+    $set: {
+      'items':[]
+    }
+  })
+  res.status(200).send({
+    val:test,
+    info:"Czysto"
+  });
+})
 
 
 
