@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Shipping } from '../models/order';
-import { OrderService } from '../order.service';
 import { Router } from '@angular/router';
+import { Shipping } from '../../models/order';
+import { OrderService } from '../../order.service';
 
 @Component({
   selector: 'app-address',

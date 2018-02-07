@@ -11,10 +11,9 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductsComponent } from './products/products.component';
-import { CheckOutComponent } from './check-out/check-out.component';
-import { AddressComponent } from './address/address.component';
-import { ConfirmComponent } from './confirm/confirm.component';
 import { CheckoutStepsGuardService } from './checkout-steps-guard.service';
+import { ConfirmComponent } from './checkout/confirm/confirm.component';
+import { AddressComponent } from './checkout/address/address.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },

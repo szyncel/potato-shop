@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../order.service';
+import { FormData } from '../../models/order';
 import { Router } from '@angular/router';
-import { ShoppingCartService } from '../shopping-cart.service';
-import { FormData } from '../models/order';
-import { ShoppingCart } from '../models/shopping-cart';
+import { ShoppingCart } from '../../models/shopping-cart';
+import { OrderService } from '../../order.service';
+import { ShoppingCartService } from '../../shopping-cart.service';
+
+
 
 @Component({
   selector: 'app-confirm',

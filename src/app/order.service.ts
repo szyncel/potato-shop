@@ -31,8 +31,7 @@ export class OrderService {
     this.formData.city = data.city;
     this.formData.country = data.country;
     this.formData.zip = data.zip;
-// steps
-
+    // activate next step
     this.checkoutStepsService.validateSteps('checkout/confirm');
   }
 
