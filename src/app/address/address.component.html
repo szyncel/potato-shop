@@ -1,0 +1,25 @@
+
+<app-checkout-navbar></app-checkout-navbar>
+
+<!-- <p>second step: Potwierdzenie</p> -->
+<h2>Adres do wysyłki</h2>
+
+<form #f="ngForm">
+  <label for="firstname">Imie*</label>
+  <input class="has-danger" type="text" id="firstname" name="firstname" [(ngModel)]="shipping.firstName">
+  <label for="lastname">Nazwisko*</label>
+  <input class="has-danger" type="text" id="lastname" name="lastname" [(ngModel)]="shipping.lastName">
+  <label for="address">Ulica, nr domu / nr mieszkania*</label>
+  <input class="has-danger" type="text" id="address" name="address" [(ngModel)]="shipping.address">
+  <label for="postCode">Kod pocztowy*</label>
+  <input class="has-danger" type="text" id="postCode" name="postCode" [(ngModel)]="shipping.postCode">
+  <label for="City">Miasto*</label>
+  <input class="has-danger" type="text" id="City" name="City" [(ngModel)]="shipping.city">
+  <label for="Country">Kraj*</label>
+  <input class="has-danger" type="text" id="Country" name="Country" [(ngModel)]="shipping.country">
+
+  <!-- <input type="submit" value="Przejdź do podsumowania"> -->
+  <button type="button" (click)="goToNext(f)">Dalej</button>
+</form>
+
+*pola obowiązkowe

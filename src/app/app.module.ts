@@ -30,6 +30,13 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { AddressComponent } from './address/address.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { OrderService } from './order.service';
+import { CheckoutNavbarComponent } from './checkout-navbar/checkout-navbar.component';
+import { CheckoutStepsService } from './checkout-steps.service';
+import { CheckoutStepsGuardService } from './checkout-steps-guard.service';
 
 
 @NgModule({
@@ -48,7 +55,11 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductsComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    CheckOutComponent,
+    AddressComponent,
+    ConfirmComponent,
+    CheckoutNavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +78,9 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductsComponent,
     NavbarComponent,
     ShoppingCartComponent,
+    OrderService,
+    CheckoutStepsService,
+    CheckoutStepsGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

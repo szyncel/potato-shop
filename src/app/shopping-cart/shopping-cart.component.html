@@ -33,7 +33,10 @@
 
   <hr>
   <div fxLayoutAlign="center">
-    <button>KONTYNUUJ ZAKUPY</button>
-    <button>PRZEJDŹ DO KASY</button>
+    <!-- <button>KONTYNUUJ ZAKUPY</button> -->
+    <button
+    *ngIf="cart.items.length"
+     routerLink="/checkout/address"
+    >PRZEJDŹ DO KASY</button>
   </div>
 </ng-container>

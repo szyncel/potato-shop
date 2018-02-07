@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent} from './home/home.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -11,6 +11,10 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductsComponent } from './products/products.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { AddressComponent } from './address/address.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { CheckoutStepsGuardService } from './checkout-steps-guard.service';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -18,16 +22,19 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'wishlist', component: WishlistComponent },
+  { path: 'checkout/address', component: AddressComponent, canActivate: [CheckoutStepsGuardService] },//first step
+  { path: 'checkout/confirm', component: ConfirmComponent, canActivate: [CheckoutStepsGuardService] },//second step
+  { path: 'checkout', redirectTo: 'checkout/address', pathMatch: 'full' },
   { path: 'admin/products/new', component: ProductFormComponent },
   { path: 'admin/products/:id', component: ProductFormComponent },
   { path: 'admin/products', component: AdminProductsComponent },
-  { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService]},
+  { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
   { path: 'my/account', component: MyAccountComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
-  
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+
 })
 export class AppRoutingModule { }
