@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormData, Shipping } from './models/order';
 import { CheckoutStepsService } from './checkout-steps.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class OrderService {
@@ -8,7 +9,9 @@ export class OrderService {
   private isAddressFormValid: boolean = false;
   // private isConfirmFormValid: boolean = false;
 
-  constructor(private checkoutStepsService: CheckoutStepsService) { }
+  constructor(
+    private checkoutStepsService: CheckoutStepsService,
+    private http: HttpClient) { }
 
 
   getAddress(): Shipping {
@@ -37,6 +40,11 @@ export class OrderService {
 
   getForm(): FormData {
     return this.formData;
+  }
+
+
+  storeOrder(order) {
+    return this.http.post('/api/place-order', order);
   }
 
 }

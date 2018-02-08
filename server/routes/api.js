@@ -29,6 +29,10 @@ const {
   ShoppingCart
 } = require('../models/shoppingCart.model');
 
+const {
+  Order
+} = require('../models/order.model');
+
 
 
 
@@ -298,23 +302,33 @@ router.patch('/shopping-carts/decrasse', async (req, res) => { //decrement item 
   var cartId = req.body.id;
   var product = req.body.product;
 
-  const quantity=await ShoppingCart.aggregate([//działa!!!
-    { $match: {_id: ObjectID(cartId)}},
-    {$project:{
-      items:{$filter:{
-        input:'$items',
-        as:'item',
-        cond:{$eq:['$$item.product._id',product._id]}
-      }},
-      _id:0
-    }}
+  const quantity = await ShoppingCart.aggregate([ //działa!!!
+    {
+      $match: {
+        _id: ObjectID(cartId)
+      }
+    },
+    {
+      $project: {
+        items: {
+          $filter: {
+            input: '$items',
+            as: 'item',
+            cond: {
+              $eq: ['$$item.product._id', product._id]
+            }
+          }
+        },
+        _id: 0
+      }
+    }
   ]);
-  
-    console.log(quantity[0].items[0].count);
 
-  
+  console.log(quantity[0].items[0].count);
 
-  if (quantity[0].items[0].count==1) {
+
+
+  if (quantity[0].items[0].count == 1) {
     const test = await ShoppingCart.update({
       _id: cartId,
       // "items.product": product
@@ -326,8 +340,8 @@ router.patch('/shopping-carts/decrasse', async (req, res) => { //decrement item 
       }
     })
     res.status(200).send({
-      val:test,
-      info:"Usunieto"
+      val: test,
+      info: "Usunieto"
     });
   } else {
     const decrase = await ShoppingCart.update({
@@ -339,61 +353,61 @@ router.patch('/shopping-carts/decrasse', async (req, res) => { //decrement item 
       }
     });
     res.status(200).send({
-      ststus:"ok"
+      ststus: "ok"
     });
   };
 
-  
+
 });
 
-router.delete('/shopping-carts/:id',async (req,res) => {
+router.delete('/shopping-carts/:id', async (req, res) => {
   var cartId = req.params.id;
   const test = await ShoppingCart.update({
     _id: cartId,
   }, {
     $set: {
-      'items':[]
+      'items': []
     }
   })
   res.status(200).send({
-    val:test,
-    info:"Czysto"
+    val: test,
+    info: "Czysto"
   });
 })
 
 
 
+router.post('/place-order', (req, res) => {
+  var order = new Order({
+    userId:req.body.userId,
+    datePlaced: req.body.datePlaced,
+    shipping: {
+      firstName: req.body.shipping.firstName,
+      lastName: req.body.shipping.lastName,
+      address: req.body.shipping.address,
+      city: req.body.shipping.city,
+      country: req.body.shipping.country,
+      zip: req.body.shipping.zip
+    },
+    items: req.body.items
+  });
 
-router.patch('/test', async (req, res) => {
-  var cartId = req.body.id;
-  var product = req.body.product;
-
-
-
-  // const test= await ShoppingCart.find(// almost work
-  //   {"items.product._id": "ciulowy8"},
-  //   {_id: 0, items: {$elemMatch:{$and:[{'product._id': "ciulowy8"},{'price': 1}]} }});
-
-  const test=await ShoppingCart.aggregate([//działa!!!
-    { $match: {_id: ObjectID(cartId)}},
-    {$project:{
-      items:{$filter:{
-        input:'$items',
-        as:'item',
-        cond:{$eq:['$$item.product._id',product.id]}
-      }},
-      _id:0
-    }}
-  ]);
-  
-    console.log(test[0].items[0].count);
-  
-      res.status(200).send({
-      test
+  order.save().then(() => {
+    res.status(200).json({
+      message: 'Order saved',
+      order
     });
+  }).catch((e) => {
+    res.status(400).json({
+      title: 'Error',
+      error: e
+    });
+  })
 
+  //console.log(order);
 
-})
+});
+
 
 
 module.exports = router;
