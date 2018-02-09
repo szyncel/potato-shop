@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { FormData, Shipping } from './models/order';
+import { FormData, Shipping } from './models/form-data';
 import { CheckoutStepsService } from './checkout-steps.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class OrderService {
   private formData: FormData = new FormData();
-  private isAddressFormValid: boolean = false;
-  // private isConfirmFormValid: boolean = false;
 
   constructor(
     private checkoutStepsService: CheckoutStepsService,
@@ -27,7 +26,6 @@ export class OrderService {
   }
 
   setAddress(data: Shipping) {
-    this.isAddressFormValid = true;
     this.formData.firstName = data.firstName;
     this.formData.lastName = data.lastName;
     this.formData.address = data.address;
@@ -42,8 +40,13 @@ export class OrderService {
     return this.formData;
   }
 
+  resetFormData(): FormData {
+    this.formData.clear();
+    return this.formData;
+}
 
-  storeOrder(order) {
+
+  storeOrder(order):Observable<any> {
     return this.http.post('/api/place-order', order);
   }
 

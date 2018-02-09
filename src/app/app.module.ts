@@ -36,6 +36,7 @@ import { CheckoutStepsGuardService } from './checkout-steps-guard.service';
 import { AddressComponent } from './checkout/address/address.component';
 import { ConfirmComponent } from './checkout/confirm/confirm.component';
 import { CheckoutNavbarComponent } from './checkout/checkout-navbar/checkout-navbar.component';
+import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-success.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { CheckoutNavbarComponent } from './checkout/checkout-navbar/checkout-nav
     ProductQuantityComponent,
     AddressComponent,
     ConfirmComponent,
-    CheckoutNavbarComponent
+    CheckoutNavbarComponent,
+    CheckoutSuccessComponent
   ],
   imports: [
     BrowserModule,

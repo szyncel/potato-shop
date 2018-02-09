@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormData } from '../../models/order';
+import { FormData } from '../../models/form-data';
 import { Router } from '@angular/router';
 import { ShoppingCart } from '../../models/shopping-cart';
 import { OrderService } from '../../order.service';
 import { ShoppingCartService } from '../../shopping-cart.service';
 import { AuthService } from '../../auth.service';
+import { Order } from '../../models/order';
 
 
 
@@ -16,7 +17,8 @@ import { AuthService } from '../../auth.service';
 export class ConfirmComponent implements OnInit {
   shipping: FormData;
   cart: ShoppingCart;
-  userId:String;
+  userId: string;
+  orderId: string;
 
   constructor(
     private router: Router,
@@ -37,27 +39,20 @@ export class ConfirmComponent implements OnInit {
   }
 
 
-  placeOrder() {
-    let order = {
-      userId: this.userId,
-      datePlaced: new Date().getTime(),
-      shipping: this.shipping,
-      items: this.cart.items.map(i => {
-        return {
-          product: {
-            title: i.product.title,
-            price: i.product.price,
-            imgUrl: i.product.imgUrl,
-            category: i.product.category
-          },
-          count: i.count,
-          totalPrice: i.totalPrice
-        }
-      })
-    };
-    //console.log(order);
-    //console.log(this.userId);
-    this.orderService.storeOrder(order).subscribe(res => console.log(res));
+  async placeOrder() {
+    let order = new Order(this.userId, this.shipping, this.cart);
+
+
+    (await this.shoppingCartService.clearCart()).subscribe(res => console.log(res));//refreshing page state
+    this.orderService.storeOrder(order).subscribe(res => {
+      this.orderId = res.order._id;
+      this.shoppingCartService.change();
+      this.router.navigate(['/order-success/',this.orderId]);
+      console.log(this.orderId);
+    });
+    //clear shopping cart
+
+
   }
 
 }
