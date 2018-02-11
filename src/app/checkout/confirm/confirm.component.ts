@@ -52,7 +52,6 @@ export class ConfirmComponent implements OnInit {
     });
     //clear shopping cart
 
-
   }
 
 }

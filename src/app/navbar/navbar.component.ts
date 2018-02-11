@@ -17,13 +17,11 @@ export class NavbarComponent implements OnInit {
     private shoppingCartService: ShoppingCartService) {
   }
 
-
   async refreshCounter() {
     (await this.shoppingCartService.getCart()).subscribe(cart=>{
       this.cart=cart
     });   
   }
-
 
   ngOnInit() {
     if (!this.cart) this.refreshCounter();

@@ -5,7 +5,7 @@ import { Product } from "./product";
 
 export class ShoppingCart {
     items: ShoppingCartItem[]=[];
-    constructor(public itemsMap: ShoppingCartItem[]) {
+    constructor(itemsMap: ShoppingCartItem[]) {
         for(let prodId in itemsMap){
             let item= itemsMap[prodId];
             this.items.push(new ShoppingCartItem(item.product, item.count));

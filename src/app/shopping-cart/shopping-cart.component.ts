@@ -32,6 +32,7 @@ export class ShoppingCartComponent implements OnInit {
   removeFromCart(product: Product) {
     this.shoppingCartService.removeFromCart(product).then(test=>{
       this.refreshShoppingCart();
+      this.shoppingCartService.change();
     });
   }
 

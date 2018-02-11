@@ -40,24 +40,14 @@ export class ShoppingCartService {
     return res;
   }
 
-  // async getQuantity() {
-  //   let cart = await this.getCart();
-  //   let cartItems: Observable<any> = cart.map(cartItem => cartItem.shoppingCart)
-
-  //   return cartItems;
-  // }
-
-
 
   private async getOrCreateCart(): Promise<string> {
     let cartId = localStorage.getItem('cartId');
     if (!cartId) {
       let result: any = await this.create().toPromise();
       localStorage.setItem('cartId', result._id);
-      //return this.getCart(result._id).toPromise();
       return result._id;
     }
-    //return this.getCart(cartId).toPromise();
     return cartId;
   }
   async decrasseCart(product: Product) {
@@ -68,9 +58,6 @@ export class ShoppingCartService {
   async addToCart(product: Product) {
     let cartId = await this.getOrCreateCart();
     return this.http.patch('/api/shopping-carts/add', { id: cartId, product: product }).toPromise();
-    // this.http.post()
-    // item$.subscribe()
-    // return item$;
   }
 
 

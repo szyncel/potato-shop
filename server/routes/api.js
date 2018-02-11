@@ -379,7 +379,8 @@ router.delete('/shopping-carts/:id', async (req, res) => {
 
 router.post('/place-order', (req, res) => {
   var order = new Order({
-    userId:req.body.userId,
+    // _creator: req.user._id,
+    userId: req.body.userId,
     datePlaced: req.body.datePlaced,
     shipping: {
       firstName: req.body.shipping.firstName,
@@ -404,10 +405,24 @@ router.post('/place-order', (req, res) => {
     });
   })
 
-  //console.log(order);
+
 
 });
 
+// My/Orders
+
+router.get('/all-orders/:id', (req, res) => {
+  var id = req.params.id;
+  Order.find({
+    userId: id
+  }).then((orders) => {
+    res.send({
+      orders
+    });
+  }, (e) => {
+    res.status(400).send(e);
+  })
+})
 
 
 module.exports = router;

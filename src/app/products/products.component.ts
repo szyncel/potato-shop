@@ -5,7 +5,6 @@ import { Product } from '../models/product';
 import 'rxjs/add/operator/switchMap';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { Subscription } from 'rxjs/Subscription';
-// import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-products',
@@ -13,21 +12,19 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-
   products: Product[] = [];
   filteredProducts: Product[] = [];
   category;
   cart;
-  subscription:Subscription;
+  subscription: Subscription;
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
     private shoppingCartService: ShoppingCartService
-  ) {
+) {
     this.productService.getAll()
       .switchMap(products => {
-
         this.products = products;
         return this.route.queryParamMap;
       })
@@ -38,20 +35,17 @@ export class ProductsComponent implements OnInit {
       })
   }
 
-
   async refreshData() {
-    this.subscription= (await this.shoppingCartService.getCart()).subscribe(cart => {
+    this.subscription = (await this.shoppingCartService.getCart()).subscribe(cart => {
       this.cart = cart
-      // console.log(`Odświeżamy `,this.cart);
     });
   }
 
   ngOnInit() {
-   this.refreshData();
+    this.refreshData();
   }
 
   ngOnDestroy() {//Potrzebne?
     this.subscription.unsubscribe();
   }
-
 }

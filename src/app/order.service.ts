@@ -50,4 +50,8 @@ export class OrderService {
     return this.http.post('/api/place-order', order);
   }
 
+  getOrders(userId):Observable<any>{
+    return this.http.get(`/api/all-orders/${userId}`).map(orders=> orders["orders"]);
+  }
+
 }
