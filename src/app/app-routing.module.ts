@@ -15,6 +15,7 @@ import { CheckoutStepsGuardService } from './checkout-steps-guard.service';
 import { ConfirmComponent } from './checkout/confirm/confirm.component';
 import { AddressComponent } from './checkout/address/address.component';
 import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-success.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'admin/products/:id', component: ProductFormComponent },
   { path: 'admin/products', component: AdminProductsComponent },
   { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
+  { path: 'my/orders/:id', component: OrderDetailsComponent, canActivate: [AuthGuardService] },
   { path: 'my/account', component: MyAccountComponent, canActivate: [AuthGuardService] }
 ];
 

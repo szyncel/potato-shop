@@ -377,10 +377,10 @@ router.delete('/shopping-carts/:id', async (req, res) => {
 
 
 
-router.post('/place-order', (req, res) => {
+router.post('/place-order', authenticate, (req, res) => {
   var order = new Order({
-    // _creator: req.user._id,
-    userId: req.body.userId,
+    _creator: req.user._id,
+    // userId: req.body.userId,
     datePlaced: req.body.datePlaced,
     shipping: {
       firstName: req.body.shipping.firstName,
@@ -388,7 +388,7 @@ router.post('/place-order', (req, res) => {
       address: req.body.shipping.address,
       city: req.body.shipping.city,
       country: req.body.shipping.country,
-      zip: req.body.shipping.zip
+      code: req.body.shipping.code
     },
     items: req.body.items
   });
@@ -411,10 +411,24 @@ router.post('/place-order', (req, res) => {
 
 // My/Orders
 
-router.get('/all-orders/:id', (req, res) => {
-  var id = req.params.id;
+router.get('/all-orders', authenticate, (req, res) => {
   Order.find({
-    userId: id
+    _creator: req.user._id
+  }).then((orders) => {
+    res.send({
+      orders
+    });
+  }, (e) => {
+    res.status(400).send(e);
+  })
+})
+
+
+router.get('/order/:id', authenticate, (req, res) => {
+  var id = req.params.id;
+  Order.findOne({
+    _creator: req.user._id,
+    _id: id
   }).then((orders) => {
     res.send({
       orders

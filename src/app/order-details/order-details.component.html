@@ -1,0 +1,29 @@
+<ng-container *ngIf="order">
+  <h2>Nr zamówienia {{order._id}}</h2>
+
+  <p>Data zamówienia: {{order.datePlaced}}</p>
+  <p>Numer klienta: {{order._creator}}</p>
+  <p>Status zamówienia: "Przygotowanie"</p>
+
+  <h3>Zamówione produkty</h3>
+  <table id="customers">
+    <tr>
+      <th>Nazwa</th>
+      <th>Cena</th>
+
+    </tr>
+    <tr *ngFor="let item of order.items">
+      <td>{{item.product.title}}</td>
+      <td>{{item.totalPrice}}</td>
+    </tr>
+  </table>
+  <p>Łączna kwota: "123123"</p>
+
+
+  <p>Adres dostawy</p>
+  <p>{{order.shipping.firstName}} {{order.shipping.lastName}}</p>
+  <p>{{order.shipping.address}}</p>
+  <p>{{order.shipping.code}} {{order.shipping.city}}</p>
+
+  <button>Wróć do moich zamówień</button>
+</ng-container>

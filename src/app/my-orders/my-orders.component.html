@@ -1,3 +1,28 @@
-<p>
-  my-orders works!
-</p>
+<ng-container *ngIf="orders">
+
+
+  <h2 fxLayoutAlign="center">Moje zamówienia</h2>
+  <hr>
+
+  <table id="customers">
+    <tr>
+      <th>Zamówienia</th>
+      <th>Data zamówienia</th>
+      <th>Suma</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let item of orders">
+      <td>{{item._id}}</td>
+      <td>{{item.datePlaced}}</td>
+      <td></td>
+      <td></td>
+      <td><a [routerLink]="['/my/orders/', item._id]">Zobacz zamówienie</a></td>
+    </tr>
+  </table>
+
+
+
+
+
+</ng-container>

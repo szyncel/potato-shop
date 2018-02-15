@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormData, Shipping } from './models/form-data';
 import { CheckoutStepsService } from './checkout-steps.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -12,13 +12,17 @@ export class OrderService {
     private checkoutStepsService: CheckoutStepsService,
     private http: HttpClient) { }
 
+  // createAuthorizationHeader(headers: Headers) {
+  //   headers.append('x-auth', 'trasdasda');
+  // }
+
 
   getAddress(): Shipping {
     var addr: Shipping = {
       firstName: this.formData.firstName,
       lastName: this.formData.lastName,
       address: this.formData.address,
-      zip: this.formData.zip,
+      code: this.formData.code,
       city: this.formData.city,
       country: this.formData.country
     };
@@ -31,7 +35,7 @@ export class OrderService {
     this.formData.address = data.address;
     this.formData.city = data.city;
     this.formData.country = data.country;
-    this.formData.zip = data.zip;
+    this.formData.code = data.code;
     // activate next step
     this.checkoutStepsService.validateSteps('checkout/confirm');
   }
@@ -43,15 +47,30 @@ export class OrderService {
   resetFormData(): FormData {
     this.formData.clear();
     return this.formData;
-}
-
-
-  storeOrder(order):Observable<any> {
-    return this.http.post('/api/place-order', order);
   }
 
-  getOrders(userId):Observable<any>{
-    return this.http.get(`/api/all-orders/${userId}`).map(orders=> orders["orders"]);
+
+  storeOrder(order): Observable<any> {
+    let token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('x-auth', token);
+    return this.http.post('/api/place-order', order,{ headers: headers });
+  }
+
+  getOrders(userId): Observable<any> {
+    let token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('x-auth', token);
+
+    return this.http.get(`/api/all-orders`, { headers: headers }).map(orders => orders["orders"]);
+  }
+
+  getOrder(orderId): Observable<any> {
+    let token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('x-auth', token);
+
+    return this.http.get(`/api/order/${orderId}`, { headers: headers }).map(orders => orders["orders"]);
   }
 
 }

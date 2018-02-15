@@ -37,6 +37,7 @@ import { AddressComponent } from './checkout/address/address.component';
 import { ConfirmComponent } from './checkout/confirm/confirm.component';
 import { CheckoutNavbarComponent } from './checkout/checkout-navbar/checkout-navbar.component';
 import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-success.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-s
     AddressComponent,
     ConfirmComponent,
     CheckoutNavbarComponent,
-    CheckoutSuccessComponent
+    CheckoutSuccessComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
