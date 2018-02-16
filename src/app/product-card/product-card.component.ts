@@ -3,6 +3,7 @@ import { Product } from '../models/product';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { ProductsComponent } from '../products/products.component';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { WishlistService } from '../wishlist.service';
 
 @Component({
   selector: 'app-product-card',
@@ -12,11 +13,13 @@ import { NavbarComponent } from '../navbar/navbar.component';
 export class ProductCardComponent {
   @Input('product') product: Product;
   @Input('shopping-cart') shoppingCart;
+  @Input('wishlist') wishlist;
   showActions = true;
 
 
   constructor(
     private shoppingCartService: ShoppingCartService,
+    private wishlistService: WishlistService,
     private productComponent: ProductsComponent,
     private navbarComponent: NavbarComponent
   ) {
@@ -24,11 +27,16 @@ export class ProductCardComponent {
   }
 
   async addToCart(product: Product) {
-    let res = await this.shoppingCartService.addToCart(product);
-    let test = await this.productComponent.refreshData();
+    await this.shoppingCartService.addToCart(product);
+    await this.productComponent.refreshData();
     //this.navbarComponent.refreshCounter();
     this.shoppingCartService.change();
     //nie działa
   };
+
+
+  async addToWishlist(product: Product) {
+    await this.wishlistService.addToWishList(product);
+  }
 
 }

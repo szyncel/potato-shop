@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var _ = require('lodash');
-var {
+const express = require('express');
+const router = express.Router();
+const _ = require('lodash');
+const {
   mongoose
 } = require('../db/db');
 
@@ -9,11 +9,11 @@ const {
   ObjectID
 } = require('mongodb');
 
-var {
+const {
   User
 } = require('../models/user.model');
 
-var {
+const {
   authenticate
 } = require('../middleware/authenticate');
 
@@ -32,6 +32,9 @@ const {
 const {
   Order
 } = require('../models/order.model');
+const {
+  Wishlist
+} = require('../models/wishlist.model');
 
 
 
@@ -230,7 +233,7 @@ router.patch('/shopping-carts/add', async (req, res) => { //add product to shopp
   var shoppingCartId = req.body.id;
   var product = req.body.product;
 
-  console.log(`Test: `, product._id);
+  // console.log(`Test: `, product._id);
 
   //check if item exist
   const test = await ShoppingCart.find({
@@ -437,6 +440,84 @@ router.get('/order/:id', authenticate, (req, res) => {
     res.status(400).send(e);
   })
 })
+
+
+// .....................Wishlist..............//
+router.post('/wishlist', authenticate, (req, res) => { //Create wishlist
+  var wishlist = new Wishlist({
+    _creator: req.user._id
+  });
+
+  wishlist.save().then((doc) => {
+    res.send(doc);
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
+
+
+router.get('/wishlist', authenticate, (req, res) => {
+  Wishlist.find({
+    _creator: req.user._id
+  }).then((wishlist) => {
+    res.status(200).send({
+      wishlist
+    });
+  }).catch((e) => {
+    res.status(400).send({});
+  });
+})
+
+
+router.post('/wishlist/add', authenticate, async (req, res) => { //Add product to wishlist
+  var product = req.body.product;
+
+  //check if product exist
+  const test = await Wishlist.find({
+    _creator: req.user._id,
+    "items._id": product._id
+  });
+
+  if (!test.length) {
+
+    Wishlist.update({ //should return item
+      _creator: req.user._id
+    }, {
+      $addToSet: {
+        "items": product
+      }
+    }).then((prod) => {
+      res.status(200).send({
+        prod
+      });
+    }).catch((e) => {
+      res.status(400).send({
+        e
+      })
+    });
+    //dodajemy
+  } else {
+    res.status(200).send({
+      info: "item already exist"
+    });
+    //niedodajemy
+  }
+});
+
+router.delete('/wishlist/remove', authenticate, async (req, res) => { //Remove product from wishlist
+  var product = req.body.product;
+
+  const test = await Wishlist.update({
+    _creator: req.user._id
+  }, {
+    $pull: {
+      'items': product
+    }
+  })
+  res.status(200).send({
+    test
+  });
+});
 
 
 module.exports = router;

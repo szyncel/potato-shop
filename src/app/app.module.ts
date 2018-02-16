@@ -38,6 +38,9 @@ import { ConfirmComponent } from './checkout/confirm/confirm.component';
 import { CheckoutNavbarComponent } from './checkout/checkout-navbar/checkout-navbar.component';
 import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-success.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { WishlistService } from './wishlist.service';
 
 
 @NgModule({
@@ -61,7 +64,9 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     ConfirmComponent,
     CheckoutNavbarComponent,
     CheckoutSuccessComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    AdminOrdersComponent,
+    AdminUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +82,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     CategoryService, 
     ProductService,
     ShoppingCartService,
+    WishlistService,
     ProductsComponent,
     NavbarComponent,
     ShoppingCartComponent,

@@ -16,6 +16,8 @@ import { ConfirmComponent } from './checkout/confirm/confirm.component';
 import { AddressComponent } from './checkout/address/address.component';
 import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-success.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -25,8 +27,10 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent },
   { path: 'checkout/address', component: AddressComponent, canActivate: [CheckoutStepsGuardService] },//first step
   { path: 'checkout/confirm', component: ConfirmComponent, canActivate: [CheckoutStepsGuardService] },//second step
-  { path: 'order-success/:id', component: CheckoutSuccessComponent},
+  { path: 'order-success/:id', component: CheckoutSuccessComponent },
   { path: 'checkout', redirectTo: 'checkout/address', pathMatch: 'full' },
+  { path: 'admin/orders', component: AdminOrdersComponent },
+  { path: 'admin/users', component: AdminUsersComponent },
   { path: 'admin/products/new', component: ProductFormComponent },
   { path: 'admin/products/:id', component: ProductFormComponent },
   { path: 'admin/products', component: AdminProductsComponent },
