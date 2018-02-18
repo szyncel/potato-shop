@@ -470,12 +470,12 @@ router.get('/wishlist', authenticate, (req, res) => {
 
 
 router.post('/wishlist/add', authenticate, async (req, res) => { //Add product to wishlist
-  var product = req.body.product;
+  var product = req.body;
 
   //check if product exist
   const test = await Wishlist.find({
     _creator: req.user._id,
-    "items._id": product._id
+    "items.product._id": product._id
   });
 
   if (!test.length) {
@@ -484,11 +484,13 @@ router.post('/wishlist/add', authenticate, async (req, res) => { //Add product t
       _creator: req.user._id
     }, {
       $addToSet: {
-        "items": product
+        "items": {
+          product
+        }
       }
     }).then((prod) => {
       res.status(200).send({
-        prod
+        info: "item added"
       });
     }).catch((e) => {
       res.status(400).send({
@@ -504,18 +506,20 @@ router.post('/wishlist/add', authenticate, async (req, res) => { //Add product t
   }
 });
 
-router.delete('/wishlist/remove', authenticate, async (req, res) => { //Remove product from wishlist
-  var product = req.body.product;
+router.post('/wishlist/remove', authenticate, async (req, res) => { //Remove product from wishlist
+  var product = req.body;
 
   const test = await Wishlist.update({
     _creator: req.user._id
   }, {
     $pull: {
-      'items': product
+      'items': {
+        product
+      }
     }
   })
   res.status(200).send({
-    test
+    info: "item removed"
   });
 });
 

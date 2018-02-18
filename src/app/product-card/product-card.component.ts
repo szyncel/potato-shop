@@ -4,6 +4,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
 import { ProductsComponent } from '../products/products.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { WishlistService } from '../wishlist.service';
+import { Wishlist } from '../models/wishlist';
 
 @Component({
   selector: 'app-product-card',
@@ -13,7 +14,7 @@ import { WishlistService } from '../wishlist.service';
 export class ProductCardComponent {
   @Input('product') product: Product;
   @Input('shopping-cart') shoppingCart;
-  @Input('wishlist') wishlist;
+  @Input('wishlist') wishlist: Wishlist;
   showActions = true;
 
 
@@ -26,17 +27,34 @@ export class ProductCardComponent {
 
   }
 
-  async addToCart(product: Product) {
-    await this.shoppingCartService.addToCart(product);
-    await this.productComponent.refreshData();
+  addToCart(product: Product) {
+    this.shoppingCartService.addToCart(product);
+    this.productComponent.refreshData();
     //this.navbarComponent.refreshCounter();
     this.shoppingCartService.change();
-    //nie działa
   };
 
 
-  async addToWishlist(product: Product) {
-    await this.wishlistService.addToWishList(product);
+  addToWishlist(product: Product) {
+    if (this.getTest()) {
+      this.wishlistService.removeFromWishlist(product).subscribe(res => {
+        console.log(res);
+        this.productComponent.refreshWishlist();
+      })
+    } else {
+      this.wishlistService.addToWishList(product).subscribe(res => {
+        console.log(res);
+        this.productComponent.refreshWishlist();
+      });
+    }
+    
+  }
+
+
+  getTest() {
+    let wishlistArray = this.wishlist.items;
+    let item = wishlistArray.filter(item => item.product._id == this.product._id);
+    return item[0] ? 1 : 0;
   }
 
 }

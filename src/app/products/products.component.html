@@ -20,7 +20,7 @@
     <!--  t testse ets -->
     <ul class="cards">
       <ng-container *ngFor="let p of filteredProducts">
-        <app-product-card [product]="p" [shopping-cart]="cart" class="cards_item"></app-product-card>
+        <app-product-card [wishlist]="wishlist" [product]="p" [shopping-cart]="cart" class="cards_item"></app-product-card>
       </ng-container>
     </ul>
 

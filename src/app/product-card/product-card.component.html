@@ -6,7 +6,9 @@
     <h2 class="card_heading">{{product.title}}</h2>
     <p>Odmiana: {{product.category}}</p>
   </div>
-  <div *ngIf="showActions && shoppingCart" class="card-footer">
+  <div *ngIf="showActions && shoppingCart" class="card-footer">'
+    <button (click)="addToWishlist(product)">serduszko</button>
+    <p *ngIf="wishlist">{{getTest(product)}}</p>
     <button *ngIf="shoppingCart.getQuantity(product)===0;else updateQuantity" (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>
     <ng-template #updateQuantity>
       <app-product-quantity [product]="product" [shopping-cart]="shoppingCart"></app-product-quantity>

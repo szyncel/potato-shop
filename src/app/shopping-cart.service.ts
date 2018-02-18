@@ -30,7 +30,10 @@ export class ShoppingCartService {
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCart();
     let cart: Observable<any> = await this.http.get(`/api/shopping-carts/${cartId}`);
-    return cart.map(cartItem => new ShoppingCart(cartItem.shoppingCart.items));
+    return cart.map(cartItem => {
+      // console.log(cartItem.shoppingCart.items);
+      return new ShoppingCart(cartItem.shoppingCart.items)
+    });
   }
 
 
