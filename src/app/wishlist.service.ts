@@ -10,7 +10,7 @@ export class WishlistService {
   constructor(private http: HttpClient) { }
 
 
-  getWishList(): Observable<any> {
+  getWishList(): Observable<any> {//getOrCreateWishlist
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
@@ -18,7 +18,7 @@ export class WishlistService {
   }
 
 
-  create(): Observable<any> {
+  private create(): Observable<any> {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);

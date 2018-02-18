@@ -7,6 +7,8 @@ import { CustomFormsModule } from 'ng2-validation';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 
+import fontawesome from '@fortawesome/fontawesome';
+
 
 
 import { AppComponent } from './app.component';
@@ -86,6 +88,7 @@ import { WishlistService } from './wishlist.service';
     ProductsComponent,
     NavbarComponent,
     ShoppingCartComponent,
+    WishlistComponent,
     OrderService,
     CheckoutStepsService,
     CheckoutStepsGuardService,

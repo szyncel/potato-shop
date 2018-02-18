@@ -10,4 +10,14 @@ export class Wishlist {
         }
     }
 
+
+    get totalItemsCount() {
+        let shoppingCartItemCount = 0;
+        for (let prodId in this.items) {
+            shoppingCartItemCount += 1;
+        };
+
+        return shoppingCartItemCount;
+    }
+
 }

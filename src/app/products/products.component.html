@@ -15,12 +15,13 @@
   <div fxFlex="75">
     <h2>Lista dostepnych produktów</h2>
     <!-- <span>Sortowanie:</span> -->
+    <p *ngIf="wishlist">Ilosc listy życzeń: {{wishlist.totalItemsCount}}</p>
     <hr class="style1">
 
     <!--  t testse ets -->
     <ul class="cards">
       <ng-container *ngFor="let p of filteredProducts">
-        <app-product-card [wishlist]="wishlist" [product]="p" [shopping-cart]="cart" class="cards_item"></app-product-card>
+        <app-product-card [del]="false" [wishlist]="wishlist" [product]="p" [shopping-cart]="cart" class="cards_item"></app-product-card>
       </ng-container>
     </ul>
 

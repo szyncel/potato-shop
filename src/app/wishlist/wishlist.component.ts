@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { WishlistService } from '../wishlist.service';
+import { Wishlist } from '../models/wishlist';
 
 @Component({
   selector: 'app-wishlist',
@@ -6,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
+  wishlist:Wishlist;
 
-  constructor() { }
+  constructor(private authService: AuthService,
+    private wishlistService: WishlistService) { }
+
+  updateWishlist() {
+    this.wishlistService.getWishList().subscribe(wishlist => {
+      console.log(wishlist);
+      this.wishlist = wishlist});
+  }
 
   ngOnInit() {
+    this.updateWishlist();
+
   }
 
 }

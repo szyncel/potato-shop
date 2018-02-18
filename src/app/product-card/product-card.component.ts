@@ -5,6 +5,7 @@ import { ProductsComponent } from '../products/products.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { WishlistService } from '../wishlist.service';
 import { Wishlist } from '../models/wishlist';
+import { WishlistComponent } from '../wishlist/wishlist.component';
 
 @Component({
   selector: 'app-product-card',
@@ -15,14 +16,17 @@ export class ProductCardComponent {
   @Input('product') product: Product;
   @Input('shopping-cart') shoppingCart;
   @Input('wishlist') wishlist: Wishlist;
+  @Input('del') showDelete = false;
   showActions = true;
+  // showDelete=false;
 
 
   constructor(
     private shoppingCartService: ShoppingCartService,
     private wishlistService: WishlistService,
     private productComponent: ProductsComponent,
-    private navbarComponent: NavbarComponent
+    private navbarComponent: NavbarComponent,
+    private wishlistComponent: WishlistComponent
   ) {
 
   }
@@ -35,26 +39,33 @@ export class ProductCardComponent {
   };
 
 
-  addToWishlist(product: Product) {
+  addToWishlist() {
     if (this.getTest()) {
-      this.wishlistService.removeFromWishlist(product).subscribe(res => {
-        console.log(res);
-        this.productComponent.refreshWishlist();
-      })
+      this.delFromWishlist();
     } else {
-      this.wishlistService.addToWishList(product).subscribe(res => {
+      this.wishlistService.addToWishList(this.product).subscribe(res => {
         console.log(res);
         this.productComponent.refreshWishlist();
+        //refresh wishlsit page
       });
     }
-    
+
+  }
+
+  delFromWishlist() {
+    this.wishlistService.removeFromWishlist(this.product).subscribe(res => {
+      console.log(res);
+      this.productComponent.refreshWishlist();
+      this.wishlistComponent.updateWishlist();
+      //refresh wishlsit page
+    });
   }
 
 
   getTest() {
     let wishlistArray = this.wishlist.items;
     let item = wishlistArray.filter(item => item.product._id == this.product._id);
-    return item[0] ? 1 : 0;
+    return item[0] ? true : false;
   }
 
 }

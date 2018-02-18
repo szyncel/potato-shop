@@ -6,9 +6,23 @@
     <h2 class="card_heading">{{product.title}}</h2>
     <p>Odmiana: {{product.category}}</p>
   </div>
+    <i *ngIf="showDelete" (click)="delFromWishlist()" class="fa fa-times fa-2" aria-hidden="true"></i>
   <div *ngIf="showActions && shoppingCart" class="card-footer">'
-    <button (click)="addToWishlist(product)">serduszko</button>
-    <p *ngIf="wishlist">{{getTest(product)}}</p>
+    <div *ngIf="wishlist">
+      <!-- <button (click)="addToWishlist(product)">serduszko</button> -->
+      <ng-container *ngIf="getTest()">
+        <i class="fa fa-heart fa-2" (click)="addToWishlist(product)" aria-hidden="true"></i>
+      </ng-container>
+      <ng-container *ngIf="!getTest()">
+        <i class="fa fa-heart-o fa-2" (click)="addToWishlist(product)"></i>
+      </ng-container>
+
+
+
+      <!-- <i class="fa fa-heart-o fa-2"></i>
+          <p>{{getTest()}}</p> -->
+    </div>
+
     <button *ngIf="shoppingCart.getQuantity(product)===0;else updateQuantity" (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>
     <ng-template #updateQuantity>
       <app-product-quantity [product]="product" [shopping-cart]="shoppingCart"></app-product-quantity>

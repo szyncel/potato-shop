@@ -7,6 +7,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
 import { Subscription } from 'rxjs/Subscription';
 import { WishlistService } from '../wishlist.service';
 import { Wishlist } from '../models/wishlist';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-products',
@@ -18,14 +19,15 @@ export class ProductsComponent implements OnInit {
   filteredProducts: Product[] = [];
   category;
   cart;
-  wishlist: Wishlist;
+  wishlist;
   subscription: Subscription;
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
     private shoppingCartService: ShoppingCartService,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    private authService: AuthService
   ) {
     this.productService.getAll()
       .switchMap(products => {
@@ -46,11 +48,16 @@ export class ProductsComponent implements OnInit {
   }
 
   refreshWishlist() {
-    this.wishlistService.getWishList().subscribe(wishlist => {
-      this.wishlist = wishlist;
-      console.log(wishlist);
+    let user = this.authService.isLoggedIn();
+    if (user) {
+      this.wishlistService.getWishList().subscribe(wishlist => {
+        this.wishlist = wishlist;
+        console.log(wishlist);
+      });
+    } else {
+      console.log('niezalogowany');
     }
-    );
+
   }
 
   ngOnInit() {
