@@ -43,6 +43,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { WishlistService } from './wishlist.service';
+import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { WishlistService } from './wishlist.service';
     CheckoutSuccessComponent,
     OrderDetailsComponent,
     AdminOrdersComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
+    AdminOrderDetailsComponent
   ],
   imports: [
     BrowserModule,

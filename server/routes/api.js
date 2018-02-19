@@ -378,13 +378,35 @@ router.delete('/shopping-carts/:id', async (req, res) => {
   });
 })
 
+// Orders
 
+router.get('/admin-orders', (req, res) => {//all orders for admin
+  Order.find({}).then((orders) => {
+    res.status(200).send(orders);
+  }).catch((e) => {
+    res.status(400).send(e);
+  });
+});
+
+router.get('/admin-orders/:id', (req, res) => {//get Single order for admin
+  var id = req.params.id;
+  Order.findOne({
+  _id: id
+  }).then((order) => {
+    res.send({
+      order
+    });
+  }, (e) => {
+    res.status(400).send(e);
+  })
+})
 
 router.post('/place-order', authenticate, (req, res) => {
   var order = new Order({
     _creator: req.user._id,
     // userId: req.body.userId,
     datePlaced: req.body.datePlaced,
+    status:req.body.status,
     shipping: {
       firstName: req.body.shipping.firstName,
       lastName: req.body.shipping.lastName,
@@ -479,7 +501,7 @@ router.get('/wishlist', authenticate, async (req, res) => {
     var wishlist = new Wishlist({
       _creator: req.user._id
     });
-  
+
     wishlist.save().then((doc) => {
       res.send(doc);
     }, (e) => {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Product } from './models/product';
@@ -6,8 +6,18 @@ import { Wishlist } from './models/wishlist';
 
 @Injectable()
 export class WishlistService {
-
+  @Output() test: EventEmitter<any> = new EventEmitter();
+  
   constructor(private http: HttpClient) { }
+
+  change() {
+    console.log('change started');
+    this.test.emit(true);
+  }
+
+  getEmittedValue() {
+    return this.test;
+  }
 
 
   getWishList(): Observable<any> {//getOrCreateWishlist

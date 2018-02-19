@@ -38,6 +38,7 @@ a {
   font-size: 12px;
   letter-spacing: .05em;
   color: #666;
+  position: relative;
 }
 .nav-right ul li a:hover{
   background: orange;
@@ -127,6 +128,22 @@ img{
 
 .dropdown:hover .dropdown-content {
   display: inline-block;
+}
+
+/* .navItem{
+  position: relative;
+} */
+
+.counter{
+  position: absolute;
+  background-color:orange;
+  border-radius: 9px;
+  font-size: 14px;
+  padding: 1px 5px 1.5px 5px;
+  color: #fff;
+  line-height:12px;
+  top: 2px;
+  left: 60%;
 }
 
 

@@ -4,9 +4,11 @@ import { ShoppingCart } from "./shopping-cart";
 export class Order {
     datePlaced: number;
     items: any[];
+    status:string;
 
     constructor(public userId: string, public shipping: any, shoppingCart: ShoppingCart) {
         this.datePlaced = new Date().getTime();
+        this.status="Oczekiwanie";
 
         this.items = shoppingCart.items.map(i => {
             return {

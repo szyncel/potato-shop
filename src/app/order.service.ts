@@ -12,10 +12,6 @@ export class OrderService {
     private checkoutStepsService: CheckoutStepsService,
     private http: HttpClient) { }
 
-  // createAuthorizationHeader(headers: Headers) {
-  //   headers.append('x-auth', 'trasdasda');
-  // }
-
 
   getAddress(): Shipping {
     var addr: Shipping = {
@@ -54,7 +50,7 @@ export class OrderService {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.post('/api/place-order', order,{ headers: headers });
+    return this.http.post('/api/place-order', order, { headers: headers });
   }
 
   getOrders(userId): Observable<any> {
@@ -71,6 +67,17 @@ export class OrderService {
       .set('x-auth', token);
 
     return this.http.get(`/api/order/${orderId}`, { headers: headers }).map(orders => orders["orders"]);
+  }
+
+  //Only for admin
+
+  getAllOrders(): Observable<any> {
+    return this.http.get('/api/admin-orders');
+  }
+
+
+  getSingleOrder(orderId) {
+    return this.http.get(`/api/admin-orders/${orderId}`).map(order => order['order']);
   }
 
 }

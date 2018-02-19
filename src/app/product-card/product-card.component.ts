@@ -46,6 +46,7 @@ export class ProductCardComponent {
       this.wishlistService.addToWishList(this.product).subscribe(res => {
         console.log(res);
         this.productComponent.refreshWishlist();
+        this.wishlistService.change();
         //refresh wishlsit page
       });
     }
@@ -57,6 +58,7 @@ export class ProductCardComponent {
       console.log(res);
       this.productComponent.refreshWishlist();
       this.wishlistComponent.updateWishlist();
+      this.wishlistService.change();
       //refresh wishlsit page
     });
   }

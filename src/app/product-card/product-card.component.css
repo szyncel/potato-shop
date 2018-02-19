@@ -90,7 +90,17 @@ button {
 }
 
 .fa-2 {
-  font-size: 2.5em;
-  color: rgb(170, 0, 0);
+  font-size: 2em;
+  color: rgb(204, 0, 0);
   cursor: pointer;
+}
+
+.card{
+  position: relative;
+}
+
+.heart{
+  position: absolute;
+  left: 87%;
+  top: 2px;
 }

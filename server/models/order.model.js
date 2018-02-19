@@ -5,6 +5,7 @@ const validator = require('validator');
 var orderShema = mongoose.Schema({
   userId: String,
   datePlaced: String,
+  status:String,
   shipping: {
     firstName: String,
     lastName: String,

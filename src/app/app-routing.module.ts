@@ -18,6 +18,7 @@ import { CheckoutSuccessComponent } from './checkout/checkout-success/checkout-s
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'order-success/:id', component: CheckoutSuccessComponent },
   { path: 'checkout', redirectTo: 'checkout/address', pathMatch: 'full' },
   { path: 'admin/orders', component: AdminOrdersComponent },
+  { path: 'admin/orders/:id', component: AdminOrderDetailsComponent },
   { path: 'admin/users', component: AdminUsersComponent },
   { path: 'admin/products/new', component: ProductFormComponent },
   { path: 'admin/products/:id', component: ProductFormComponent },
