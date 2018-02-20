@@ -97,3 +97,80 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
     background-color: orangered;
     transition: all .3s ease-in-out;
   }
+
+
+
+  /* global */
+
+  h1,h2,h3,h4,h5, h6, div, strong, p, b, em, a, address, input, select, textarea, label, button{
+    font-size: 14px;
+    line-height: 19px;
+    font-style: normal;
+    text-decoration: none;
+    color: #404040;
+  }
+
+  a:hover{
+    text-decoration: underline;
+}
+
+  h2.title, h3.title {
+    margin: 0;
+    padding: 7px 10px;
+    background-color: #f3f3f3;
+    border-bottom: 1px solid orange;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .col-3 {
+    flex: 1 1 100%;
+    max-width: 18%;
+    min-width: 170px;
+    margin-right: 2%;
+  }
+  
+  .col-8 {
+    flex: 1 1 100%;
+    max-width: 80%;
+  }
+  
+  .container h1.title {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  @import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/themes/dark.css';
+@import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+
+.ngx-datatable.bootstrap .datatable-body .datatable-body-row.datatable-row-even{
+  background-color: white;
+
+}
+.ngx-datatable.bootstrap{
+  border: 2px solid #f3f3f3;
+}
+.datatable-header-cell{
+  font-weight: bolder;
+  background: #f3f3f3;
+  
+}
+
+.ngx-datatable.bootstrap .datatable-header .datatable-header-cell{
+  border-bottom: 1px solid orange;
+}
+
+.ngx-datatable.bootstrap .datatable-footer .page-count{
+  color: white;
+}
+/* .ngx-datatable.bootstrap .datatable-footer{
+
+} */
+

@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="col-3">
+    <app-user-menu></app-user-menu>
+  </div>
+  <div class="col-8">
+    <h1 class="title">Moje Dane</h1>
+<div class="content">
+
+
+    <div class="item">
+      <h2 class="title">Dane osobowe</h2>
+      <div class="userData">
+        <form #f="ngForm" (ngSubmit)="save(f)">
+          <label for="name">Imie*</label>
+          <input [(ngModel)]="user.name" #title="ngModel" type="text" id="name" name="name" required [rangeLength]="[3, 15]">
+          <label for="surname">Nazwisko*</label>
+          <input [(ngModel)]="user.surname" #title="ngModel" type="text" id="surname" name="surname" required [rangeLength]="[3, 15]">
+          <label for="surname">Test</label>
+          <input  type="text" id="surname" name="surname" >
+
+          <input type="submit" value="ZAPISZ">
+        </form>
+      </div>
+    </div>
+    <div class="item">
+      <h2 class="title">Hasło</h2>
+      <div class="userData">
+        <form #f="ngForm" (ngSubmit)="changePassword(f)">
+          <label for="old">Stare hasło*</label>
+          <input ngModel #title="ngModel" type="password" id="old" name="old" required [rangeLength]="[3, 15]">
+          <label for="new">Nowe hasło*</label>
+          <input ngModel #title="ngModel" type="password" id="new" name="new" required [rangeLength]="[3, 15]">
+          <label for="repeat">Potwierdź hasło*</label>
+          <input ngModel #title="ngModel" type="password" id="repeat" name="repeat" required [rangeLength]="[3, 15]">
+
+          <input type="submit" value="ZAPISZ">
+        </form>
+      </div>
+    </div>
+    <div class="item">
+      <h2 class="title">Adres e-mail</h2>
+      <div class="userData">
+        <form #f="ngForm" (ngSubmit)="changeEmail(f)">
+          <label for="email">Adres e-mail*</label>
+          <input ngModel #title="ngModel" type="password" id="email" name="email" required [rangeLength]="[3, 15]">
+          <label for="password">Hasło*</label>
+          <input ngModel #title="ngModel" type="password" id="password" name="password" required [rangeLength]="[3, 15]">
+
+
+          <input type="submit" value="ZAPISZ">
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+
+
+    <button routerLink="/my/account">Wróć</button>
+  </div>
+
+</div>

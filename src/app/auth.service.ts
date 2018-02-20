@@ -26,8 +26,10 @@ export class AuthService {
 
   signup(user: User): Observable<User> {
     return this.http.post<User>('/api/users', user)
-    .map(res => res)
+      .map(res => res)
   }
+
+
 
   signin(user): Observable<any> {
     return this.http.post('/api/users/login', user, { observe: 'response' })
@@ -48,6 +50,23 @@ export class AuthService {
 
   isLoggedIn() {
     return tokenNotExpired();
+  }
+
+
+  getUser() {
+    let token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('x-auth', token);
+
+    return this.http.get('/api/users/me', { headers: headers });
+  }
+
+
+  updateUser(user: User) {
+    let token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('x-auth', token);
+    return this.http.put('/api/users/update', user, { headers: headers });
   }
 
 }

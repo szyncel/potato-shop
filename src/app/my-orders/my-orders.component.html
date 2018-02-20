@@ -1,28 +1,28 @@
-<ng-container *ngIf="orders">
-
-
-  <h2 fxLayoutAlign="center">Moje zamówienia</h2>
-  <hr>
-
-  <table id="customers">
-    <tr>
-      <th>Zamówienia</th>
-      <th>Data zamówienia</th>
-      <th>Suma</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let item of orders">
-      <td>{{item._id}}</td>
-      <td>{{item.datePlaced}}</td>
-      <td></td>
-      <td></td>
-      <td><a [routerLink]="['/my/orders/', item._id]">Zobacz zamówienie</a></td>
-    </tr>
-  </table>
-
+<div class="container">
+  <div class="col-3">
+    <app-user-menu></app-user-menu>
+  </div>
+  <div class="col-8">
+    <h1 class="title">Moje Zamówienia</h1>
+    <ng-container *ngIf="orders">
+      <ngx-datatable class="bootstrap" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'"
+        [rows]="rows">
+        <ngx-datatable-column name="Zamówienie" prop="nr" [width]="200"></ngx-datatable-column>
+        <ngx-datatable-column name="Data zamówienia" prop="date" [width]="150"></ngx-datatable-column>
+        <ngx-datatable-column name="Suma" prop="sum" [width]="50"></ngx-datatable-column>
+        <ngx-datatable-column name="Status" prop="status"></ngx-datatable-column>
+        <ngx-datatable-column name="" prop="action">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <a [routerLink]="['/my/orders/', value]">Szczegóły</a>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    
 
 
 
+    <button routerLink="/my/account">Wróć</button>
+  </ng-container>
+  </div>
 
-</ng-container>
+</div>

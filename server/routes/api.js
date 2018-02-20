@@ -42,7 +42,7 @@ const {
 
 /* .............USERS............. */
 
-router.post('/users', (req, res) => {
+router.post('/users', (req, res) => { //Register
   var body = _.pick(req.body, ['email', 'password', 'name', 'surname']);
   var user = new User({
     name: body.name,
@@ -66,7 +66,7 @@ router.post('/users', (req, res) => {
   })
 })
 
-router.post('/users/login', (req, res) => {
+router.post('/users/login', (req, res) => { //Login
   var body = _.pick(req.body, ['email', 'password']);
   User.findbyCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
@@ -82,13 +82,36 @@ router.post('/users/login', (req, res) => {
 
 })
 
-router.delete('/users/me/token', authenticate, (req, res) => {
+router.delete('/users/me/token', authenticate, (req, res) => { //Logout
   req.user.removeToken(req.token).then(() => {
     res.status(200).send();
   }, () => {
     res.status(400).send();
   });
 });
+
+
+router.get('/users/me', authenticate, (req, res) => {
+  var token = req.header('x-auth');
+  User.findByToken(token).then((user) => {
+    res.status(200).send(user);
+  }).catch((e) => {
+    res.status(400).send(e);
+  });
+});
+
+router.put('/users/update', authenticate, (req, res) => {
+  var body = _.pick(req.body, ['name', 'surname']);
+  var token = req.header('x-auth');
+  console.log(body);
+  User.findByTokenAndUpdate(token, body).then((user) => {
+    res.status(200).send(user);
+  }).catch((e) => {
+    res.status(400).send(e);
+  });
+
+});
+
 
 /* .............CATEGORY............. */
 
@@ -380,7 +403,7 @@ router.delete('/shopping-carts/:id', async (req, res) => {
 
 // Orders
 
-router.get('/admin-orders', (req, res) => {//all orders for admin
+router.get('/admin-orders', (req, res) => { //all orders for admin
   Order.find({}).then((orders) => {
     res.status(200).send(orders);
   }).catch((e) => {
@@ -388,10 +411,10 @@ router.get('/admin-orders', (req, res) => {//all orders for admin
   });
 });
 
-router.get('/admin-orders/:id', (req, res) => {//get Single order for admin
+router.get('/admin-orders/:id', (req, res) => { //get Single order for admin
   var id = req.params.id;
   Order.findOne({
-  _id: id
+    _id: id
   }).then((order) => {
     res.send({
       order
@@ -406,7 +429,7 @@ router.post('/place-order', authenticate, (req, res) => {
     _creator: req.user._id,
     // userId: req.body.userId,
     datePlaced: req.body.datePlaced,
-    status:req.body.status,
+    status: req.body.status,
     shipping: {
       firstName: req.body.shipping.firstName,
       lastName: req.body.shipping.lastName,

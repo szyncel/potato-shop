@@ -1,0 +1,28 @@
+
+  
+  .userInfo strong {
+    display: block;
+  }
+  
+  #userNav {
+    margin: 0;
+    list-style: none;
+    padding: 0 0 0 20px;
+  }
+  
+  #userNav li a {
+      color: #404040;
+      text-decoration: none;
+      font-style: normal;
+      display: block;
+      line-height: 16px;
+      padding: 4px 0;
+  }
+  
+  .isActive{
+      font-weight: 700;
+  }
+  
+  #userNav li a:hover{
+      text-decoration: underline;
+  }

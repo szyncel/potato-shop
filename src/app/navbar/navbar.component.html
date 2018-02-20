@@ -23,15 +23,21 @@
         <a routerLink="admin/users" class="single">Admin Użytkownicy</a>
       </li>
       <li class="dropdown">
-        <a class="dropbtn" routerLink="/login" fxLayout="column" fxLayoutAlign="center center">
-          <i class="fa fa-user fa-2" aria-hidden="true"></i>
-          <ng-container *ngIf="!authService.isLoggedIn()">
+
+
+        <ng-container *ngIf="!authService.isLoggedIn()">
+          <a class="dropbtn" routerLink="/login" fxLayout="column" fxLayoutAlign="center center">
+            <i class="fa fa-user fa-2" aria-hidden="true"></i>
             Zaloguj sie
-          </ng-container>
-          <ng-container *ngIf="authService.isLoggedIn()">
+          </a>
+        </ng-container>
+        <ng-container *ngIf="authService.isLoggedIn()">
+          <a class="dropbtn" routerLink="/my/account" fxLayout="column" fxLayoutAlign="center center">
+            <i class="fa fa-user fa-2" aria-hidden="true"></i>
             Moje konto
-          </ng-container>
-        </a>
+          </a>
+        </ng-container>
+
         <div class="dropdown-content">
           <a routerLink="/my/account">Moje zestawienie</a>
           <a routerLink="/my/orders">Moje zamówienia</a>

@@ -16,18 +16,13 @@
 }
 
 .fa-3{
-  color: #666;
+  color: #404040;
   font-size: 3em;
   padding: 0.4em;
 }
 
 
-/* .title {
-  font-size: 12px;
-  letter-spacing: .05em;
-  height: 20px;
-  font-weight: 700;
-} */
+
 
 .fa-2 {
   font-size: 3em;
@@ -35,7 +30,7 @@
 
 a {
   padding: 0.5em;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: .05em;
   color: #666;
   position: relative;
@@ -65,17 +60,14 @@ a {
 
 
 .nav-right ul li {
-  /* padding-left: 1em; */
   float: left;
 }
 
 .nav-right a,
 .nav-left a {
   font-family: "Oswald", sans-serif;
-  
   font-weight: 600;
   line-height: 1.8em;
-  
   text-decoration: none;
   transition: all .3s ease-in-out;
 }
@@ -89,7 +81,7 @@ a {
 }
 
 .nav-left a {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 img{

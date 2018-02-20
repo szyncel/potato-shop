@@ -6,8 +6,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { CustomFormsModule } from 'ng2-validation';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
-import fontawesome from '@fortawesome/fontawesome';
 
 
 
@@ -44,6 +44,8 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { WishlistService } from './wishlist.service';
 import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
+import { UserMenuComponent } from './user/user-menu/user-menu.component';
+import { UserSettingsComponent } from './user/user-settings/user-settings.component';
 
 
 @NgModule({
@@ -70,7 +72,9 @@ import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-or
     OrderDetailsComponent,
     AdminOrdersComponent,
     AdminUsersComponent,
-    AdminOrderDetailsComponent
+    AdminOrderDetailsComponent,
+    UserMenuComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,8 @@ import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-or
     FormsModule,
     HttpClientModule,
     CustomFormsModule,
-    NgProgressModule
+    NgProgressModule,
+    NgxDatatableModule
   ],
   providers: [AuthService, 
     AuthGuardService, 

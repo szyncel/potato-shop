@@ -1,3 +1,22 @@
-<p>
-  my-account works!
-</p>
+<div class="container">
+  <div class="col-3">
+    <app-user-menu></app-user-menu>
+  </div>
+  <div class="col-8">
+    <h1 class="title">Moje zestawienie</h1>
+    <p class="userInfo">
+      <strong> Witaj!</strong>
+      Po zalogowaniu się na konto użytkownika masz możliwość wglądu do swoich danych oraz ich aktualizacji. Aby przejść do edycji
+      wybierz odpowiedni link.</p>
+
+      <h2 class="title">
+        <span class="left">Ostatnie zamówienia</span>       
+        <span class="right"><a routerLink="/my/orders">Zobacz wszystko</a></span>
+      </h2>
+
+      <h2 class="title">
+          <span class="left">Dane użytkownika</span>       
+          <span class="right"><a routerLink="/my/settings">Edytuj</a></span>
+        </h2>
+  </div>
+</div>

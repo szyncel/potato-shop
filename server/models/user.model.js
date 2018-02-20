@@ -19,11 +19,11 @@ var userSchema = mongoose.Schema({
       message: '{VALUE} is not a valid email!'
     }
   },
-  name:{
+  name: {
     type: String,
     minlenth: 6
   },
-  surname:{
+  surname: {
     type: String,
     minlenth: 6
   },
@@ -32,7 +32,7 @@ var userSchema = mongoose.Schema({
     required: true,
     minlenth: 6
   },
-  role:{
+  role: {
     type: String,
     required: true
   }
@@ -53,7 +53,7 @@ userSchema.methods.toJSON = function () {
   var user = this;
   var userObject = user.toObject();
 
-  return _.pick(userObject, ['_id', 'email']);
+  return _.pick(userObject, ['_id', 'email', 'name', 'surname', 'role']);
 }
 
 
@@ -64,7 +64,7 @@ userSchema.methods.generateAuthToken = function () {
     _id: user._id.toHexString(),
     name: user.email,
     access: 'auth',
-    role:user.role
+    role: user.role
   }, 'abc123');
 
   // user.tokens.push({
@@ -102,6 +102,25 @@ userSchema.statics.findByToken = function (token) {
   return User.findOne({
     _id: decoded._id,
     // 'tokens.access': 'auth'
+  });
+}
+
+userSchema.statics.findByTokenAndUpdate = function (token, data) {
+  var User = this;
+  var decoded;
+
+  try {
+    decoded = jwt.verify(token, 'abc123');
+  } catch (e) {
+    return Promise.reject();
+  }
+
+  return User.findOneAndUpdate({
+    _id: decoded._id,
+  }, {
+    $set: data
+  }, {
+    new: true
   });
 }
 

@@ -1,0 +1,32 @@
+.userData{
+    border: 1px solid #f3f3f3;
+    border-top: 0;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+
+.content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.content .item{
+    width:48%;
+}
+
+
+@media all and (max-width: 800px) {
+    .content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+
+    .content .item{
+        width:100%;
+    }
+}
