@@ -1,12 +1,71 @@
 <app-checkout-navbar></app-checkout-navbar>
+<div class="col">
+  <h2 class="title big" fxLayoutAlign="center">Sprawdź i złóż zamówienie </h2>
+  <button type="button" (click)="placeOrder()">Złóż zamówienie</button>
 
-<p>Imie: {{shipping.firstName}}</p>
-<p>Nazwisko: {{shipping.lastName}}</p>
-<p>Ulica, nr domu / nr mieszkania: {{shipping.address}}</p>
-<p>Kod pocztowy {{shipping.code}}</p>
-<p>Miasto: {{shipping.city}}</p>
-<p>Państwo: {{shipping.country}}</p>
+</div>
+<hr>
+<div class="row">
+  <div class="col-8">
+    <h2 class="title">Zamówienie</h2>
+    <ng-container *ngIf="cart">
+      <table class="itemsTable">
+        <tbody>
+          <tr *ngFor="let item of cart.items">
+            <td class="pName">
+              <img [src]="item.product.imgUrl" alt="trreeelo">
+              <div class="itemInfo">
+                <span>
+                  <strong> {{item.product.title}}</strong>
+                </span>
+
+                <div>
+                  <span>Kategoria: {{item.product.category}}</span>
+                  <span>
+                    Ilość: {{item.count}}
+                    <!-- <app-product-quantity [product]="item.product" [shopping-cart]="cart"></app-product-quantity> -->
+                  </span>
+
+                  <span>
+                    <strong>{{item.totalPrice}} zł</strong>
+                  </span>
+                </div>
+              </div>
+            </td>
+            <td id="test">
+              <span class="delete" (click)="removeFromCart(item.product)">X</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+
+  </div>
+  <div class="col-4">
+    <h2 class="title">Adres dostawy</h2>
+    <div class="userData">
+      <span>
+        <strong>Imie: </strong>{{shipping.firstName}}</span>
+      <span>
+        <strong>Nazwisko: </strong>{{shipping.lastName}}</span>
+      <span>
+        <strong>Ulica, nr domu / nr mieszkania: </strong>{{shipping.address}}</span>
+      <span>
+        <strong>Kod pocztowy: </strong>{{shipping.code}}</span>
+      <span>
+        <strong>Miasto: </strong>{{shipping.city}}</span>
+      <span>
+        <strong>Państwo: </strong>{{shipping.country}}</span>
+    </div>
+
+    <div class="summary">
+      <div class="final">
+        <h3 class="title2">Łączna kwota</h3>
+        <span>177 zł</span>
+      </div>
+      <button type="button" (click)="placeOrder()">Złóż zamówienie</button>
+    </div>
 
 
-
-<button type="button" (click)="placeOrder()">Złóż zamówienie</button>
+  </div>
+</div>

@@ -29,7 +29,10 @@ export class ConfirmComponent implements OnInit {
   async ngOnInit() {
     this.shipping = this.orderService.getForm();
     console.log(this.shipping);
-    (await this.shoppingCartService.getCart()).subscribe(c => this.cart = c);
+    (await this.shoppingCartService.getCart()).subscribe(c => {
+      this.cart = c
+      console.log(this.cart);
+    });
     this.userId = this.authService.currentUser._id;
     //console.log(this.shipping);
   }

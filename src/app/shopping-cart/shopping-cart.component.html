@@ -1,42 +1,50 @@
 <ng-container *ngIf="cart">
 
 
-  <h2 fxLayoutAlign="center">KOSZYK({{cart.totalItemsCount}})</h2>
+  <h2 class="title big" fxLayoutAlign="center">KOSZYK({{cart.totalItemsCount}})</h2>
   <hr>
+  
+  <!-- <h2 class="title">Zamówione produkty</h2> -->
 
-  <table id="customers">
-    <tr>
-      <th>Produkt</th>
-      <th>Kategoria</th>
-      <th>Cena</th>
-      <th>Ilość</th>
-      <th>Pełna cena</th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let item of cart.items">
-      <td>
-        <img [src]="item.product.imgUrl" alt="">
-
-      </td>
-      <td>{{item.product.title}}</td>
-      <td>{{item.product.price}}</td>
-      <td><app-product-quantity [product]="item.product" [shopping-cart]="cart"></app-product-quantity></td>
-      <td>{{item.totalPrice}}</td>
-      <td>
-        <button (click)="removeFromCart(item.product)">Remove</button>
-      </td>
-    </tr>
+  <table class="itemsTable">
+    <tbody>
+      <tr *ngFor="let item of cart.items">
+        <td class="pName">
+          <img [src]="item.product.imgUrl" alt="trreeelo">
+          <div class="itemInfo">
+            <a [routerLink]="['/products/', item.product._id]">{{item.product.title}}</a>
+            <div>
+            <span>Kategoria: {{item.product.category}}</span> 
+            <span><app-product-quantity [product]="item.product" [shopping-cart]="cart"></app-product-quantity></span>
+            
+            <span><strong>{{item.totalPrice}} zł</strong></span>          
+            </div>
+          </div>
+        </td>
+        <td id="test">
+          <span class="delete" (click)="removeFromCart(item.product)" >X</span>
+        </td>
+      </tr>
+    </tbody>
   </table>
-  <h3>Total Price: {{cart.totalPrice}}</h3>
-  <button (click)="clearCart()">Wyczyść koszyk</button>
-
+  <div class="end">
+      <span class="left"><a (click)="clearCart()">Wyczyść koszyk</a></span>
+      <span class="right"><strong>Łączna kwota: </strong> {{cart.totalPrice}} zł</span>
+  </div>
 
   <hr>
-  <div fxLayoutAlign="center">
-    <!-- <button>KONTYNUUJ ZAKUPY</button> -->
+
+<div class="summary">
+    <button routerLink="/">KONTYNUUJ ZAKUPY</button>
     <button
     *ngIf="cart.items.length"
      routerLink="/checkout/address"
     >PRZEJDŹ DO KASY</button>
-  </div>
+</div>
+
+
+
+
+
+
 </ng-container>

@@ -1,29 +1,93 @@
-#customers {
-    /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
-    border-collapse: collapse;
+
+
+.itemsTable{
     width: 100%;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+    /* border: 1px solid #f3f3f3; */
+    border-top: 0;
+    /* margin-bottom: 20px; */
 }
 
-#customers td, #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
+.itemsTable tr{
+    display: flex;
+    justify-content:space-between;
+    /* align-items:center; */
+    border-bottom: 1px solid #eaeaea;
+    padding: 5px 10px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: orange;
-    color: white;
+.itemInfo{
+    padding: 10px;
 }
+
+.itemInfo a{
+ font-weight: 600;
+}
+
+.itemInfo span{
+    display: block;
+}
+
+.itemInfo span strong{
+    font-size: 16px;
+}
+
+.pName{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+}
+
+
+
+.end{
+    background: #f3f3f3;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.end a{
+    cursor: pointer;
+}
+
+
+
 
 img {
-    max-width: 300px;
+    max-width: 200px;
     height: auto;
     vertical-align: middle;
+  }
+
+
+  app-product-quantity{
+      padding: 10px;
+  }
+
+  #test{
+      display: flex;
+      height: 100%;
+      /* border: 5px solid goldenrod; */
+  }
+
+  .delete{
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 18px;
+      color: #404040;
+      /* align-items: flex-start; */
+  }
+
+  .summary{
+      display: flex;
+      justify-content: space-evenly;
+      margin: 15px 0;
+      padding: 20px;
+      /* background: #f3f3f3; */
+  }
+
+  .summary button{
+      margin: 0 30px;
   }

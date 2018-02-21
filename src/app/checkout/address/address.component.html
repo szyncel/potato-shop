@@ -1,25 +1,140 @@
+<app-checkout-navbar>
+</app-checkout-navbar>
 
-<app-checkout-navbar></app-checkout-navbar>
 
-<!-- <p>second step: Potwierdzenie</p> -->
-<h2>Adres do wysyłki</h2>
+<div class="col">
+  <h2 class="title big" fxLayoutAlign="center">Adres dostawy</h2>
+  <hr>
+</div>
+<!-- <div class="content">
 
-<form #f="ngForm">
-  <label for="firstname">Imie*</label>
-  <input class="has-danger" type="text" id="firstname" name="firstname" [(ngModel)]="shipping.firstName">
-  <label for="lastname">Nazwisko*</label>
-  <input class="has-danger" type="text" id="lastname" name="lastname" [(ngModel)]="shipping.lastName">
-  <label for="address">Ulica, nr domu / nr mieszkania*</label>
-  <input class="has-danger" type="text" id="address" name="address" [(ngModel)]="shipping.address">
-  <label for="code">Kod pocztowy*</label>
-  <input class="has-danger" type="text" id="code" name="code" [(ngModel)]="shipping.code">
-  <label for="City">Miasto*</label>
-  <input class="has-danger" type="text" id="City" name="City" [(ngModel)]="shipping.city">
-  <label for="Country">Kraj*</label>
-  <input class="has-danger" type="text" id="Country" name="Country" [(ngModel)]="shipping.country">
+  <form #f="ngForm">
+    <div class="formItem">
+      <div class="left">
+        <label for="firstname">Imie*</label>
+      </div>
+      <div class="right">
+        <input class="has-danger" type="text" id="firstname" name="firstname" [(ngModel)]="shipping.firstName">
+      </div>
+    </div>
 
-  <!-- <input type="submit" value="Przejdź do podsumowania"> -->
-  <button type="button" (click)="goToNext(f)">Dalej</button>
-</form>
+    <div class="formItem">
+      <div class="left">
+        <label for="lastname">Nazwisko*</label>
+      </div>
+      <div class="right">
+        <input class="has-danger" type="text" id="lastname" name="lastname" [(ngModel)]="shipping.lastName">
+      </div>
+    </div>
 
-*pola obowiązkowe
+    <div class="formItem">
+      <div class="left">
+        <label for="address">Ulica, nr domu / nr mieszkania*</label>
+      </div>
+      <div class="right">
+        <input class="has-danger" type="text" id="address" name="address" [(ngModel)]="shipping.address">
+      </div>
+    </div>
+
+    <div class="formItem">
+      <div class="left">
+        <label for="code">Kod pocztowy*</label>
+      </div>
+      <div class="right">
+        <input class="has-danger" type="text" id="code" name="code" [(ngModel)]="shipping.code">
+      </div>
+    </div>
+
+    <div class="formItem">
+      <div class="left">
+        <label for="City">Miasto*</label>
+      </div>
+      <div class="right">
+        <input class="has-danger" type="text" id="City" name="City" [(ngModel)]="shipping.city">
+      </div>
+    </div>
+
+    <div class="formItem">
+      <div class="left">
+        <label for="Country">Kraj*</label>
+      </div>
+      <div class="right">
+        <input class="has-danger" type="text" id="Country" name="Country" [(ngModel)]="shipping.country">
+      </div>
+    </div>
+
+
+    <button type="button" (click)="goToNext(f)">Dalej</button>
+  </form>
+
+
+</div> -->
+
+
+<!-- ................. -->
+<div class="content">
+  <form #f="ngForm">
+    <div class="row">
+      <div class="col-25">
+        <label for="firstname">Imię*</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="firstname" name="firstname" [(ngModel)]="shipping.firstName" placeholder="Twoje imie..">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lastname">Nazwisko*</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="lastname" name="lastname" [(ngModel)]="shipping.lastName" placeholder="Twoje nazwisko..">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="address">Ulica, nr domu / nr mieszkania*</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="address" name="address" [(ngModel)]="shipping.address" placeholder="Twój adres..">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="code">Kod pocztowy*</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="code" name="code" [(ngModel)]="shipping.code" placeholder="Twój kod pocztowy..">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="City">Miasto*</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="City" name="City" [(ngModel)]="shipping.city" placeholder="Twoje miasto..">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="Country">Kraj*</label>
+      </div>
+      <div class="col-75">
+        <select  id="Country" name="Country" [(ngModel)]="shipping.country">
+          <!-- <option value="australia">Australia</option>
+          <option value="canada">Canada</option> -->
+          <option value="Polska">Polska</option>
+        </select>
+      </div>
+    </div>
+    <div id="inf">
+        <span>*pola obowiązkowe</span>
+    </div>
+    
+    
+    <div class="row">
+        <button type="button" (click)="goToNext(f)">Dalej</button>
+    </div>
+  </form>
+</div>
