@@ -1,19 +1,4 @@
-.orderInfo {
-  overflow: hidden;
-  margin-bottom: 20px;
-  
-  
-}
 
-.address{
-    border: 1px solid #f3f3f3;
-    border-top: 0;
-}
-
-.orderInfo span{
-    display: block;
-    margin: 5px;
-}
 
 .itemsTable{
     width: 100%;

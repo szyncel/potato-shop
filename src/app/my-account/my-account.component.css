@@ -1,30 +1,11 @@
-/* .container {
-  display: flex;
-  flex-direction: row;
-}
 
-.col-3 {
-  flex: 1 1 100%;
-  max-width: 18%;
-  margin-right: 2%;
-}
-
-.col-8 {
-  flex: 1 1 100%;
-  max-width: 80%;
-}
-
-.container h1.title {
-  font-size: 16px;
-  margin-bottom: 20px;
-} */
 .container h2.title {
   font-size: 16px;
   background-color: #f3f3f3;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .userInfo strong{
@@ -33,6 +14,10 @@
 
 .right{
   font-weight: 400;
+}
+
+.tab{
+  margin-top: 20px;
 }
 
 

@@ -170,6 +170,25 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .ngx-datatable.bootstrap .datatable-footer .page-count{
   color: white;
 }
+
+.orderInfo {
+  overflow: hidden;
+  margin-bottom: 20px;
+  
+  
+}
+
+
+
+.orderInfo span{
+    display: block;
+    margin: 5px;
+}
+
+.address{
+  border: 1px solid #f3f3f3;
+  border-top: 0;
+}
 /* .ngx-datatable.bootstrap .datatable-footer{
 
 } */

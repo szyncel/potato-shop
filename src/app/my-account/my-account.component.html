@@ -9,14 +9,40 @@
       Po zalogowaniu się na konto użytkownika masz możliwość wglądu do swoich danych oraz ich aktualizacji. Aby przejść do edycji
       wybierz odpowiedni link.</p>
 
-      <h2 class="title">
-        <span class="left">Ostatnie zamówienia</span>       
-        <span class="right"><a routerLink="/my/orders">Zobacz wszystko</a></span>
-      </h2>
+    <h2 class="title">
+      <span class="left">Ostatnie zamówienia</span>
+      <span class="right">
+        <a routerLink="/my/orders">Zobacz wszystko</a>
+      </span>   
+    </h2>
+    <ng-container *ngIf="orders">
+      <ngx-datatable class="bootstrap tab" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="0" [rowHeight]="'auto'"
+        [rows]="rows">
+        <ngx-datatable-column name="Zamówienie" prop="nr" [width]="200"></ngx-datatable-column>
+        <ngx-datatable-column name="Data zamówienia" prop="date" [width]="150"></ngx-datatable-column>
+        <ngx-datatable-column name="Suma" prop="sum" [width]="50"></ngx-datatable-column>
+        <ngx-datatable-column name="Status" prop="status"></ngx-datatable-column>
+        <ngx-datatable-column name="" prop="action">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <a [routerLink]="['/my/orders/', value]">Szczegóły</a>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    
+  </ng-container>
 
-      <h2 class="title">
-          <span class="left">Dane użytkownika</span>       
-          <span class="right"><a routerLink="/my/settings">Edytuj</a></span>
-        </h2>
+    <h2 class="title">
+      <span class="left">Dane użytkownika</span>
+      <span class="right">
+        <a routerLink="/my/settings">Edytuj</a>
+      </span>
+    </h2>
+    <div *ngIf="user" class="orderInfo address">
+      <span >{{user.name}} {{user.surname}}</span>
+      <span>{{user.email}}</span>
+    </div>
+
+
+
   </div>
 </div>

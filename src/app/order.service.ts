@@ -77,7 +77,15 @@ export class OrderService {
 
 
   getSingleOrder(orderId) {
+    
     return this.http.get(`/api/admin-orders/${orderId}`).map(order => order['order']);
+  }
+
+  getLastOrders(){
+    let token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('x-auth', token);
+    return this.http.get('/api/last-orders',{ headers: headers });
   }
 
 }
