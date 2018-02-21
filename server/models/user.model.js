@@ -167,6 +167,24 @@ userSchema.pre('save', function (next) {
 });
 
 
+userSchema.statics.updatePassword = function (data) {
+  var User = this;
+
+  bcrypt.hash(data.password, 10).then(function(hash) {
+    // Store hash in your password DB.
+    return User.findOneAndUpdate({
+        email: data.email
+      }, {
+        $set: {
+          password: hash
+        }
+      }, {
+        new: true
+      });
+});
+}
+
+
 var User = mongoose.model('User', userSchema);
 
 module.exports = {

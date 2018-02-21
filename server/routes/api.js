@@ -129,7 +129,25 @@ router.put('/users/update-email', authenticate, async (req, res) => {
   } catch (e) {
     res.status(400).send(e);
   }
-})
+});
+
+router.put('/users/update-password', authenticate, async (req, res) => {
+  var body = _.pick(req.body, ['email', 'password', 'newPass']);
+  try {
+    var user = await User.findbyCredentials(body.email, body.password);
+    var pass = await User.updatePassword({
+      email: body.email,
+      password: body.newPass
+    });
+    console.log(pass);
+
+    res.status(200).send({
+      info: "Password changed"
+    });
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
 
 
 /* .............CATEGORY............. */

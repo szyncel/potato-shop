@@ -70,12 +70,21 @@ export class AuthService {
     return this.http.put('/api/users/update', user, { headers: headers });
   }
 
-changeEmail(data){
-  let token = localStorage.getItem('token');
-  const headers = new HttpHeaders()
-    .set('x-auth', token);
+  changeEmail(data) {
+    let token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('x-auth', token);
 
-    return this.http.put('/api/users/update-email',data,{ headers: headers });
-}
+    return this.http.put('/api/users/update-email', data, { headers: headers });
+  }
+
+
+  changePassword(data) {
+    let token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('x-auth', token);
+
+    return this.http.put('/api/users/update-password', data, { headers: headers });
+  }
 
 }
