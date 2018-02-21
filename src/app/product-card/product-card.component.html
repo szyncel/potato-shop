@@ -13,7 +13,8 @@
   </div>
   <div class="card_content">
     <h2 class="card_heading">{{product.title}}</h2>
-    <p>Odmiana: {{product.category}}</p>
+    <span>Odmiana: {{product.category}}</span>
+    <span>Cena: {{product.price}}</span>
   </div>
     <i *ngIf="showDelete" (click)="delFromWishlist()" class="fa fa-times fa-2" aria-hidden="true"></i>
   <div *ngIf="showActions && shoppingCart" class="card-footer">'

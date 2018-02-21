@@ -109,8 +109,27 @@ router.put('/users/update', authenticate, (req, res) => {
   }).catch((e) => {
     res.status(400).send(e);
   });
-
 });
+
+
+router.put('/users/update-email', authenticate, async (req, res) => {
+  var body = _.pick(req.body, ['email', 'password', 'newEmail']);
+  try {
+    var user = await User.findbyCredentials(body.email, body.password);
+    var test = await User.findOneAndUpdate({
+      email: body.email
+    }, {
+      $set: {
+        email: body.newEmail
+      }
+    }, {
+      new: true
+    });
+    res.status(200).send(test);
+  } catch (e) {
+    res.status(400).send(e);
+  }
+})
 
 
 /* .............CATEGORY............. */

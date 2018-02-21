@@ -32,6 +32,7 @@ export class AuthService {
 
 
   signin(user): Observable<any> {
+    // console.log(user);
     return this.http.post('/api/users/login', user, { observe: 'response' })
       .map(response => {
         let res: any = response.body;
@@ -68,5 +69,13 @@ export class AuthService {
       .set('x-auth', token);
     return this.http.put('/api/users/update', user, { headers: headers });
   }
+
+changeEmail(data){
+  let token = localStorage.getItem('token');
+  const headers = new HttpHeaders()
+    .set('x-auth', token);
+
+    return this.http.put('/api/users/update-email',data,{ headers: headers });
+}
 
 }

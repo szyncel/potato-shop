@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class UserSettingsComponent implements OnInit {
   userId: string;
-  user = {};
+  user:any = {};
+  email:string;
 
   constructor(
     private authService: AuthService,
@@ -22,6 +23,7 @@ export class UserSettingsComponent implements OnInit {
   ngOnInit() {
     this.authService.getUser().subscribe(user => {
       this.user = user;
+      this.email=this.user.email;
       console.log(user)
     });
   }
@@ -42,7 +44,18 @@ export class UserSettingsComponent implements OnInit {
 
   changeEmail(f) {
     // if pass is correct. then we can change
-    console.log(f.value);
+    let data={
+      email:this.email,
+      password:f.value.password,
+      newEmail:f.value.email
+    }
+
+    console.log(data);
+    this.authService.changeEmail(data).subscribe(res=>{
+      console.log(res);
+      this.router.navigate(['my/account']);
+    })
+    // console.log(data);
   }
 
 }
