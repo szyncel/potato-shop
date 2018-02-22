@@ -499,6 +499,8 @@ router.post('/place-order', authenticate, (req, res) => {
 router.get('/all-orders', authenticate, (req, res) => {
   Order.find({
     _creator: req.user._id
+  }).sort({
+    _id: -1
   }).then((orders) => {
     res.send({
       orders
@@ -514,7 +516,7 @@ router.get('/last-orders', authenticate, async (req, res) => {
     var query = await Order.find({
       _creator: req.user._id
     }).sort({
-      _id: 1
+      _id: -1
     }).limit(2);
     res.status(200).send(query);
   } catch (e) {

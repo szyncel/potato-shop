@@ -13,6 +13,7 @@ export class Order {
         this.items = shoppingCart.items.map(i => {
             return {
                 product: {
+                    id:i.product._id,
                     title: i.product.title,
                     price: i.product.price,
                     imgUrl: i.product.imgUrl,

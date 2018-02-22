@@ -24,7 +24,7 @@ img {
   vertical-align: middle;
 }
 
-button {
+/* button {
   display: inline-block;
   padding: 0.8em 1em 0.6em;
   font-weight: 700;
@@ -33,7 +33,7 @@ button {
   background-color: orange;
   color: #fff;
   width: 100%;
-}
+} */
 
 .card {
   display: -webkit-box;

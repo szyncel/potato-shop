@@ -20,6 +20,7 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'wishlist', component: WishlistComponent },
+  { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'checkout/address', component: AddressComponent, canActivate: [CheckoutStepsGuardService] },//first step
   { path: 'checkout/confirm', component: ConfirmComponent, canActivate: [CheckoutStepsGuardService] },//second step
   { path: 'order-success/:id', component: CheckoutSuccessComponent },

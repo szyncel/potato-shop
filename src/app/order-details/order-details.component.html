@@ -24,7 +24,7 @@
             <td class="pName">
               <img [src]="item.product.imgUrl" alt="trreeelo">
               <div class="itemInfo">
-                <a [routerLink]="['/products/', item.product._id]">{{item.product.title}}</a>
+                <a [routerLink]="['/products/', item.product.id]">{{item.product.title}}</a>
                 <div>
                 <span>Kategoria: {{item.product.category}}</span> 
                 <span>Cena: {{item.product.price}} zł</span>          

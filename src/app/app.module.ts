@@ -46,6 +46,7 @@ import { WishlistService } from './wishlist.service';
 import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 import { UserMenuComponent } from './user/user-menu/user-menu.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { UserSettingsComponent } from './user/user-settings/user-settings.compon
     AdminUsersComponent,
     AdminOrderDetailsComponent,
     UserMenuComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

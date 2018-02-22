@@ -12,6 +12,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
 })
 export class WishlistComponent implements OnInit {
   wishlist: Wishlist;
+  wishlistLength:number;
   cart: ShoppingCart;
 
   constructor(private authService: AuthService,
@@ -22,6 +23,8 @@ export class WishlistComponent implements OnInit {
   updateWishlist() {
     this.wishlistService.getWishList().subscribe(wishlist => {
       this.wishlist = wishlist
+      this.wishlistLength=wishlist.items.length;
+      // console.log(wishlist.items.length);
     });
   }
 
