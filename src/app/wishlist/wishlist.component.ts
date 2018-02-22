@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { WishlistService } from '../wishlist.service';
 import { Wishlist } from '../models/wishlist';
+import { ShoppingCart } from '../models/shopping-cart';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -9,19 +11,31 @@ import { Wishlist } from '../models/wishlist';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
-  wishlist:Wishlist;
+  wishlist: Wishlist;
+  cart: ShoppingCart;
 
   constructor(private authService: AuthService,
-    private wishlistService: WishlistService) { }
+    private wishlistService: WishlistService,
+    private shoppingCartService: ShoppingCartService
+  ) { }
 
   updateWishlist() {
     this.wishlistService.getWishList().subscribe(wishlist => {
-      console.log(wishlist);
-      this.wishlist = wishlist});
+      this.wishlist = wishlist
+    });
+  }
+
+  async refreshCart() {
+    (await this.shoppingCartService.getCart()).subscribe(cart => {
+      console.log(cart);
+      this.cart = cart
+      
+    });
   }
 
   ngOnInit() {
     this.updateWishlist();
+    this.refreshCart();
 
   }
 

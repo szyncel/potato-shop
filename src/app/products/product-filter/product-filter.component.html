@@ -1,12 +1,28 @@
-<div class="categories">
-    <ul>
-        <li 
+<div class="filter-box">
+  <ul>
+      <li        
+       class="filter">
+        <label 
         routerLink="/"
-        [class.active]="!category">Wszystkie</li>
-      <li
-      *ngFor="let c of categoryList$ | async"
+         class="customCheckbox">
+          <input type="checkbox"> Wszystkie
+          <div  
+          [class.active]="!category"
+           class="square"></div>
+        </label>
+      </li>
+    <li 
+    *ngFor="let c of categoryList$ | async"    
+     class="filter">
+      <label 
       routerLink="/"
-      [queryParams]="{category:c.name}" 
-      [class.active]="category===c.name">{{c.name}}</li>
-    </ul>
-  </div>
+      [queryParams]="{category:c.name}"
+       class="customCheckbox">
+        <input type="checkbox"> {{c.name}}
+        <div  
+        [class.active]="category===c.name"
+         class="square"></div>
+      </label>
+    </li>
+  </ul>
+</div>

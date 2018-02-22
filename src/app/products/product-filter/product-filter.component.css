@@ -1,33 +1,75 @@
-.categories ul{
-  margin: 0;
-    list-style: none;
-    padding: 0;
-  }
 
-  .categories ul li{
-    display: block;
-    text-decoration: none;
-    /* background-color: #FFF; */
-    cursor: pointer;
-    color: #000;
-    font-weight: bold;
-    padding: 1em;
-    border-bottom: 1px solid #E5E5E5;
-  }
-  .categories ul li:hover{
-    background-color: rgb(255, 181, 43);
-    transition: all .3s ease-in-out;
-    /* color: #0094B2; */
-  }
 
-  .categories ul li:focus, .categories ul li:active{
-    background-image: none;
-  outline: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  }
+.active {
+  background: orange;
+  transition: all .3s ease-in-out;
+}
 
-  .active{
-    background: orange;
-    transition: all .3s ease-in-out;
-  }
+.filter-box {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9e9ed;
+  position: relative;
+}
+
+.filter-box ul {
+  margin-left: -37px;
+  list-style: none;
+}
+
+li.filter {
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 18px;
+  outline: none;
+}
+
+li.filter label{
+  outline: none;
+}
+
+.customCheckbox {
+  display: block;
+  font-size: 14px;
+  width: 95%;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 17px;
+  color: #282c3f;
+  position: relative;
+}
+
+.customCheckbox input[type="checkbox"] {
+  margin: 0 10px 0 0;
+  visibility: hidden;
+}
+
+.square {
+  box-sizing: border-box;
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #c3c2c9;
+  background: #fff;
+  /* border-radius: 2px; */
+}
+
+
+input[type=checkbox]{
+  content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+    font-size: 15px;
+    color: #f3f3f3;
+    text-align: center;
+    line-height: 15px;
+  
+}
+
+
+.active{
+  background:orange;
+}

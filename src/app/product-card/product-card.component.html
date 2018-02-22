@@ -11,13 +11,17 @@
       <i class="fa fa-heart-o fa-2" (click)="addToWishlist(product)"></i>
     </ng-container>
   </div>
+  <div *ngIf="showDelete" class="heart">
+    <i (click)="delFromWishlist()" class="fa fa-times fa-2" aria-hidden="true"></i>
+  </div>
   <div class="card_content">
     <h2 class="card_heading">{{product.title}}</h2>
     <span>Odmiana: {{product.category}}</span>
     <span>Cena: {{product.price}}</span>
   </div>
-    <i *ngIf="showDelete" (click)="delFromWishlist()" class="fa fa-times fa-2" aria-hidden="true"></i>
-  <div *ngIf="showActions && shoppingCart" class="card-footer">'
+
+  <!-- <button *ngIf="showDelete" (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button> -->
+  <div *ngIf="(showActions && shoppingCart) || showDelete" class="card-footer">'
 
 
     <button *ngIf="shoppingCart.getQuantity(product)===0;else updateQuantity" (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>

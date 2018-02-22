@@ -1,7 +1,18 @@
 .col{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+h2.title{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.col button{
+    width: 250px;
 }
 
 .col-8{
@@ -74,6 +85,10 @@ width: 40%;
     padding: 5px 10px;
 }
 
+.delete{
+    cursor: pointer;
+}
+
 .itemInfo{
     padding: 10px;
 }
@@ -102,3 +117,7 @@ img {
     height: auto;
     vertical-align: middle;
   }
+
+  .right{
+    font-weight: 400;
+}

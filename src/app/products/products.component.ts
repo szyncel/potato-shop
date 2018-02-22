@@ -17,6 +17,7 @@ import { AuthService } from '../auth.service';
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
+  productsCount:number;
   category;
   cart;
   wishlist;
@@ -30,7 +31,8 @@ export class ProductsComponent implements OnInit {
     private authService: AuthService
   ) {
     this.productService.getAll()
-      .switchMap(products => {
+      .switchMap(products => {       
+        this.productsCount=products.length;
         this.products = products;
         return this.route.queryParamMap;
       })

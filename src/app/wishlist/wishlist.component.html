@@ -1,11 +1,11 @@
-<ng-container *ngIf="wishlist">
-  <h2 fxLayoutAlign="center">LISTA ŻYCZEŃ({{wishlist.totalItemsCount}})</h2>
+<ng-container *ngIf="wishlist && cart">
+  <h2 class="title big" fxLayoutAlign="center">LISTA ŻYCZEŃ({{wishlist.totalItemsCount}})</h2>
   <hr>
 
 
   <ul class="cards">
     <ng-container *ngFor="let p of wishlist.items">
-      <app-product-card [del]="true" [product]="p.product" class="cards_item"></app-product-card>
+      <app-product-card [del]="true" [product]="p.product" [shopping-cart]="cart" class="cards_item"></app-product-card>
       <!-- <p>{{p.product._id}}</p> -->
     </ng-container>
   </ul>

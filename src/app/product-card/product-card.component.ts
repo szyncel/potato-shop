@@ -36,6 +36,7 @@ export class ProductCardComponent {
     this.productComponent.refreshData();
     //this.navbarComponent.refreshCounter();
     this.shoppingCartService.change();
+    this.wishlistComponent.refreshCart();
   };
 
 

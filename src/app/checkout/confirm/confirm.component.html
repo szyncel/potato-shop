@@ -42,7 +42,10 @@
 
   </div>
   <div class="col-4">
-    <h2 class="title">Adres dostawy</h2>
+    <h2 class="title">
+      <span class="left">Adres dostawy</span>
+      <span class="right"><a routerLink="/checkout/address">Edytuj</a></span>
+    </h2>
     <div class="userData">
       <span>
         <strong>Imie: </strong>{{shipping.firstName}}</span>
@@ -61,7 +64,7 @@
     <div class="summary">
       <div class="final">
         <h3 class="title2">Łączna kwota</h3>
-        <span>177 zł</span>
+        <span *ngIf="cart ">{{cart.totalPrice}} zł</span>
       </div>
       <button type="button" (click)="placeOrder()">Złóż zamówienie</button>
     </div>
