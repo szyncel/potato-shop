@@ -51,7 +51,7 @@ export class WishlistButtonComponent implements OnInit {
   }
 
   refresh(){
-    this.wishlistService.getWishList().subscribe(wishlist=>this.wishlist=wishlist);
+    this.wishlistService.getWishList().then(wishlist=>this.wishlist=wishlist);
   }
 
   getTest() {

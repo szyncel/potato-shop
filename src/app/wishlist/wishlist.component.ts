@@ -14,6 +14,7 @@ export class WishlistComponent implements OnInit {
   wishlist: Wishlist;
   wishlistLength:number;
   cart: ShoppingCart;
+  user;
 
   constructor(private authService: AuthService,
     private wishlistService: WishlistService,
@@ -21,7 +22,7 @@ export class WishlistComponent implements OnInit {
   ) { }
 
   updateWishlist() {
-    this.wishlistService.getWishList().subscribe(wishlist => {
+    this.wishlistService.getWishList().then(wishlist => {
       this.wishlist = wishlist
       this.wishlistLength=wishlist.items.length;
       // console.log(wishlist.items.length);
@@ -36,9 +37,9 @@ export class WishlistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.updateWishlist();
+    this.user= this.authService.isLoggedIn();
+    if(this.user)this.updateWishlist();   
     this.refreshCart();
-
   }
 
 }

@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
   refreshWishCounter() {
     let user = this.authService.isLoggedIn();
     if (user) {
-      this.wishlistService.getWishList().subscribe(w => this.wishlist = w);
+      this.wishlistService.getWishList().then(w => this.wishlist = w);
     }
 
   }

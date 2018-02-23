@@ -52,9 +52,9 @@ export class ProductsComponent implements OnInit {
   refreshWishlist() {
     let user = this.authService.isLoggedIn();
     if (user) {
-      this.wishlistService.getWishList().subscribe(wishlist => {
-        this.wishlist = wishlist;
-        console.log(wishlist);
+      this.wishlistService.getWishList().then(wishlist => {
+        console.log(wishlist);      
+          this.wishlist = wishlist;
       });
     } else {
       console.log('niezalogowany');

@@ -548,8 +548,8 @@ router.post('/wishlist', authenticate, async (req, res) => { //Create wishlist
     _creator: req.user._id
   });
 
-  wishlist.save().then((doc) => {
-    res.send(doc);
+  wishlist.save().then((wishlist) => {
+    res.send(wishlist);
   }, (e) => {
     res.status(400).send(e);
   });
@@ -562,30 +562,14 @@ router.get('/wishlist', authenticate, async (req, res) => {
     _creator: req.user._id
   });
 
-  // console.log(test);
-  if (test.length) {
     Wishlist.find({
       _creator: req.user._id
     }).then((wishlist) => {
-      res.status(200).send({
-        wishlist
-      });
+      res.status(200).send({wishlist});
     }).catch((e) => {
       res.status(400).send({});
     });
-  } else {
-    var wishlist = new Wishlist({
-      _creator: req.user._id
-    });
-
-    wishlist.save().then((doc) => {
-      res.send(doc);
-    }, (e) => {
-      res.status(400).send(e);
-    });
-  }
-
-
+  
 })
 
 

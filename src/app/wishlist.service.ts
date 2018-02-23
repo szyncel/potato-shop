@@ -7,7 +7,7 @@ import { Wishlist } from './models/wishlist';
 @Injectable()
 export class WishlistService {
   @Output() test: EventEmitter<any> = new EventEmitter();
-  
+
   constructor(private http: HttpClient) { }
 
   change() {
@@ -20,7 +20,23 @@ export class WishlistService {
   }
 
 
-  getWishList(): Observable<any> {//getOrCreateWishlist
+  async getWishList():Promise<any>{//getOrCreateWishlist
+    let token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('x-auth', token);
+      let test= await this.http.get('/api/wishlist', { headers: headers }).map(wishlist=>wishlist['wishlist']).toPromise();
+    if(test.length){
+      // console.log(test[0].items);
+      return new Wishlist(test[0].items);
+    }else{
+      let test2:any=await this.http.post('/api/wishlist',{}, { headers: headers }).toPromise();
+      // console.log(test2.items);
+      return new Wishlist(test2.items);
+    }
+  }
+
+
+  getWishListCopy(): Observable<any> {//getOrCreateWishlist
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
@@ -28,7 +44,8 @@ export class WishlistService {
   }
 
 
-  private create(): Observable<any> {
+
+  create(): Observable<any> {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
@@ -43,10 +60,7 @@ export class WishlistService {
       .set('x-auth', token);
 
     return this.http.post('/api/wishlist/add', product, { headers: headers });
-    //if no wishlist
-    //create
-    //...
-    //add prod to wishlist
+
   }
 
 
