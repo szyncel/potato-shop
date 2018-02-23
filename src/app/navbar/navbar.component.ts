@@ -15,6 +15,7 @@ import { WishlistService } from '../wishlist.service';
 export class NavbarComponent implements OnInit {
   cart: ShoppingCart;
   wishlist: Wishlist;
+  user;
 
   constructor(public authService: AuthService,
     private shoppingCartService: ShoppingCartService,
@@ -44,6 +45,7 @@ export class NavbarComponent implements OnInit {
     this.wishlistService.getEmittedValue()
       .subscribe(i => this.refreshWishCounter())
 
+    this.user=this.authService.currentUser.role;
   };
 
 }

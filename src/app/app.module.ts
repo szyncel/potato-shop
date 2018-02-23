@@ -48,6 +48,7 @@ import { UserMenuComponent } from './user/user-menu/user-menu.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { WishlistButtonComponent } from './wishlist-button/wishlist-button.component';
+import { AdminAuthGuardService } from './admin-auth-guard.service';
 
 
 @NgModule({
@@ -104,6 +105,7 @@ import { WishlistButtonComponent } from './wishlist-button/wishlist-button.compo
     CheckoutStepsService,
     CheckoutStepsGuardService,
     ProductDetailsComponent,
+    AdminAuthGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

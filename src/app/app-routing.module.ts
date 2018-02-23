@@ -21,6 +21,7 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { AdminAuthGuardService } from './admin-auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -33,12 +34,12 @@ const routes: Routes = [
   { path: 'checkout/confirm', component: ConfirmComponent, canActivate: [CheckoutStepsGuardService] },//second step
   { path: 'order-success/:id', component: CheckoutSuccessComponent },
   { path: 'checkout', redirectTo: 'checkout/address', pathMatch: 'full' },
-  { path: 'admin/orders', component: AdminOrdersComponent },
-  { path: 'admin/orders/:id', component: AdminOrderDetailsComponent },
-  { path: 'admin/users', component: AdminUsersComponent },
-  { path: 'admin/products/new', component: ProductFormComponent },
-  { path: 'admin/products/:id', component: ProductFormComponent },
-  { path: 'admin/products', component: AdminProductsComponent },
+  { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AdminAuthGuardService] },
+  { path: 'admin/orders/:id', component: AdminOrderDetailsComponent, canActivate: [AdminAuthGuardService] },
+  { path: 'admin/users', component: AdminUsersComponent, canActivate: [AdminAuthGuardService] },
+  { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AdminAuthGuardService] },
+  { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AdminAuthGuardService] },
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuardService] },
   { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
   { path: 'my/orders/:id', component: OrderDetailsComponent, canActivate: [AuthGuardService] },
   { path: 'my/settings', component: UserSettingsComponent, canActivate: [AuthGuardService] },

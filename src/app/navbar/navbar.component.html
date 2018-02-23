@@ -13,6 +13,7 @@
   </div>
   <div class="nav-right" fxShow="false" fxShow.gt-sm>
     <ul class="list">
+      <ng-container *ngIf="user==admin">
       <li>
         <a routerLink="admin/products" class="single">Admin Produkty</a>
       </li>
@@ -22,6 +23,7 @@
       <li>
         <a routerLink="admin/users" class="single">Admin Użytkownicy</a>
       </li>
+    </ng-container>
       <li class="dropdown">
 
 
