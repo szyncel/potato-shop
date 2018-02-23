@@ -32,7 +32,6 @@ export class WishlistComponent implements OnInit {
     (await this.shoppingCartService.getCart()).subscribe(cart => {
       console.log(cart);
       this.cart = cart
-      
     });
   }
 

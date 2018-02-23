@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { ActivatedRoute } from '@angular/router';
+import { ShoppingCartService } from '../shopping-cart.service';
+import { WishlistService } from '../wishlist.service';
+import { ProductsComponent } from '../products/products.component';
+import { WishlistComponent } from '../wishlist/wishlist.component';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-product-details',
@@ -8,22 +13,39 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-product={};
-id;
+  product: Product;
+  shoppingCart;
+  id;
 
   constructor(
-    private productService:ProductService,
-    private route:ActivatedRoute
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private shoppingCartService: ShoppingCartService,
+    private wishlistService: WishlistService,
+    private productComponent: ProductsComponent,
+    private wishlistComponent: WishlistComponent
   ) {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) this.productService.get(this.id).subscribe(p => {
-      console.log(p);
       this.product = p
     });
-   }
+  }
+
+  addToCart(product: Product) {
+    this.shoppingCartService.addToCart(product);
+    this.productComponent.refreshData();
+    this.shoppingCartService.change();
+    this.wishlistComponent.refreshCart();
+    this.refresh();
+  };
+
+  async refresh() {
+    (await this.shoppingCartService.getCart()).subscribe(c => this.shoppingCart = c);
+  }
 
   ngOnInit() {
-    
+    this.refresh();
+
   }
 
 }

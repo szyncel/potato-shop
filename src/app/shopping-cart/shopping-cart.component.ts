@@ -10,6 +10,7 @@ import { Product } from '../models/product';
 })
 export class ShoppingCartComponent implements OnInit {
   cart: ShoppingCart;
+  // cartCount:number;
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 
@@ -25,6 +26,7 @@ export class ShoppingCartComponent implements OnInit {
     (await this.shoppingCartService.clearCart()).subscribe(res=>{
       console.log(res);
       this.refreshShoppingCart();
+      this.shoppingCartService.change();
     })
   }
 

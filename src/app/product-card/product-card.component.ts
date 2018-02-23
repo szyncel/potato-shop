@@ -18,7 +18,7 @@ export class ProductCardComponent {
   @Input('wishlist') wishlist: Wishlist;
   @Input('del') showDelete = false;
   showActions = true;
-  // showDelete=false;
+
 
 
   constructor(
@@ -27,32 +27,15 @@ export class ProductCardComponent {
     private productComponent: ProductsComponent,
     private navbarComponent: NavbarComponent,
     private wishlistComponent: WishlistComponent
-  ) {
-
-  }
+  ) {}
 
   addToCart(product: Product) {
     this.shoppingCartService.addToCart(product);
     this.productComponent.refreshData();
-    //this.navbarComponent.refreshCounter();
     this.shoppingCartService.change();
     this.wishlistComponent.refreshCart();
   };
 
-
-  addToWishlist() {
-    if (this.getTest()) {
-      this.delFromWishlist();
-    } else {
-      this.wishlistService.addToWishList(this.product).subscribe(res => {
-        console.log(res);
-        this.productComponent.refreshWishlist();
-        this.wishlistService.change();
-        //refresh wishlsit page
-      });
-    }
-
-  }
 
   delFromWishlist() {
     this.wishlistService.removeFromWishlist(this.product).subscribe(res => {
@@ -63,12 +46,4 @@ export class ProductCardComponent {
       //refresh wishlsit page
     });
   }
-
-
-  getTest() {
-    let wishlistArray = this.wishlist.items;
-    let item = wishlistArray.filter(item => item.product._id == this.product._id);
-    return item[0] ? true : false;
-  }
-
 }

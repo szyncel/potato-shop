@@ -1,8 +1,7 @@
+
 <ng-container *ngIf="wishlist && cart && wishlistLength">
   <h2 class="title big" fxLayoutAlign="center">LISTA ŻYCZEŃ({{wishlist.totalItemsCount}})</h2>
   <hr>
-
-
   <ul class="cards">
     <ng-container *ngFor="let p of wishlist.items">
       <app-product-card [del]="true" [product]="p.product" [shopping-cart]="cart" class="cards_item"></app-product-card>

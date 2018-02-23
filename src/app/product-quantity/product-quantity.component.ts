@@ -6,6 +6,7 @@ import { Product } from '../models/product';
 import { ShoppingCart } from '../models/shopping-cart';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { WishlistComponent } from '../wishlist/wishlist.component';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 @Component({
   selector: 'app-product-quantity',
@@ -21,7 +22,9 @@ export class ProductQuantityComponent {
     private shoppingCartComponent: ShoppingCartComponent,
     private productComponent: ProductsComponent,
     private navbarComponent: NavbarComponent,
-    private wishlistComponent: WishlistComponent) { }
+    private wishlistComponent: WishlistComponent,
+    private productDetailsComponent:ProductDetailsComponent
+  ) { }
 
   async addToCart(product: Product) {
     await this.shoppingCartService.addToCart(product);
@@ -29,6 +32,7 @@ export class ProductQuantityComponent {
     await this.shoppingCartComponent.refreshShoppingCart();
     this.shoppingCartService.change();
     this.wishlistComponent.refreshCart();
+    this.productDetailsComponent.refresh();
   }
 
   async decrasseCart(product: Product) {
@@ -37,6 +41,7 @@ export class ProductQuantityComponent {
     await this.shoppingCartComponent.refreshShoppingCart();
     this.shoppingCartService.change();
     this.wishlistComponent.refreshCart();
+    this.productDetailsComponent.refresh();
   }
 
   getQuantity() {

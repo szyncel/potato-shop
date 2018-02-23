@@ -3,19 +3,15 @@
     <img [src]="product.imgUrl" />
   </div>
   <div class="heart" *ngIf="wishlist">
-    <ng-container *ngIf="getTest()">
-      <i class="fa fa-heart fa-2" (click)="addToWishlist(product)" aria-hidden="true"></i>
-    </ng-container>
-    <ng-container *ngIf="!getTest()">
-      <i class="fa fa-heart-o fa-2" (click)="addToWishlist(product)"></i>
-    </ng-container>
+    <wishlist-button [product]="product"></wishlist-button>
   </div>
   <div *ngIf="showDelete" class="heart">
     <i (click)="delFromWishlist()" class="fa fa-times fa-2" aria-hidden="true"></i>
   </div>
   <div class="card_content">
-    <h2 class="card_heading"><a [routerLink]="['/products/', product._id]">{{product.title}}</a>
-      </h2>
+    <h2 class="card_heading">
+      <a [routerLink]="['/products/', product._id]">{{product.title}}</a>
+    </h2>
     <span>Odmiana: {{product.category}}</span>
     <span>Cena: {{product.price}}</span>
   </div>

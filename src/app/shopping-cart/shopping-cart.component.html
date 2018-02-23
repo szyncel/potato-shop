@@ -1,11 +1,6 @@
-<ng-container *ngIf="cart">
-
-
+<ng-container *ngIf="cart && cart.totalItemsCount else emptyBag">
   <h2 class="title big" fxLayoutAlign="center">KOSZYK({{cart.totalItemsCount}})</h2>
-  <hr>
-  
-
-
+  <hr> 
   <table class="itemsTable">
     <tbody>
       <tr *ngFor="let item of cart.items">
@@ -33,7 +28,6 @@
   </div>
 
   <hr>
-
 <div class="summary">
     <button routerLink="/">KONTYNUUJ ZAKUPY</button>
     <button
@@ -41,6 +35,10 @@
      routerLink="/checkout/address"
     >PRZEJDŹ DO KASY</button>
 </div>
-
 </ng-container>
+
+<ng-template #emptyBag>
+  <h2 class="title big">O nie!! Pusty koszyk</h2>
+  <button routerLink="/" >Kontynuuj zakupy</button>
+</ng-template>
 

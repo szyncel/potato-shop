@@ -1,5 +1,4 @@
-
-<div class="row">
+<div *ngIf="product && shoppingCart" class="row">
 
   <div class="col">
     <img [src]="product.imgUrl" alt="trololo">
@@ -13,10 +12,14 @@
       <h2 class="price">{{product.price}} zł</h2>
     </div>
     <div class="middle">
-        <button>Dodaj do listy życzeń</button>
+      <span>Lista życzeń </span>
+      <wishlist-button  [product]="product"></wishlist-button>
     </div>
     <div class="bottom">
-            <button>Dodaj do koszyka</button>
+      <button *ngIf="shoppingCart.getQuantity(product)===0;else updateQuantity" (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>
+      <ng-template #updateQuantity>
+        <app-product-quantity [product]="product" [shopping-cart]="shoppingCart"></app-product-quantity>
+      </ng-template>
     </div>
   </div>
 

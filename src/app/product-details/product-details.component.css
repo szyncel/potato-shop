@@ -31,10 +31,7 @@
     width: 80%;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
 }
-.traaas{
-    width: 80%;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
-}
+
 
 h1.title{
     font-size: 36px;
@@ -55,7 +52,7 @@ h1.title{
 }
 
 
-.product-category h2{
+.product-category h2, .middle{
     text-transform: uppercase;
     font-weight: 400;
     font-size: 18px;
@@ -63,15 +60,22 @@ h1.title{
 }
 
 .middle{
-    padding-top: 20px;
-    padding-bottom: 20px;
+    width: 20%;
+    min-width: 200px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    box-shadow: 0 4px 8px 0 rgba(26,26,26,.06);
+    cursor: pointer;
 }
 
 .middle button{
     width: 50%;
 }
 
-.bottom button{
+.bottom{
     width: 50%;
 }
 

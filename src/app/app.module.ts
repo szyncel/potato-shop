@@ -47,6 +47,7 @@ import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-or
 import { UserMenuComponent } from './user/user-menu/user-menu.component';
 import { UserSettingsComponent } from './user/user-settings/user-settings.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { WishlistButtonComponent } from './wishlist-button/wishlist-button.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     AdminOrderDetailsComponent,
     UserMenuComponent,
     UserSettingsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    WishlistButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +103,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     OrderService,
     CheckoutStepsService,
     CheckoutStepsGuardService,
+    ProductDetailsComponent,
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
