@@ -29,9 +29,12 @@ export class AddressComponent implements OnInit {
   }
 
   goToNext(form:any){
+    if(form.valid){
+      this.save(form);
+      this.router.navigate(['/checkout/confirm']);
+    }
     // console.log(this.shipping);
-    this.save(form);
-    this.router.navigate(['/checkout/confirm']);
+    
   }
 
 }

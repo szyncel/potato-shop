@@ -32,7 +32,6 @@ export class NavbarComponent implements OnInit {
     if (user) {
       this.wishlistService.getWishList().then(w => this.wishlist = w);
     }
-
   }
 
 
@@ -44,7 +43,6 @@ export class NavbarComponent implements OnInit {
     if (!this.wishlist) this.refreshWishCounter();
     this.wishlistService.getEmittedValue()
       .subscribe(i => this.refreshWishCounter())
-
 
   };
 

@@ -26,32 +26,20 @@ export class WishlistService {
       .set('x-auth', token);
       let test= await this.http.get('/api/wishlist', { headers: headers }).map(wishlist=>wishlist['wishlist']).toPromise();
     if(test.length){
-      // console.log(test[0].items);
       return new Wishlist(test[0].items);
     }else{
       let test2:any=await this.http.post('/api/wishlist',{}, { headers: headers }).toPromise();
-      // console.log(test2.items);
       return new Wishlist(test2.items);
     }
   }
 
 
-  getWishListCopy(): Observable<any> {//getOrCreateWishlist
-    let token = localStorage.getItem('token');
-    const headers = new HttpHeaders()
-      .set('x-auth', token);
-    return this.http.get('/api/wishlist', { headers: headers }).map(wishlist => new Wishlist(wishlist["wishlist"][0].items));
-  }
-
-
-
-  create(): Observable<any> {
-    let token = localStorage.getItem('token');
-    const headers = new HttpHeaders()
-      .set('x-auth', token);
-    //send token
-    return this.http.post('/wishlist', {}, { headers: headers });
-  }
+  // getWishListCopy(): Observable<any> {//getOrCreateWishlist
+  //   let token = localStorage.getItem('token');
+  //   const headers = new HttpHeaders()
+  //     .set('x-auth', token);
+  //   return this.http.get('/api/wishlist', { headers: headers }).map(wishlist => new Wishlist(wishlist["wishlist"][0].items));
+  // }
 
 
   addToWishList(product: Product): Observable<any> {
