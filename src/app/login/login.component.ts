@@ -15,6 +15,7 @@ import { ProductsComponent } from '../products/products.component';
 })
 export class LoginComponent implements OnInit {
   error;
+  registerError;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,7 +58,9 @@ export class LoginComponent implements OnInit {
     this.authService.signup(user)
       .subscribe(
         res => console.log(res),
-        error => console.log(error)
+        error => {
+          this.registerError=error.error.title;
+        }
       )
   }
 

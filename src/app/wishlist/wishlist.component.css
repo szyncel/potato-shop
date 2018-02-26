@@ -15,7 +15,6 @@
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     list-style: none;
-    /* margin-top: 3rem; */
     margin: 15px;
     padding: 0;
   }
@@ -46,4 +45,51 @@
     .no-flexbox .cards_item:nth-child(3n+1) {
       clear: both;
     }
+  }
+
+  button{
+    width: 50%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    padding-top: 40px;
+  }
+
+  h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .content button {
+    width: 20%;
+  }
+
+  .fa {
+    color: orange;
+    font-size: 8rem;
+  }
+
+  .line {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .line hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+  }
+
+  .test{
+    margin: 0;
   }

@@ -7,6 +7,7 @@
     <div class="col" fxFlex="45">
       <h3>JESTEM JUŻ KLIENTEM POTATO</h3>
       <hr class="loginHr">
+      <!-- <button (click)="" >Zaloguj sie</button> -->
       <div *ngIf="error" class="errorMsg">
         <span>{{error}}</span>
       </div>
@@ -52,6 +53,9 @@
     <div class="col" fxFlex="45">
       <h3>PO RAZ PIERWSZY W POTATO?</h3>
       <hr>
+      <div *ngIf="registerError" class="errorMsg">
+        <span>{{registerError}}</span>
+      </div>
       <form #f="ngForm" (ngSubmit)="submit(f)">
 
           <div class="row">
@@ -125,8 +129,6 @@
                     </div>
               </div>
             </div>
-
-
 
         <input [disabled]="f.invalid" [ngClass]="{'disabled':f.invalid}"  type="submit" value="ZAREJESTRUJ SIE">
 
