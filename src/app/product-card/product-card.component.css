@@ -24,16 +24,7 @@ img {
   vertical-align: middle;
 }
 
-/* button {
-  display: inline-block;
-  padding: 0.8em 1em 0.6em;
-  font-weight: 700;
-  line-height: 1;
-  text-decoration: none;
-  background-color: orange;
-  color: #fff;
-  width: 100%;
-} */
+
 
 .card {
   display: -webkit-box;
@@ -47,6 +38,7 @@ img {
   border: 0 solid #eee;
   border-radius: 0;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
+  padding: 15px;
 }
 
 .card_image img {
@@ -83,6 +75,12 @@ img {
   justify-content:space-between;
   align-items:baseline;
 }
+
+
+.card_heading a{
+  font-size: 18px;
+}
+
 
 .quantity{
   font-size: 20px;

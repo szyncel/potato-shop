@@ -28,13 +28,15 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  refreshWishCounter() {
-    let user = this.authService.isLoggedIn();
-    if (user) {
-      this.wishlistService.getWishList().then(w => this.wishlist = w);
-    }
+  logout(){
+    this.authService.logout();
+    this.wishlistService.change();
   }
 
+  refreshWishCounter() {
+    let user = this.authService.isLoggedIn();
+    if (user) this.wishlistService.getWishList().then(w => this.wishlist = w);
+  }
 
   ngOnInit() {
     if (!this.cart) this.refreshCounter();
@@ -44,8 +46,8 @@ export class NavbarComponent implements OnInit {
     if (!this.wishlist) this.refreshWishCounter();
     this.wishlistService.getEmittedValue()
       .subscribe(i => this.refreshWishCounter())
-
-    this.user=this.authService.currentUser.role;
+      let user = this.authService.isLoggedIn();
+      if(user)this.user=this.authService.currentUser.role;
   };
 
 }

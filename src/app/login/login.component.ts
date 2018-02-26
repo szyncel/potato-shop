@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { error } from 'selenium-webdriver';
 import { WishlistService } from '../wishlist.service';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { ProductsComponent } from '../products/products.component';
 
 
 @Component({
@@ -12,30 +14,36 @@ import { WishlistService } from '../wishlist.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  error;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private wishlistService:WishlistService
+  ) { }
 
- login(form) {
+  login(form) {
     const user = {
-      email: form.value.email,
-      password: form.value.password
+      email: form.value.e,
+      password: form.value.p
     }
-    //console.log(form.value);
     this.authService.signin(user)
       .subscribe((res) => {
         if (res) {
           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+          this.wishlistService.change();
           this.router.navigate([returnUrl || '/']);
         } else {
           console.log('Nieudane logowanie');
         }
-        //console.log(data.body.token);
-        // console.log(data.headers.get('x-auth'));
-      })
+      }, (err) => {
+        this.error=err.error.error;
+        console.log(err.error)
+      });
   }
+
+
 
 
   submit(form) {
@@ -48,7 +56,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.signup(user)
       .subscribe(
-        res =>console.log(res),
+        res => console.log(res),
         error => console.log(error)
       )
   }

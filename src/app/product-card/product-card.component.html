@@ -13,7 +13,7 @@
       <a [routerLink]="['/products/', product._id]">{{product.title}}</a>
     </h2>
     <span>Odmiana: {{product.category}}</span>
-    <span>Cena: {{product.price}}</span>
+    <span>Cena: {{product.price}} zł</span>
   </div>
   <div *ngIf="(showActions && shoppingCart) || showDelete" class="card-footer">'
 

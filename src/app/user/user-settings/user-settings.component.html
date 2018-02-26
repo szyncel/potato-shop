@@ -4,57 +4,159 @@
   </div>
   <div class="col-8">
     <h1 class="title">Moje Dane</h1>
-<div class="content">
+    <div class="content">
 
 
-    <div class="item">
-      <h2 class="title">Dane osobowe</h2>
-      <div class="userData">
-        <form #f="ngForm" (ngSubmit)="save(f)">
-          <label for="name">Imie*</label>
-          <input [(ngModel)]="user.name" #title="ngModel" type="text" id="name" name="name" required [rangeLength]="[3, 15]">
-          <label for="surname">Nazwisko*</label>
-          <input [(ngModel)]="user.surname" #title="ngModel" type="text" id="surname" name="surname" required [rangeLength]="[3, 15]">
-          <label for="test">Test</label>
-          <input  type="text" id="test" name="test" >
+      <div class="item">
+        <h2 class="title">Dane osobowe</h2>
+        <div class="userData">
+          <form #f="ngForm" (ngSubmit)="save(f)">
+              <div class="row">
+                  <div class="col-100">
+                      <label for="name">Imie*</label>
+                  </div>
+                  <div class="col-100 test">
+                    <input type="text" id="name" name="name"
+                      [(ngModel)]="user.name" 
+                      ngModel #name="ngModel" required
+                      [rangeLength]="[3, 15]"
+                      [ngClass]="{'has-danger':name.touched && name.invalid}"
+                      >
+                      <div class="alert-danger" *ngIf="name.touched && name.invalid">
+                          <div *ngIf="name.errors.required"><span>Pole obowiązkowe</span> </div>
+                          <div *ngIf="name.errors.rangeLength"><span>Range error min:3 max: 15</span></div>
+                        </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-100">
+                        <label for="surname">Nazwisko*</label>
+                    </div>
+                    <div class="col-100 test">
+                      <input type="text" id="surname" name="surname"
+                        [(ngModel)]="user.surname" 
+                        ngModel #surname="ngModel" required
+                        [rangeLength]="[3, 15]"
+                        [ngClass]="{'has-danger':surname.touched && surname.invalid}"
+                        >
+                        <div class="alert-danger" *ngIf="surname.touched && surname.invalid">
+                            <div *ngIf="surname.errors.required"><span>Pole obowiązkowe</span> </div>
+                            <div *ngIf="surname.errors.rangeLength"><span>Range error min:3 max: 15</span></div>
+                          </div>
+                    </div>
+                  </div>
+            
+            <!-- <label for="test">Test</label>
+            <input type="text" id="test" name="test"> -->
 
-          <input type="submit" value="ZAPISZ">
-        </form>
+            <input [disabled]="f.invalid" [ngClass]="{'disabled':f.invalid}" type="submit" value="ZAPISZ">
+          </form>
+        </div>
       </div>
-    </div>
-    <div class="item">
-      <h2 class="title">Hasło</h2>
-      <div class="userData">
-        <form #p="ngForm" (ngSubmit)="changePassword(p)">
-          <label for="old">Stare hasło*</label>
-          <input ngModel #c="ngModel" type="password" id="old" name="old" required [rangeLength]="[3, 15]">
-          <label for="new">Nowe hasło*</label>
-          <input ngModel #c="ngModel" type="password" id="new" name="new" required [rangeLength]="[3, 15]">
-          <label for="repeat">Potwierdź hasło*</label>
-          <input ngModel #c="ngModel" type="password" id="repeat" name="repeat" required [rangeLength]="[3, 15]">
-
-          <input type="submit" value="ZAPISZ">
-        </form>
+      <div class="item">
+        <h2 class="title">Hasło</h2>
+        <div class="userData">
+          <form #p="ngForm" (ngSubmit)="changePassword(p)">
+            <div class="row">
+              <div class="col-100">
+                <label for="old">Stare hasło*</label>
+              </div>
+              <div class="col-100 test">
+                <input type="password" id="old" name="old" 
+                  ngModel #old="ngModel" required
+                  [rangeLength]="[3, 15]"
+                  [ngClass]="{'has-danger':old.touched && old.invalid}"
+                  >
+                  <div class="alert-danger" *ngIf="old.touched && old.invalid">
+                      <div *ngIf="old.errors.required"><span>Pole obowiązkowe</span> </div>
+                      <div *ngIf="old.errors.rangeLength"><span>Range error min:3 max: 15</span></div>
+                    </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-100">
+                  <label for="new">Nowe hasło*</label>
+                </div>
+                <div class="col-100 test">
+                  <input type="password" id="new" name="new" 
+                    ngModel #new="ngModel" required
+                    [rangeLength]="[3, 15]"
+                    [ngClass]="{'has-danger':new.touched && new.invalid}"
+                    >
+                    <div class="alert-danger" *ngIf="new.touched && new.invalid">
+                        <div *ngIf="new.errors.required"><span>Pole obowiązkowe</span> </div>
+                        <div *ngIf="new.errors.rangeLength"><span>Range error min:3 max: 15</span></div>
+                      </div>
+                </div>
+              </div>
+            <div class="row">
+                <div class="col-100">
+                  <label for="repeat">Potwierdź hasło*</label>
+                </div>
+                <div class="col-100 test">
+                  <input type="password" id="repeat" name="repeat" 
+                    ngModel #repeat="ngModel" required
+                    [equalTo]="new"
+                    [rangeLength]="[3, 15]"
+                    [ngClass]="{'has-danger':repeat.touched && repeat.invalid}"
+                    >
+                    <div class="alert-danger" *ngIf="repeat.touched && repeat.invalid">
+                        <div *ngIf="repeat.errors.required"><span>Pole obowiązkowe</span> </div>
+                        <div *ngIf="repeat.errors.equalTo"><span>equalTo error</span> </div>
+                      </div>
+                </div>
+              </div>
+            <input [disabled]="p.invalid" [ngClass]="{'disabled':p.invalid}" class="small" type="submit" value="ZAPISZ">
+          </form>
+        </div>
       </div>
-    </div>
-    <div class="item">
-      <h2 class="title">Adres e-mail</h2>
-      <div class="userData">
-        <form #e="ngForm" (ngSubmit)="changeEmail(e)">
-          <label for="e">Adres e-mail*</label>
-          <input [(ngModel)]="user.email" #t="ngModel" type="text" id="e" name="email" required [rangeLength]="[3, 15]">
-          <label for="password">Hasło*</label>
-          <input ngModel #t="ngModel" type="password" id="password" name="password" required [rangeLength]="[3, 15]">
+      <div class="item">
+        <h2 class="title">Adres e-mail</h2>
+        <div class="userData">
+          <form #e="ngForm" (ngSubmit)="changeEmail(e)">
+              <div class="row">
+                  <div class="col-100">
+                      <label for="email">Adres e-mail*</label>
+                  </div>
+                  <div class="col-100 test">
+                    <input type="text" id="email" name="email"
+                      [(ngModel)]="user.email" 
+                      ngModel #email="ngModel" required
+                      email
+                      [ngClass]="{'has-danger':email.touched && email.invalid}"
+                      >
+                      <div class="alert-danger" *ngIf="email.touched && email.invalid">
+                          <div *ngIf="email.errors.required"><span>Pole obowiązkowe</span> </div>
+                          <div *ngIf="email.errors.email"><span>wrong email</span></div>
+                        </div>
+                  </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-100">
+                        <label for="password">Hasło*</label>
+                    </div>
+                    <div class="col-100 test">
+                      <input type="password" id="password" name="password"
+                        [(ngModel)]="user.password" 
+                        ngModel #password="ngModel" required
+                        [rangeLength]="[3, 15]"
+                        [ngClass]="{'has-danger':password.touched && password.invalid}"
+                        >
+                        <div class="alert-danger" *ngIf="password.touched && password.invalid">
+                            <div *ngIf="password.errors.required"><span>Pole obowiązkowe</span> </div>
+            
+                          </div>
+                    </div>
+                  </div>
 
-          <input type="submit" value="ZAPISZ">
-        </form>
+          
+            <input [disabled]="e.invalid" [ngClass]="{'disabled':e.invalid}" type="submit" value="ZAPISZ">
+          </form>
+        </div>
       </div>
+
     </div>
-
-  </div>
-
-
 
     <button routerLink="/my/account">Wróć</button>
   </div>

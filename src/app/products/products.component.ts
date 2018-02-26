@@ -52,19 +52,16 @@ export class ProductsComponent implements OnInit {
   refreshWishlist() {
     let user = this.authService.isLoggedIn();
     if (user) {
-      this.wishlistService.getWishList().then(wishlist => {
-        console.log(wishlist);      
-          this.wishlist = wishlist;
-      });
+      this.wishlistService.getWishList().then(wishlist =>this.wishlist = wishlist);
     } else {
-      console.log('niezalogowany');
+      this.wishlist=null;
     }
-
   }
 
   ngOnInit() {
     this.refreshData();
     this.refreshWishlist();
+    this.wishlistService.getEmittedValue().subscribe(i=>this.refreshWishlist());
   }
 
   ngOnDestroy() {//Potrzebne?

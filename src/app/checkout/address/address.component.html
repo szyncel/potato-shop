@@ -94,7 +94,7 @@
     
     
     <div class="row">
-        <button type="button" (click)="goToNext(f)">Dalej</button>
+        <button [disabled]="f.invalid" [ngClass]="{'disabled':f.invalid}" type="button" (click)="goToNext(f)">Dalej</button>
     </div>
   </form>
 </div>
