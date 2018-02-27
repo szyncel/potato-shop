@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { error } from 'selenium-webdriver';
 import { WishlistService } from '../wishlist.service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ProductsComponent } from '../products/products.component';
