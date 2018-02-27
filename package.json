@@ -4,9 +4,7 @@
   "license": "MIT",
   "main": "server.js",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --watch",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -18,6 +16,8 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "1.6.1",
+    "@angular/compiler-cli": "^5.0.0",
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
