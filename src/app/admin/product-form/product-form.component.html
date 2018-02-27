@@ -4,13 +4,15 @@
     <hr>
   </div>
   <div class="row" fxFlex="auto" fxLayout="column" fxLayout.lg="row" fxLayoutAlign="space-around">
+<ng-container *ngIf="product">
+
 
     <div fxFlex="40">
       <!-- <div class="header">
             <h2>NOWY PRODUKT</h2>
             <hr>
           </div> -->
-      <form #f="ngForm" (ngSubmit)="save(f)">
+      <form  #f="ngForm" (ngSubmit)="save(f)">
         <label for="title">Tytuł</label>
         <input [ngClass]="{'has-danger':title.touched && title.invalid,
                                 'has-success':title.touched && title.valid}" class="has-danger" [(ngModel)]="product.title"
@@ -56,6 +58,7 @@
             <app-product-card [product]="product" class="cards_item"></app-product-card>
         </ul>
     </div>
+  </ng-container>
   </div>
 
 </div>
