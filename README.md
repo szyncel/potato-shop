@@ -1,6 +1,7 @@
 # PotatoShop
 
-This project was build with ...
+This project was build with [Angular 5](https://github.com/angular), [Node.js](https://github.com/nodejs/node), [Express](https://github.com/expressjs/express), [MongoDB](https://github.com/mongodb/mongo)
+ 
 
 ## Live Demo
 ...
