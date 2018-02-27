@@ -20,19 +20,17 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {
     this.authService.getUser().subscribe(user => {
       this.user = user;
-      console.log(user)
     });
 
     this.orderService.getLastOrders().subscribe(orders=>{
-      console.log(orders);
       this.orders=orders;
       for (let order in orders) {
         let o = orders[order];
         this.rows.push({
           nr: o._id, 
           date: o.datePlaced, 
-          sum: '123', 
-          status: 'waiting', 
+          sum: `${o.totalOrderPrice} zł`, 
+          status: o.status, 
           action: o._id
         });
         this.rows = [...this.rows];

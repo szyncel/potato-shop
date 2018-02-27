@@ -16,6 +16,9 @@ export class NavbarComponent implements OnInit {
   cart: ShoppingCart;
   wishlist: Wishlist;
   user;
+  userRole;
+
+
 
   constructor(public authService: AuthService,
     private shoppingCartService: ShoppingCartService,
@@ -28,7 +31,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
     this.wishlistService.change();
   }
@@ -46,8 +49,15 @@ export class NavbarComponent implements OnInit {
     if (!this.wishlist) this.refreshWishCounter();
     this.wishlistService.getEmittedValue()
       .subscribe(i => this.refreshWishCounter())
-      let user = this.authService.isLoggedIn();
-      if(user)this.user=this.authService.currentUser.role;
+
+    this.authService.getEmittedValue().subscribe(i => this.refreshUser())
+
   };
+
+
+  refreshUser() {
+    let user = this.authService.isLoggedIn();
+    if (user) this.userRole = this.authService.currentUser.role;
+  }
 
 }

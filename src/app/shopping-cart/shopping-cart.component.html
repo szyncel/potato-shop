@@ -5,13 +5,12 @@
     <tbody>
       <tr *ngFor="let item of cart.items">
         <td class="pName">
-          <img [src]="item.product.imgUrl" alt="trreeelo">
+          <img [src]="item.product.imgUrl" alt="item.product._id">
           <div class="itemInfo">
             <a [routerLink]="['/products/', item.product._id]">{{item.product.title}}</a>
             <div>
             <span>Kategoria: {{item.product.category}}</span> 
-            <span><app-product-quantity [product]="item.product" [shopping-cart]="cart"></app-product-quantity></span>
-            
+            <span><app-product-quantity [product]="item.product" [shopping-cart]="cart"></app-product-quantity></span>       
             <span><strong>{{item.totalPrice}} zł</strong></span>          
             </div>
           </div>
@@ -42,7 +41,7 @@
     <h2 class="title big">KOSZYK</h2>
     <div class="content">
         <i class="fa fa-shopping-bag"></i>
-        <h2 class="title big">TWÓJ KOSZYK JEST JESZCZE PUSTY</h2>
+        <h2 class="title big title-margin">TWÓJ KOSZYK JEST JESZCZE PUSTY</h2>
         <div class="line">
             <hr>
         </div>

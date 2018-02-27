@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { User } from './models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -9,11 +9,21 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
+  @Output() test: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) { }
+
+
+  change() {
+    this.test.emit(true);
+  }
+
+  getEmittedValue() {
+    return this.test;
+  }
 
 
   get currentUser() {
@@ -29,10 +39,7 @@ export class AuthService {
       .map(res => res)
   }
 
-
-
   signin(user): Observable<any> {
-    // console.log(user);
     return this.http.post('/api/users/login', user, { observe: 'response' })
       .map(response => {
         let res: any = response.body;
@@ -52,16 +59,14 @@ export class AuthService {
   isLoggedIn() {
     return tokenNotExpired();
   }
-
+  
 
   getUser() {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-
     return this.http.get('/api/users/me', { headers: headers });
   }
-
 
   updateUser(user: User) {
     let token = localStorage.getItem('token');

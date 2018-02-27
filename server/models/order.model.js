@@ -6,6 +6,7 @@ var orderShema = mongoose.Schema({
   userId: String,
   datePlaced: String,
   status:String,
+  totalOrderPrice:Number,
   shipping: {
     firstName: String,
     lastName: String,

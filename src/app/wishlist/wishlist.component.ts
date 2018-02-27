@@ -25,15 +25,11 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.getWishList().then(wishlist => {
       this.wishlist = wishlist
       this.wishlistLength=wishlist.items.length;
-      // console.log(wishlist.items.length);
     });
   }
 
   async refreshCart() {
-    (await this.shoppingCartService.getCart()).subscribe(cart => {
-      console.log(cart);
-      this.cart = cart
-    });
+    (await this.shoppingCartService.getCart()).subscribe(cart =>this.cart = cart);
   }
 
   ngOnInit() {

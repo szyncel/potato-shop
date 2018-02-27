@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { OrderService } from '../order.service';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs/Observable';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-my-orders',
@@ -12,10 +13,7 @@ import { Observable } from 'rxjs/Observable';
 export class MyOrdersComponent implements OnInit {
   orders;
   userId: string;
-
   rows=[];
-
-
 
   constructor(
     private orderService: OrderService,
@@ -24,7 +22,6 @@ export class MyOrdersComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.userId);
     this.orderService.getOrders(this.userId).subscribe(orders => {
       this.orders=orders;
       for (let order in orders) {
@@ -32,15 +29,12 @@ export class MyOrdersComponent implements OnInit {
         this.rows.push({
           nr: o._id, 
           date: o.datePlaced, 
-          sum: '123', 
-          status: 'waiting', 
+          sum: `${o.totalOrderPrice} zł`, 
+          status: o.status, 
           action: o._id
         });
         this.rows = [...this.rows];
       }
     })
   }
-
-
-
 }

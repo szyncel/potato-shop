@@ -2,18 +2,19 @@ import { ShoppingCart } from "./shopping-cart";
 
 
 export class Order {
-    datePlaced: number;
+    datePlaced: any;
     items: any[];
-    status:string;
+    status: string;
+    totalOrderPrice: number;
 
     constructor(public userId: string, public shipping: any, shoppingCart: ShoppingCart) {
         this.datePlaced = new Date().getTime();
-        this.status="Oczekiwanie";
-
+        this.status = "Oczekiwanie";
+        this.totalOrderPrice = shoppingCart.totalPrice;
         this.items = shoppingCart.items.map(i => {
             return {
                 product: {
-                    id:i.product._id,
+                    id: i.product._id,
                     title: i.product.title,
                     price: i.product.price,
                     imgUrl: i.product.imgUrl,

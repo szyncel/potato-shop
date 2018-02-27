@@ -12,7 +12,7 @@
         <span>
           <strong>Numer klienta: </strong>{{order._creator}}</span>
         <span>
-          <strong>Status zamówienia: </strong>"Przygotowanie"</span>
+          <strong>Status zamówienia: </strong>{{order.status}}</span>
 
       </div>
 
@@ -40,7 +40,7 @@
           </tr>
           <tr id="orderReview">
             <td colspan="3">
-                <span><strong>Łączna kwota: </strong> 1123123 zł</span>
+                <span><strong>Łączna kwota: </strong> {{order.totalOrderPrice}} zł</span>
             </td>
           </tr>
         </tbody>

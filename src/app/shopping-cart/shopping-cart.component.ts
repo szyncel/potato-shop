@@ -10,37 +10,29 @@ import { Product } from '../models/product';
 })
 export class ShoppingCartComponent implements OnInit {
   cart: ShoppingCart;
-  // cartCount:number;
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 
 
   async refreshShoppingCart() {
-    (await this.shoppingCartService.getCart()).subscribe(cart => {
-      this.cart = cart
-      console.log(this.cart);
-    })
+    (await this.shoppingCartService.getCart()).subscribe(cart => this.cart = cart)
   }
 
-  async clearCart(){
-    (await this.shoppingCartService.clearCart()).subscribe(res=>{
-      console.log(res);
+  async clearCart() {
+    (await this.shoppingCartService.clearCart()).subscribe(res => {
       this.refreshShoppingCart();
       this.shoppingCartService.change();
     })
   }
 
-
   removeFromCart(product: Product) {
-    this.shoppingCartService.removeFromCart(product).then(test=>{
+    this.shoppingCartService.removeFromCart(product).then(test => {
       this.refreshShoppingCart();
       this.shoppingCartService.change();
     });
   }
 
-
-  async ngOnInit() {
-    await this.refreshShoppingCart();
+  ngOnInit() {
+    this.refreshShoppingCart();
   }
-
 }

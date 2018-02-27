@@ -1,19 +1,19 @@
 <div class="nav">
   <div class="nav-left">
-    <!-- <img src="https://img.lcpdfr.com/uploads/monthly_2017_04/Potato.thumb.png.2ad68ffee2b867f4d68777a10d5eabd3.png" alt="potato"> -->
     <a routerLink="/">
       POTATO
       <i class="fa fa-shopping-cart "></i>
     </a>
   </div>
   <div class="nav-mobile" fxHide="false" fxHide.gt-sm>
+      
     <a id="nav-toggle" href="#!">
       <i class="fa fa-bars fa-3" aria-hidden="true"></i>
     </a>
   </div>
   <div class="nav-right" fxShow="false" fxShow.gt-sm>
     <ul class="list">
-      <ng-container *ngIf="authService.isLoggedIn() && user==admin">
+      <ng-container *ngIf="authService.isLoggedIn() && userRole=='admin'">
       <li>
         <a routerLink="admin/products" class="single">Admin Produkty</a>
       </li>

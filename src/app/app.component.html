@@ -1,10 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
 <app-navbar></app-navbar>
-<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
-             [speed]="500" [showSpinner]="true" [direction]="'leftToRightIncreased'"
-             [color]="'orange'" [trickleSpeed]="250" [thick]="true"  [ease]="'linear'"
-></ng-progress>
+<ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1" [speed]="500" [showSpinner]="false" [direction]="'leftToRightIncreased'"
+  [color]="'orange'" [trickleSpeed]="250" [thick]="true" [ease]="'linear'"></ng-progress>
 <div class="container" fxLayout="column">
 
 
@@ -18,6 +16,23 @@
 </div>
 
 <div class="footer">
-  Footer content
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <span class="copyright-mark">© 2018 MATEUSZ SZPINDA</span>
+    </div>
+    <div class="col col-end">
+      <div class="footer-content">
+        <h4>DANE KONTAKTOWE</h4>
+        <div class="info">
+            <span>+48 790591301</span><br>
+            <a href="mailto:mtteu1994@gmail.com">
+              mtteu1994@gmail.com
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </div>

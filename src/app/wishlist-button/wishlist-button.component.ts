@@ -33,7 +33,6 @@ export class WishlistButtonComponent implements OnInit {
       this.delFromWishlist();
     } else {
       this.wishlistService.addToWishList(this.product).subscribe(res => {
-        console.log(res);
         this.productComponent.refreshWishlist();
         this.wishlistService.change();
         this.refresh();

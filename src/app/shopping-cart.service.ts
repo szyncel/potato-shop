@@ -12,14 +12,12 @@ export class ShoppingCartService {
   constructor(private http: HttpClient) { }
 
   change() {
-    console.log('change started');
     this.test.emit(true);
   }
 
   getEmittedValue() {
     return this.test;
   }
-
 
   private create() {
     return this.http.post('/api/shopping-carts', {
@@ -40,7 +38,6 @@ export class ShoppingCartService {
     return res;
   }
 
-
   private async getOrCreateCart(): Promise<string> {
     let cartId = localStorage.getItem('cartId');
     if (!cartId) {
@@ -50,6 +47,7 @@ export class ShoppingCartService {
     }
     return cartId;
   }
+
   async decrasseCart(product: Product) {
     let cartId = await this.getOrCreateCart();
     return this.http.patch('/api/shopping-carts/decrasse', { id: cartId, product: product }).toPromise();
@@ -60,10 +58,8 @@ export class ShoppingCartService {
     return this.http.patch('/api/shopping-carts/add', { id: cartId, product: product }).toPromise();
   }
 
-
   async removeFromCart(product: Product) {
     let cartId = await this.getOrCreateCart();
     return this.http.patch('/api/shopping-carts/delete', { id: cartId, product: product }).toPromise();
   }
-
 }

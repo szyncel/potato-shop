@@ -11,7 +11,6 @@ export class WishlistService {
   constructor(private http: HttpClient) { }
 
   change() {
-    console.log('change started');
     this.test.emit(true);
   }
 
@@ -33,22 +32,11 @@ export class WishlistService {
     }
   }
 
-
-  // getWishListCopy(): Observable<any> {//getOrCreateWishlist
-  //   let token = localStorage.getItem('token');
-  //   const headers = new HttpHeaders()
-  //     .set('x-auth', token);
-  //   return this.http.get('/api/wishlist', { headers: headers }).map(wishlist => new Wishlist(wishlist["wishlist"][0].items));
-  // }
-
-
   addToWishList(product: Product): Observable<any> {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-
     return this.http.post('/api/wishlist/add', product, { headers: headers });
-
   }
 
 
@@ -57,7 +45,5 @@ export class WishlistService {
     const headers = new HttpHeaders()
       .set('x-auth', token);
     return this.http.post('/api/wishlist/remove', product, { headers: headers });
-
   }
-
 }

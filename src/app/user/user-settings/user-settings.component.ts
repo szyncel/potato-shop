@@ -24,15 +24,12 @@ export class UserSettingsComponent implements OnInit {
     this.authService.getUser().subscribe(user => {
       this.user = user;
       this.email = this.user.email;
-      console.log(user)
     });
   }
 
 
   save(f) {
-    console.log(f.value);
     this.authService.updateUser(f.value).subscribe(res => {
-      console.log(res);
       this.router.navigate(['my/account']);
     })
   }
@@ -44,9 +41,7 @@ export class UserSettingsComponent implements OnInit {
       password: f.value.old,
       newPass: f.value.new
     }
-    console.log(data);
     this.authService.changePassword(data).subscribe(data => {
-      console.log(data);
       this.router.navigate(['my/account']);
     }, err => {
       console.log('Error:', err.error);
@@ -62,11 +57,9 @@ export class UserSettingsComponent implements OnInit {
     }
 
     this.authService.changeEmail(data).subscribe(data => {
-      console.log(data);
       this.router.navigate(['my/account']);
     }, err => {
       console.log('Error:', err.error);
     })
   }
-
 }

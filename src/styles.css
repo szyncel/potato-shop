@@ -26,10 +26,10 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 
 .footer {
-    background: #321313;
+    background: #eceaeb;
     padding: 1.5rem;
     text-transform: uppercase;
-    color: lightslategray;
+    color: #3a3a3a;
     display: flex;
     align-items: center;
     justify-content: center;

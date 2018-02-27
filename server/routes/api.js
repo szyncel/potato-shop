@@ -36,7 +36,7 @@ const {
   Wishlist
 } = require('../models/wishlist.model');
 
-
+const moment = require('moment');
 
 
 
@@ -53,7 +53,6 @@ router.post('/users', (req, res) => { //Register
   });
 
   user.save().then(() => {
-    //return user.generateAuthToken();
     res.status(200).json({
       message: 'User created',
       user
@@ -103,7 +102,6 @@ router.get('/users/me', authenticate, (req, res) => {
 router.put('/users/update', authenticate, (req, res) => {
   var body = _.pick(req.body, ['name', 'surname']);
   var token = req.header('x-auth');
-  console.log(body);
   User.findByTokenAndUpdate(token, body).then((user) => {
     res.status(200).send(user);
   }).catch((e) => {
@@ -139,7 +137,6 @@ router.put('/users/update-password', authenticate, async (req, res) => {
       email: body.email,
       password: body.newPass
     });
-    console.log(pass);
 
     res.status(200).send({
       info: "Password changed"
@@ -387,9 +384,6 @@ router.patch('/shopping-carts/decrasse', async (req, res) => { //decrement item 
     }
   ]);
 
-  console.log(quantity[0].items[0].count);
-
-
 
   if (quantity[0].items[0].count == 1) {
     const test = await ShoppingCart.update({
@@ -462,11 +456,13 @@ router.get('/admin-orders/:id', (req, res) => { //get Single order for admin
 })
 
 router.post('/place-order', authenticate, (req, res) => {
+  moment.locale('pl');
+  var formattedDate = moment().format('DD/MM/YYYY');
   var order = new Order({
     _creator: req.user._id,
-    // userId: req.body.userId,
-    datePlaced: req.body.datePlaced,
+    datePlaced: formattedDate,
     status: req.body.status,
+    totalOrderPrice: req.body.totalOrderPrice,
     shipping: {
       firstName: req.body.shipping.firstName,
       lastName: req.body.shipping.lastName,
@@ -562,14 +558,16 @@ router.get('/wishlist', authenticate, async (req, res) => {
     _creator: req.user._id
   });
 
-    Wishlist.find({
-      _creator: req.user._id
-    }).then((wishlist) => {
-      res.status(200).send({wishlist});
-    }).catch((e) => {
-      res.status(400).send({});
+  Wishlist.find({
+    _creator: req.user._id
+  }).then((wishlist) => {
+    res.status(200).send({
+      wishlist
     });
-  
+  }).catch((e) => {
+    res.status(400).send({});
+  });
+
 })
 
 

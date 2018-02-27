@@ -31,16 +31,12 @@ export class LoginComponent implements OnInit {
     }
     this.authService.signin(user)
       .subscribe((res) => {
-        if (res) {
           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
           this.wishlistService.change();
-          this.router.navigate([returnUrl || '/']);
-        } else {
-          console.log('Nieudane logowanie');
-        }
+          this.authService.change();
+          this.router.navigate([returnUrl || '/']);       
       }, (err) => {
         this.error=err.error.error;
-        console.log(err.error)
       });
   }
 
@@ -57,13 +53,16 @@ export class LoginComponent implements OnInit {
 
     this.authService.signup(user)
       .subscribe(
-        res => console.log(res),
+        res => {
+          form.reset();
+          const msg:any=res;
+          alert(msg.message);
+        },
         error => {
           this.registerError=error.error.title;
         }
       )
   }
-
 
   ngOnInit() {
   }
