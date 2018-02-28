@@ -33,18 +33,18 @@ export class WishlistService {
     }
   }
 
-  addToWishList(product: Product): Observable<any> {
+  addToWishList(product: Product): Promise<any> {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.post('/api/wishlist/add', product, { headers: headers });
+    return this.http.post('/api/wishlist/add', product, { headers: headers }).toPromise();
   }
 
 
-  removeFromWishlist(product: Product): Observable<any> {
+  removeFromWishlist(product: Product): Promise<any> {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.post('/api/wishlist/remove', product, { headers: headers });
+    return this.http.post('/api/wishlist/remove', product, { headers: headers }).toPromise();
   }
 }

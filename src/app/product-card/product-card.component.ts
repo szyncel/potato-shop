@@ -38,13 +38,11 @@ export class ProductCardComponent {
   };
 
 
-  delFromWishlist() {
-    this.wishlistService.removeFromWishlist(this.product).subscribe(res => {
-      console.log(res);
-      this.productComponent.refreshWishlist();
+  async delFromWishlist() {
+    await this.wishlistService.removeFromWishlist(this.product)
+      // this.productComponent.refreshWishlist();
       this.wishlistComponent.updateWishlist();
       this.wishlistService.change();
       //refresh wishlsit page
-    });
   }
 }

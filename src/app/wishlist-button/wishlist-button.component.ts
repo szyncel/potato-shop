@@ -28,28 +28,28 @@ export class WishlistButtonComponent implements OnInit {
 
    }
 
-  addToWishlist() {
+  async addToWishlist() {
     if (this.getTest()) {
       this.delFromWishlist();
     } else {
-      this.wishlistService.addToWishList(this.product).subscribe(res => {
-        this.productComponent.refreshWishlist();
+      await this.wishlistService.addToWishList(this.product);
+        // this.productComponent.refreshWishlist();
         this.wishlistService.change();
         this.refresh();
-      });
+      
     }
   }
 
-  delFromWishlist() {
-    this.wishlistService.removeFromWishlist(this.product).subscribe(res => {
-      this.productComponent.refreshWishlist();
+  async delFromWishlist() {
+    await this.wishlistService.removeFromWishlist(this.product)
+      // this.productComponent.refreshWishlist();
       this.wishlistComponent.updateWishlist();
       this.wishlistService.change();
       this.refresh();
-    });
+   
   }
 
-  refresh(){
+  async refresh(){
     this.wishlistService.getWishList().then(wishlist=>this.wishlist=wishlist);
   }
 
