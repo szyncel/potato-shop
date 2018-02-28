@@ -34,8 +34,9 @@ export class WishlistButtonComponent implements OnInit {
     } else {
       await this.wishlistService.addToWishList(this.product);
         // this.productComponent.refreshWishlist();
+        await this.refresh();
         this.wishlistService.change();
-        this.refresh();
+        
       
     }
   }
@@ -43,9 +44,10 @@ export class WishlistButtonComponent implements OnInit {
   async delFromWishlist() {
     await this.wishlistService.removeFromWishlist(this.product)
       // this.productComponent.refreshWishlist();
+      await this.refresh();
       this.wishlistComponent.updateWishlist();
       this.wishlistService.change();
-      this.refresh();
+      
    
   }
 
