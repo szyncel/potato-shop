@@ -30,10 +30,11 @@ export class ProductCardComponent {
   ) {}
 
   addToCart(product: Product) {
-    this.shoppingCartService.addToCart(product);
-    this.productComponent.refreshData();
-    this.shoppingCartService.change();
-    this.wishlistComponent.refreshCart();
+    this.shoppingCartService.addToCart(product).then(res=>{
+      this.productComponent.refreshData();
+      this.shoppingCartService.change();
+      this.wishlistComponent.refreshCart();
+    });
   };
 
 

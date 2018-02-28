@@ -316,7 +316,7 @@ router.patch('/shopping-carts/add', async (req, res) => { //add product to shopp
       }
     }).then((cart) => {
       res.status(200).send({
-        cart
+        info:"added"
       });
     }).catch((e) => {
       res.status(400).send({
@@ -336,7 +336,7 @@ router.patch('/shopping-carts/add', async (req, res) => { //add product to shopp
       }
     }).then((cart) => {
       res.status(200).send({
-        cart
+        info:"updated+1"
       });
     }).catch((e) => {
       res.status(400).send({

@@ -58,8 +58,8 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.refreshData();
+  async ngOnInit() {
+    await this.refreshData();
     this.refreshWishlist();
     this.wishlistService.getEmittedValue().subscribe(i=>this.refreshWishlist());
   }

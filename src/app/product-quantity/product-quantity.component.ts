@@ -30,18 +30,18 @@ export class ProductQuantityComponent {
     await this.shoppingCartService.addToCart(product);
     await this.productComponent.refreshData();
     await this.shoppingCartComponent.refreshShoppingCart();
+    await this.wishlistComponent.refreshCart();
+    await this.productDetailsComponent.refresh();
     this.shoppingCartService.change();
-    this.wishlistComponent.refreshCart();
-    this.productDetailsComponent.refresh();
   }
 
   async decrasseCart(product: Product) {
     await this.shoppingCartService.decrasseCart(product);
     await this.productComponent.refreshData();
     await this.shoppingCartComponent.refreshShoppingCart();
+    await this.wishlistComponent.refreshCart();
+    await this.productDetailsComponent.refresh();
     this.shoppingCartService.change();
-    this.wishlistComponent.refreshCart();
-    this.productDetailsComponent.refresh();
   }
 
   getQuantity() {
