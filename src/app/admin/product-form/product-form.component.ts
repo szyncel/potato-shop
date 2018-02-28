@@ -3,6 +3,7 @@ import { CategoryService } from '../../category.service';
 import { ProductService } from '../../product.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product-form',
@@ -11,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductFormComponent implements OnInit{
   categoryList;
-  product;
+  product:Product;
   id;
 
   constructor(
@@ -20,6 +21,7 @@ export class ProductFormComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute
   ) {
+    this.product=new Product();
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) this.productService.get(this.id).subscribe(p => this.product = p);
   }
@@ -28,17 +30,13 @@ export class ProductFormComponent implements OnInit{
     if (product.valid) {
       if (this.id) {
         this.productService.update(this.id, product.value)
-          .subscribe((res) =>{ console.log(res)
-            this.router.navigate(['admin/products']);})
+          .subscribe((res) =>this.router.navigate(['admin/products']))
       }else{
         this.productService.create(product.value)
         .subscribe((res) => {
-          console.log(res);
           this.router.navigate(['admin/products']);
         })
       }
-      
-
     } else {
       console.log('Invalid');
     }
@@ -49,7 +47,6 @@ export class ProductFormComponent implements OnInit{
     this.productService.delete(this.id)
     .subscribe((res) => console.log(res))
     this.router.navigate(['admin/products']);
-    console.log(this.id);
   }
 
   ngOnInit() {
@@ -57,9 +54,4 @@ export class ProductFormComponent implements OnInit{
       .subscribe(category =>
         this.categoryList = category)
   }
-
-
-
-
-
 }

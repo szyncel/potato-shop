@@ -24,10 +24,11 @@ export class WishlistService {
     const headers = new HttpHeaders()
       .set('x-auth', token);
       let test= await this.http.get('/api/wishlist', { headers: headers }).map(wishlist=>wishlist['wishlist']).toPromise();
+
     if(test.length){
       return new Wishlist(test[0].items);
     }else{
-      let test2:any=await this.http.post('/api/wishlist',{}, { headers: headers }).toPromise();
+      let test2:any=await this.http.post('/api/wishlist',{test:"nic"}, { headers: headers }).toPromise();
       return new Wishlist(test2.items);
     }
   }

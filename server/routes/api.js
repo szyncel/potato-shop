@@ -254,10 +254,11 @@ router.post('/shopping-carts', (req, res) => { //Create shopping cart
   var shoppingCart = new ShoppingCart({
     dateCreated: req.body.dateCreated
   })
-
+  console.log('testE');
   shoppingCart.save().then((doc) => {
-    res.send(doc);
+    res.status(200).send(doc);
   }, (e) => {
+    
     res.status(400).send(e);
   });
 });
@@ -269,9 +270,12 @@ router.get('/shopping-carts/:id', (req, res) => { //get shopping cart?
       info: "invalidId"
     });
   }
-
-  ShoppingCart.findById(cartId).then((shoppingCart) => {
-    var id = shoppingCart._id;
+  console.log(cartId);
+  ShoppingCart.findOne({
+    _id: cartId
+  }).then((shoppingCart) => {
+    console.log(shoppingCart);
+    // var id = shoppingCart._id;
     if (!shoppingCart) {
       return res.status(404).send({
         message: "shopping Cart not found"
@@ -280,8 +284,13 @@ router.get('/shopping-carts/:id', (req, res) => { //get shopping cart?
     res.status(200).send({
       shoppingCart
     });
+
   }).catch((e) => {
-    res.status(400).send({});
+    console.log('test');
+    res.status(400).send({
+      title: "Info",
+      error: e
+    });
   });
 
 })
@@ -539,7 +548,7 @@ router.get('/order/:id', authenticate, (req, res) => {
 // .....................Wishlist..............//
 router.post('/wishlist', authenticate, async (req, res) => { //Create wishlist
 
-
+console.log(req);
   var wishlist = new Wishlist({
     _creator: req.user._id
   });
