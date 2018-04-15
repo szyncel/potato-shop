@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { WishlistService } from '../wishlist.service';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { ProductsComponent } from '../products/products.component';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../models/user';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../auth.service';
+import {WishlistService} from '../wishlist.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Auth} from '../store/models/auth';
 
 
 @Component({
@@ -13,57 +13,78 @@ import { ProductsComponent } from '../products/products.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   error;
+
   registerError;
 
+  loginForm: FormGroup;
+
+  registerForm: FormGroup;
+
   constructor(
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private wishlistService:WishlistService
-  ) { }
-
-  login(form) {
-    const user = {
-      email: form.value.e,
-      password: form.value.p
-    }
-    this.authService.signin(user)
-      .subscribe((res) => {
-          let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-          this.wishlistService.change();
-          this.authService.change();
-          this.router.navigate([returnUrl || '/']);       
-      }, (err) => {
-        this.error=err.error.error;
-      });
-  }
-
-
-
-
-  submit(form) {
-    const user = new User(
-      form.value.name,
-      form.value.surname,
-      form.value.email,
-      form.value.password,
-    )
-
-    this.authService.signup(user)
-      .subscribe(
-        res => {
-          form.reset();
-          const msg:any=res;
-          alert(msg.message);
-        },
-        error => {
-          this.registerError=error.error.title;
-        }
-      )
+    private wishlistService: WishlistService
+  ) {
   }
 
   ngOnInit() {
+    this.createForm();
   }
 
+  onRegister() {
+    const form = this.registerForm.value;
+    const model = {
+      name: form.name,
+      surname: form.surname,
+      email: form.email,
+      password: form.password,
+    };
+    this.authService.signup(model)
+      .subscribe(
+        res => {
+          this.registerForm.reset();
+          this.registerForm.clearValidators();
+          this.registerForm.markAsUntouched();
+          const msg: any = res;
+          alert(msg.message);
+        },
+        error => {
+          this.registerError = error.error.title;
+        }
+      );
+  }
+
+  onLogin() {
+    const form = this.loginForm.value;
+    const model = {
+      email: form.Email,
+      password: form.Haslo
+    }as Auth;
+    this.authService.signin(model)
+      .subscribe((res) => {
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.wishlistService.change();
+        this.authService.change();
+        this.router.navigate([returnUrl || '/']);
+      }, (err) => {
+        this.error = err.error.error;
+      });
+  }
+
+  private createForm(): void {
+    this.loginForm = this.fb.group({
+      Email: null,
+      Haslo: null
+    });
+    this.registerForm = this.fb.group({
+      name: null,
+      surname: null,
+      email: null,
+      password: null
+    });
+  }
 }

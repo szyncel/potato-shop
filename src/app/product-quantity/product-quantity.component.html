@@ -1,9 +1,9 @@
 <div class="card-row">
   <div class="card-col">
-    <button class="card_button" (click)="addToCart(product)">+</button>
+    <button mat-raised-button color="primary" (click)="addToCart(product)">+</button>
   </div>
   <div class="card-col quantity">{{ shoppingCart.getQuantity(product) }}</div>
   <div class="card-col">
-    <button class="card_button" (click)="decrasseCart(product)">-</button>
+    <button mat-raised-button color="primary" (click)="decrasseCart(product)">-</button>
   </div>
 </div>

@@ -1,53 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
-.login{
-  padding-bottom: 3rem;
-    width: 83%;
-    max-width: 83%;
-    margin: 0 auto;
-}
-
-.loginHr{
-  height: 1px;
-  background-color: rgb(136, 136, 136);
-}
-
-.row{
-  flex-direction: column;
-  align-items: center;
-}
-
-label{
-  padding: 0;
-}
-
-.test{
-  min-height: 60px;
-}
 
 
-.errorMsg{
-padding: 18px 12px;
-background: #f2e2e1;
-color: #ce3535
-}
-
-input[type="password"], input[type="text"]{
-  margin:0;
-}
-
-.has-danger{
-  border: 1px solid rgba(216, 33, 33, 0.842);
-}
-
-.disabled{
-  background: silver;
-  cursor: default;
-}
-
-.disabled:hover{
-  background: silver;
-}
 
 
 

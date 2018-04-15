@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -30,5 +29,4 @@ export class ProductService {
   delete(productId){
     return this.http.delete(`/api/product/${productId}`);
   }
-
 }

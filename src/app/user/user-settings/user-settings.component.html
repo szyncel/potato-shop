@@ -16,7 +16,7 @@
                   </div>
                   <div class="col-100 test">
                     <input type="text" id="name" name="name"
-                      [(ngModel)]="user.name" 
+                      [(ngModel)]="user.name"
                       ngModel #name="ngModel" required
                       [rangeLength]="[3, 15]"
                       [ngClass]="{'has-danger':name.touched && name.invalid}"
@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-100 test">
                       <input type="text" id="surname" name="surname"
-                        [(ngModel)]="user.surname" 
+                        [(ngModel)]="user.surname"
                         ngModel #surname="ngModel" required
                         [rangeLength]="[3, 15]"
                         [ngClass]="{'has-danger':surname.touched && surname.invalid}"
@@ -44,7 +44,7 @@
                           </div>
                     </div>
                   </div>
-            
+
             <input [disabled]="f.invalid" [ngClass]="{'disabled':f.invalid}" type="submit" value="ZAPISZ">
           </form>
         </div>
@@ -58,7 +58,7 @@
                 <label for="old">Stare hasło*</label>
               </div>
               <div class="col-100 test">
-                <input type="password" id="old" name="old" 
+                <input type="password" id="old" name="old"
                   ngModel #old="ngModel" required
                   [rangeLength]="[3, 15]"
                   [ngClass]="{'has-danger':old.touched && old.invalid}"
@@ -74,7 +74,7 @@
                   <label for="new">Nowe hasło*</label>
                 </div>
                 <div class="col-100 test">
-                  <input type="password" id="new" name="new" 
+                  <input type="password" id="new" name="new"
                     ngModel #new="ngModel" required
                     [rangeLength]="[3, 15]"
                     [ngClass]="{'has-danger':new.touched && new.invalid}"
@@ -90,7 +90,7 @@
                   <label for="repeat">Potwierdź hasło*</label>
                 </div>
                 <div class="col-100 test">
-                  <input type="password" id="repeat" name="repeat" 
+                  <input type="password" id="repeat" name="repeat"
                     ngModel #repeat="ngModel" required
                     [equalTo]="new"
                     [rangeLength]="[3, 15]"
@@ -116,7 +116,7 @@
                   </div>
                   <div class="col-100 test">
                     <input type="text" id="email" name="email"
-                      [(ngModel)]="user.email" 
+                      [(ngModel)]="user.email"
                       ngModel #email="ngModel" required
                       email
                       [ngClass]="{'has-danger':email.touched && email.invalid}"
@@ -127,34 +127,29 @@
                         </div>
                   </div>
                 </div>
-
                 <div class="row">
                     <div class="col-100">
                         <label for="password">Hasło*</label>
                     </div>
                     <div class="col-100 test">
                       <input type="password" id="password" name="password"
-                        [(ngModel)]="user.password" 
+                        [(ngModel)]="user.password"
                         ngModel #password="ngModel" required
                         [rangeLength]="[3, 15]"
                         [ngClass]="{'has-danger':password.touched && password.invalid}"
                         >
                         <div class="alert-danger" *ngIf="password.touched && password.invalid">
                             <div *ngIf="password.errors.required"><span>Pole obowiązkowe</span> </div>
-            
+
                           </div>
                     </div>
                   </div>
-
-          
             <input [disabled]="e.invalid" [ngClass]="{'disabled':e.invalid}" type="submit" value="ZAPISZ">
           </form>
         </div>
       </div>
-
     </div>
-
-    <button routerLink="/my/account">Wróć</button>
+    <button mat-raised-button color="primary" routerLink="/my/account">Wróć</button>
   </div>
 
 </div>

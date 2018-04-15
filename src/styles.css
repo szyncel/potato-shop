@@ -3,6 +3,7 @@
 @import '~@swimlane/ngx-datatable/release/themes/dark.css';
 @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 /* CSS Normalize */
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */
@@ -14,21 +15,6 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 /* ......layout......... */
 
 
-.container{
-  min-height: 101vh;
-  width: 90%;
-  max-width: 90%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-}
-
-@media (max-width: 600px) {
-  .container{
-    width: 100%;
-    max-width: 100%; 
-  }
-}
 
 
 .footer {
@@ -41,101 +27,6 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
     justify-content: center;
 }
 
-
-  /* Form style */
-
-  input[type=text],input[type=password],input[type=email],input[type=number], select, textarea {
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
-    outline: none; 
-    box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      font: 95% Arial, Helvetica, sans-serif;
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;  
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-  }
-
-
-  
-  input[type=submit]:hover,button:hover {
-    background-color: rgb(255, 179, 37);
-    transition: all .3s ease-in-out;
-  }
-  
-  input[type=text]:focus,
-  input[type=password]:focus,
-  input[type=email]:focus {
-    box-shadow: 0 0 5px orange;
-    border: 1px solid orange; 
-  }
-
-
-  /* global */
-
-  h1,h2,h3,h4,h5, h6, div, strong, p, b, em, a, address, input, select, textarea, label, button{
-    font-size: 14px;
-    line-height: 19px;
-    font-style: normal;
-    text-decoration: none;
-    color: #404040;
-  }
-
-    /* Style the submit button with a specific background color etc */
-    input[type=submit],button {
-      background-color: orange;
-      padding: 12px 20px;
-      border: none;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 700; 
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      width: 100%;
-    }
-
-    a:hover{
-    text-decoration: underline;
-    transition: all .3s ease-in-out;
-    }
-
-  h2.title, h3.title {
-    margin: 0;
-    padding: 7px 10px;
-    background-color: #f3f3f3;
-    border-bottom: 1px solid orange;
-  }
-
-  h2.big{
-    border: 0;
-    background: 0;
-    font-size: 18px;
-  }
-
-  
-  .col-3 {
-    flex: 1 1 100%;
-    max-width: 18%;
-    min-width: 170px;
-    margin-right: 2%;
-  }
-  
-  .col-8 {
-    flex: 1 1 100%;
-    max-width: 80%;
-  }
-  
-  .container h1.title {
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
 
 
   /* ngx-datatable */
@@ -153,7 +44,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .datatable-header-cell{
   font-weight: bolder;
   background: #f3f3f3;
-  
+
 }
 
 .ngx-datatable.bootstrap .datatable-header .datatable-header-cell{
@@ -166,7 +57,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
 .orderInfo {
   overflow: hidden;
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
 }
 
 .orderInfo span{
@@ -180,66 +71,30 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 }
 
 
-/* form style */
-.col-25 {
-  width: 25%;
-  margin-top: 6px;
-}
-.col-75 {
-  width: 75%;
-  margin-top: 6px;
-}
 
 
-.col-100{
+
+
+
+
+/* New style */
+
+.full-width {
   width: 100%;
-  margin-top: 6px;
 }
 
-.row{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* align-items: baseline; */
-  min-height: 70px;
+.full-height {
+  height: 100%;
 }
 
-@media (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-  }
-
-  .row{
-      flex-direction: column;
-      /* min-height: 110px; */
-  }
+.view-port-height {
+  height: 100vh !important;
 }
 
-/* label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-} */
-
-.has-danger{
-  border: 1px solid rgba(216, 33, 33, 0.842);
-}
-.alert-danger span{
-  color: rgba(216, 33, 33, 0.842);
-  font-weight: 600;
+.background-transparent {
+  background-color: transparent;
 }
 
-.disabled{
-  background: silver;
-}
-
-.disabled:hover{
-  background: silver;
-}
-
-.row button{
-  max-height: 50px;
-}
 
 
 

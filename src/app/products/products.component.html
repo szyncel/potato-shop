@@ -1,11 +1,16 @@
-<div class="header">
-    <h2 class="title big bigger">
-      <span>Lista dostepnych produktów</span> 
-      <span *ngIf="productsCount" class="small">liczba przedmiotów w sklepie: {{productsCount}}</span>
-    </h2>
-    
-    <hr class="style1">
-</div>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <div class="full-width">
+      <div class="row">
+        <div class="col-auto"><h1>Lista dostepnych produktów</h1></div>
+        <div class="col"></div>
+        <div class="col-auto"><span *ngIf="productsCount" class="small">Ilość produktów: {{productsCount}}</span></div>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
 <div class="products" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="space-around">
 
   <div fxFlex="20">
@@ -20,7 +25,8 @@
   <div fxFlex="75">
     <ul class="cards">
       <ng-container *ngFor="let p of filteredProducts">
-        <app-product-card [del]="false" [wishlist]="wishlist" [product]="p" [shopping-cart]="cart" class="cards_item"></app-product-card>
+        <app-product-card [del]="false" [wishlist]="wishlist" [product]="p" [shopping-cart]="cart"
+                          class="cards_item"></app-product-card>
       </ng-container>
     </ul>
   </div>

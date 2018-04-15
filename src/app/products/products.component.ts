@@ -15,12 +15,19 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+
   products: Product[] = [];
+
   filteredProducts: Product[] = [];
-  productsCount:number;
+
+  productsCount: number;
+
   category;
+
   cart;
+
   wishlist;
+
   subscription: Subscription;
 
   constructor(
@@ -31,7 +38,7 @@ export class ProductsComponent implements OnInit {
     private authService: AuthService
   ) {
     this.productService.getAll()
-      .switchMap(products => {       
+      .switchMap(products => {
         this.productsCount=products.length;
         this.products = products;
         return this.route.queryParamMap;
