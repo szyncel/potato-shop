@@ -1,10 +1,6 @@
 .nav {
   color: #666;
-  /* background: rgb(250, 250, 250); */
   border-bottom: 2px solid orange;
-  /* padding: 1rem; */
-  /* padding-bottom: 1rem;
-    padding-top: 1rem; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,7 +51,7 @@ a {
     padding: 0;
     display: flex;
     align-items: center;
-  
+
 }
 
 
@@ -96,7 +92,7 @@ img{
 }
 
 .dropdown-content {
-  
+
   display: none;
   position: absolute;
   background-color: #f9f9f9;

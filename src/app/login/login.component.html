@@ -7,6 +7,9 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+<div class="container">
+
+
 <mat-tab-group>
   <mat-tab label="Logowanie">
         <form [formGroup]="loginForm" (submit)="loginForm.dirty && loginForm.valid && onLogin()" novalidate>
@@ -101,4 +104,4 @@
     </form>
   </mat-tab>
 </mat-tab-group>
-
+</div>

@@ -1,51 +1,89 @@
+<div class="container">
+
+
 <ng-container *ngIf="cart && cart.totalItemsCount else emptyBag">
-  <h2 class="title big" fxLayoutAlign="center">KOSZYK({{cart.totalItemsCount}})</h2>
-  <hr> 
-  <table class="itemsTable">
-    <tbody>
-      <tr *ngFor="let item of cart.items">
-        <td class="pName">
-          <img [src]="item.product.imgUrl" alt="item.product._id">
-          <div class="itemInfo">
-            <a [routerLink]="['/products/', item.product._id]">{{item.product.title}}</a>
-            <div>
-            <span>Kategoria: {{item.product.category}}</span> 
-            <span><app-product-quantity [product]="item.product" [shopping-cart]="cart"></app-product-quantity></span>       
-            <span><strong>{{item.totalPrice}} zł</strong></span>          
-            </div>
+
+  <mat-toolbar class="background-transparent outer-space-bottom">
+    <mat-toolbar-row>
+      <div class="full-width">
+        <div class="row">
+          <div class="col"><h1>Koszyk</h1></div>
+          <div class="col-auto">Ilość przedmiótów: {{cart.totalItemsCount}}
           </div>
-        </td>
-        <td id="test">
-          <span class="delete" (click)="removeFromCart(item.product)" >X</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="end">
-      <span class="left"><a (click)="clearCart()">Wyczyść koszyk</a></span>
-      <span class="right"><strong>Łączna kwota: </strong> {{cart.totalPrice}} zł</span>
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="image">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"><img [src]="element?.product.imgUrl" [alt]="element?.product._id"></mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="row">
+          <div class="col-12"><a [routerLink]="['/products/', element?.product._id]">{{element?.product.title}}</a></div>
+          <div class="col-12">Kategoria: {{element?.product.category}}</div>
+          <div class="col-12">Cena: <strong>{{element?.totalPrice}} zł</strong></div>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <app-product-quantity [product]="element?.product" [shopping-cart]="cart"></app-product-quantity>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+          <mat-icon (click)="removeFromCart(element?.product)">delete</mat-icon>
+      </mat-cell>
+    </ng-container>
+    <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
   </div>
 
-  <hr>
-<div class="summary">
-    <button routerLink="/">KONTYNUUJ ZAKUPY</button>
+  <mat-toolbar class="background-transparent outer-space-bottom">
+    <mat-toolbar-row>
+      <div class="full-width">
+        <div class="row">
+          <div class="col"><a (click)="clearCart()">Wyczyść koszyk</a></div>
+          <div class="col-auto"><strong>Łączna kwota: </strong> {{cart.totalPrice}} zł</div>
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+
+  <div class="summary">
+    <button mat-raised-button routerLink="/">Kontynuuj zakupy</button>
     <button
-    *ngIf="cart.items.length"
-     routerLink="/checkout/address"
-    >PRZEJDŹ DO KASY</button>
-</div>
+      mat-raised-button
+      *ngIf="cart.items.length"
+      routerLink="/checkout/address"
+    >Przejdź do kasy
+    </button>
+  </div>
 </ng-container>
 
 <ng-template #emptyBag>
 
-    <h2 class="title big">KOSZYK</h2>
-    <div class="content">
-        <i class="fa fa-shopping-bag"></i>
-        <h2 class="title big title-margin">TWÓJ KOSZYK JEST JESZCZE PUSTY</h2>
-        <div class="line">
-            <hr>
-        </div>
-        <button routerLink="/">KONTYNUUJ ZAKUPY</button>
+  <h2 class="title big">KOSZYK</h2>
+  <div class="content">
+    <i class="fa fa-shopping-bag"></i>
+    <h2 class="title big title-margin">TWÓJ KOSZYK JEST JESZCZE PUSTY</h2>
+    <div class="line">
+      <hr>
     </div>
+    <button routerLink="/">KONTYNUUJ ZAKUPY</button>
+  </div>
 </ng-template>
 
+</div>

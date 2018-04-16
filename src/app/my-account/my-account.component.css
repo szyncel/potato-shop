@@ -1,23 +1,23 @@
 
-.container h2.title {
-  font-size: 16px;
-  background-color: #f3f3f3;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 20px;
-}
+/*.container h2.title {*/
+  /*font-size: 16px;*/
+  /*background-color: #f3f3f3;*/
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*justify-content: space-between;*/
+  /*margin-top: 20px;*/
+/*}*/
 
-.userInfo strong{
-  display: block;
-}
+/*.userInfo strong{*/
+  /*display: block;*/
+/*}*/
 
-.right{
-  font-weight: 400;
-}
+/*.right{*/
+  /*font-weight: 400;*/
+/*}*/
 
-.tab{
-  margin-top: 20px;
-}
+/*.tab{*/
+  /*margin-top: 20px;*/
+/*}*/
 
 

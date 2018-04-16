@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../auth.service';
-import { User } from '../../models/user';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../auth.service';
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {User} from "../../store/models/user";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-user-settings',
@@ -10,56 +12,108 @@ import { Router } from '@angular/router';
 })
 export class UserSettingsComponent implements OnInit {
   userId: string;
-  user: any = {};
+  user;
+  user$;
   email: string;
+
+  personalDataForm: FormGroup;
+  personalErrors;
+
+  passwordForm: FormGroup;
+  passwordErrors;
+
+  emailForm: FormGroup;
+  emailErrors;
+
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar
   ) {
-    this.userId = this.authService.currentUser._id;
   }
 
   ngOnInit() {
+    this.createForm();
+    this.userId = this.authService.currentUser._id;
+    this.user$ = this.authService.getUser();
     this.authService.getUser().subscribe(user => {
+      console.log(user);
       this.user = user;
       this.email = this.user.email;
+      this.initValues();
+    });
+
+  }
+
+  onSaveData() {
+    const form = this.personalDataForm.value;
+    const model = {
+      name: form.name,
+      surname: form.surname
+    } as User;
+    this.authService.updateUser(model).subscribe(res => {
+      this.snackBar.open('Edycja przebiegła pomyślnie', 'Ok', {duration: 3500});
+      // this.router.navigate(['my/account']);
+    })
+
+  }
+
+  onChangePassword() {
+    const form = this.passwordForm.value;
+    const model = {
+      email: this.email,
+      password: form.oldPassword,
+      newPass: form.newPassword
+    } as User;
+    this.authService.changePassword(model).subscribe(data => {
+      this.snackBar.open('Edycja przebiegła pomyślnie', 'Ok', {duration: 3500});
+      // this.router.navigate(['my/account']);
+    }, err => {
+      this.passwordErrors = err.error;
+    })
+  }
+
+  onChangeEmail() {
+    const form = this.emailForm.value;
+    const model = {
+      email: this.email,
+      password: form.password,
+      newEmail: form.email
+    } as User;
+    this.authService.changeEmail(model).subscribe(data => {
+      this.snackBar.open('Edycja przebiegła pomyślnie', 'Ok', {duration: 3500});
+      // this.router.navigate(['my/account']);
+    }, err => {
+      this.emailErrors = err.error;
+      console.log('Error:', err.error);
+    })
+  }
+
+  private initValues() {
+    this.personalDataForm.patchValue({
+      name: this.user.name,
+      surname: this.user.surname
+    });
+    this.emailForm.patchValue({
+      email: this.user.email,
     });
   }
 
-
-  save(f) {
-    this.authService.updateUser(f.value).subscribe(res => {
-      this.router.navigate(['my/account']);
-    })
-  }
-
-  changePassword(f) {
-    // if pass is correct. then we can change
-    let data = {
-      email: this.email,
-      password: f.value.old,
-      newPass: f.value.new
-    }
-    this.authService.changePassword(data).subscribe(data => {
-      this.router.navigate(['my/account']);
-    }, err => {
-      console.log('Error:', err.error);
-    })
-  }
-
-  changeEmail(f) {
-    // if pass is correct. then we can change
-    let data = {
-      email: this.email,
-      password: f.value.password,
-      newEmail: f.value.email
-    }
-
-    this.authService.changeEmail(data).subscribe(data => {
-      this.router.navigate(['my/account']);
-    }, err => {
-      console.log('Error:', err.error);
-    })
+  private createForm() {
+    this.personalDataForm = this.fb.group({
+      name: null,
+      surname: null
+    });
+    this.passwordForm = this.fb.group({
+      oldPassword: null,
+      newPassword: null,
+      repeatPassword: null
+    });
+    this.emailForm = this.fb.group({
+      email: null,
+      password: null
+    });
   }
 }
