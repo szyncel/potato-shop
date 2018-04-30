@@ -39,7 +39,6 @@ const {
 const moment = require('moment');
 
 
-
 /* .............USERS............. */
 
 router.post('/users', (req, res) => { //Register
@@ -229,7 +228,6 @@ router.put('/product/:id', (req, res) => {
 });
 
 
-
 router.delete('/product/:id', (req, res) => {
   var id = req.params.id;
 
@@ -258,7 +256,7 @@ router.post('/shopping-carts', (req, res) => { //Create shopping cart
   shoppingCart.save().then((doc) => {
     res.status(200).send(doc);
   }, (e) => {
-    
+
     res.status(400).send(e);
   });
 });
@@ -316,7 +314,7 @@ router.patch('/shopping-carts/add', async (req, res) => { //add product to shopp
       }
     }).then((cart) => {
       res.status(200).send({
-        info:"added"
+        info: "added"
       });
     }).catch((e) => {
       res.status(400).send({
@@ -336,7 +334,7 @@ router.patch('/shopping-carts/add', async (req, res) => { //add product to shopp
       }
     }).then((cart) => {
       res.status(200).send({
-        info:"updated+1"
+        info: "updated+1"
       });
     }).catch((e) => {
       res.status(400).send({
@@ -421,7 +419,8 @@ router.patch('/shopping-carts/decrasse', async (req, res) => { //decrement item 
     res.status(200).send({
       ststus: "ok"
     });
-  };
+  }
+  ;
 
 
 });
@@ -464,6 +463,28 @@ router.get('/admin-orders/:id', (req, res) => { //get Single order for admin
   })
 })
 
+router.put('/admin-orders/:id', authenticate, async (req, res) => { //change status of order
+  const id = req.params.id;
+  const body = _.pick(req.body, ['status']);
+  try {
+    const test = await Order.findOneAndUpdate({
+      _id: id
+    }, {
+      $set: {
+        status: body.status
+      }
+    }, {
+      new: true
+    });
+    res.status(200).send({
+      message: "Edycja przebiegła pomyślnie"
+    });
+  } catch (e) {
+    res.status(400).send(e);
+  }
+})
+
+
 router.post('/place-order', authenticate, (req, res) => {
   moment.locale('pl');
   var formattedDate = moment().format('DD/MM/YYYY');
@@ -494,7 +515,6 @@ router.post('/place-order', authenticate, (req, res) => {
       error: e
     });
   })
-
 
 
 });
@@ -548,7 +568,7 @@ router.get('/order/:id', authenticate, (req, res) => {
 // .....................Wishlist..............//
 router.post('/wishlist', authenticate, async (req, res) => { //Create wishlist
 
-console.log(req);
+  console.log(req);
   var wishlist = new Wishlist({
     _creator: req.user._id
   });

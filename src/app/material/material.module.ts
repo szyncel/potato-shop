@@ -14,8 +14,12 @@ import {
   MatNativeDateModule,
   MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule,
-  MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule,
-  MatToolbarModule
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatPaginatorModule
 } from '@angular/material';
 
 
@@ -41,7 +45,8 @@ import {
     MatTableModule,
     MatSortModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule
   ],
   exports: [
     MatButtonModule,
@@ -63,7 +68,8 @@ import {
     MatTableModule,
     MatSortModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule
 
   ],
   entryComponents: []

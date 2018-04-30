@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
+import { ProductService } from '../../product.service';
 import { ActivatedRoute } from '@angular/router';
-import { ShoppingCartService } from '../shopping-cart.service';
-import { WishlistService } from '../wishlist.service';
-import { ProductsComponent } from '../products/products.component';
-import { WishlistComponent } from '../wishlist/wishlist.component';
-import { Product } from '../models/product';
+import { ShoppingCartService } from '../../shopping-cart.service';
+import { WishlistService } from '../../wishlist.service';
+import { ProductsComponent } from '../products.component';
+import { WishlistComponent } from '../../wishlist/wishlist.component';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product-details',
@@ -45,7 +45,6 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
-
   }
 
 }

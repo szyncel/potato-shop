@@ -255,6 +255,14 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   width: 250px;
 }
 
+.container{
+  min-width: 100vh;
+}
+
+.mat-sidenav-content{
+  overflow: initial;
+}
+
 
 
 
