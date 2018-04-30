@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { OrderService } from '../order.service';
-import { AuthService } from '../auth.service';
-import { Observable } from 'rxjs/Observable';
-import * as moment from 'moment';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {OrderService} from '../order.service';
+import {AuthService} from '../auth.service';
+import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'app-my-orders',
@@ -13,7 +12,13 @@ import * as moment from 'moment';
 export class MyOrdersComponent implements OnInit {
   orders;
   userId: string;
-  rows=[];
+
+  displayedColumns = ['_id', 'datePlaced', 'totalOrderPrice', 'status', 'action'];
+
+  dataSource;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private orderService: OrderService,
@@ -23,18 +28,10 @@ export class MyOrdersComponent implements OnInit {
 
   ngOnInit() {
     this.orderService.getOrders(this.userId).subscribe(orders => {
-      this.orders=orders;
-      for (let order in orders) {
-        let o = orders[order];
-        this.rows.push({
-          nr: o._id, 
-          date: o.datePlaced, 
-          sum: `${o.totalOrderPrice} zł`, 
-          status: o.status, 
-          action: o._id
-        });
-        this.rows = [...this.rows];
-      }
-    })
+      this.orders = orders;
+      this.dataSource = new MatTableDataSource(orders);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 }

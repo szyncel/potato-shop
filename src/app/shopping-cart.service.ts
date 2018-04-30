@@ -1,15 +1,16 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable, Output, EventEmitter} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Product } from './models/product';
-import { ShoppingCart } from './models/shopping-cart';
+import {ShoppingCart} from './models/shopping-cart';
+import {Product} from "./store/models/product";
 
 @Injectable()
 export class ShoppingCartService {
   @Output() test: EventEmitter<any> = new EventEmitter();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   change() {
     this.test.emit(true);
@@ -28,7 +29,7 @@ export class ShoppingCartService {
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCart();
     let cart: Observable<any> = await this.http.get(`/api/shopping-carts/${cartId}`);
-    return cart.map(cartItem =>new ShoppingCart(cartItem.shoppingCart.items));
+    return cart.map(cartItem => new ShoppingCart(cartItem.shoppingCart.items));
   }
 
 
@@ -49,17 +50,17 @@ export class ShoppingCartService {
   }
 
   async decrasseCart(product: Product) {
-    let cartId = await this.getOrCreateCart();
-    return this.http.patch('/api/shopping-carts/decrasse', { id: cartId, product: product }).toPromise();
+    const cartId = await this.getOrCreateCart();
+    return this.http.patch('/api/shopping-carts/decrasse', {id: cartId, product: product}).toPromise();
   }
 
   async addToCart(product: Product) {
     let cartId = await this.getOrCreateCart();
-    return this.http.patch('/api/shopping-carts/add', { id: cartId, product: product }).toPromise();
+    return this.http.patch('/api/shopping-carts/add', {id: cartId, product: product}).toPromise();
   }
 
   async removeFromCart(product: Product) {
     let cartId = await this.getOrCreateCart();
-    return this.http.patch('/api/shopping-carts/delete', { id: cartId, product: product }).toPromise();
+    return this.http.patch('/api/shopping-carts/delete', {id: cartId, product: product}).toPromise();
   }
 }

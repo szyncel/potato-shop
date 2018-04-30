@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from '../../product.service';
-import {MatDialog, MatTableDataSource} from "@angular/material";
+import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {Subject} from "rxjs/Subject";
 import {Product} from "../../store/models/product";
 import {Observable} from "rxjs/Observable";
@@ -14,14 +14,16 @@ import {RemoveComponent} from "./remove/remove.component";
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit, OnDestroy {
+export class AdminProductsComponent implements OnInit {
 
   productsList$: Observable<Product[]>;
 
-  displayedColumns = ['tytul', 'cena', 'kategoria', 'action'];
+  displayedColumns = ['title', 'price', 'category', 'action'];
 
   dataSource;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   /** Event emitter, który wskazuje do kiedy robić emisję na wszystkie obserwatory tego komponentu */
   private destroyed$: Subject<boolean> = new Subject();
@@ -41,12 +43,9 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.productsList$ = this.productService.getAll();
     this.productsList$.subscribe((res: Product[]) => {
       this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
-  }
-
-  /** Angular ngOnDestroy lifecycle hook */
-  ngOnDestroy() {
-    this.destroyed$.next(true);
   }
 
   onAddProductDialog() {

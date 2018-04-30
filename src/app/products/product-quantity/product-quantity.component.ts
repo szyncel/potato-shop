@@ -1,12 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { ProductsComponent } from '../products/products.component';
-import { ShoppingCartService } from '../shopping-cart.service';
-import { Product } from '../models/product';
-import { ShoppingCart } from '../models/shopping-cart';
-import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
-import { WishlistComponent } from '../wishlist/wishlist.component';
-import { ProductDetailsComponent } from '../product-details/product-details.component';
+import {Component, Input} from '@angular/core';
+
+import {ProductDetailsComponent} from '../product-details/product-details.component';
+import {ShoppingCart} from "../../models/shopping-cart";
+import {ShoppingCartService} from "../../shopping-cart.service";
+import {ShoppingCartComponent} from "../../shopping-cart/shopping-cart.component";
+import {WishlistComponent} from "../../wishlist/wishlist.component";
+import {NavbarComponent} from "../../navbar/navbar.component";
+import {ProductsComponent} from "../products.component";
+import {Product} from "../../store/models/product";
 
 @Component({
   selector: 'app-product-quantity',
@@ -23,8 +24,9 @@ export class ProductQuantityComponent {
     private productComponent: ProductsComponent,
     private navbarComponent: NavbarComponent,
     private wishlistComponent: WishlistComponent,
-    private productDetailsComponent:ProductDetailsComponent
-  ) { }
+    private productDetailsComponent: ProductDetailsComponent
+  ) {
+  }
 
   async addToCart(product: Product) {
     await this.shoppingCartService.addToCart(product);

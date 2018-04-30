@@ -1,0 +1,50 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <app-admin-navigation></app-admin-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content style="overflow: initial">
+    <div class="container">
+      <mat-toolbar class="outer-space-bottom background-transparent">
+        <mat-toolbar-row>
+          <div class="full-width">
+            <div class="row">
+              <div class="col-auto"><h1>Kategorie</h1></div>
+              <div class="col"></div>
+              <div class="col-auto">
+                <button mat-raised-button color="primary" (click)="onAddCategory()">Nowa kategoria</button>
+              </div>
+            </div>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <div class="example-container mat-elevation-z8 mb-5">
+        <mat-table #table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="_id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?._id}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.name}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <mat-icon class="fix-icon" (click)="onEditProductDialog(element?._id)">mode edit</mat-icon>
+              <mat-icon (click)="onRemoveProductDialog(element?._id)">delete</mat-icon>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+      </div>
+
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+

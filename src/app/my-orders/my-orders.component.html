@@ -3,27 +3,52 @@
     <app-user-menu></app-user-menu>
   </mat-sidenav>
   <mat-sidenav-content>
-
-    <ng-container *ngIf="orders">
-      <ngx-datatable class="bootstrap" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'"
-                     [rows]="rows">
-        <ngx-datatable-column name="Zamówienie" prop="nr" [width]="200"></ngx-datatable-column>
-        <ngx-datatable-column name="Data zamówienia" prop="date" [width]="150"></ngx-datatable-column>
-        <ngx-datatable-column name="Suma" prop="sum" [width]="50"></ngx-datatable-column>
-        <ngx-datatable-column name="Status" prop="status"></ngx-datatable-column>
-        <ngx-datatable-column name="" prop="action">
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <a [routerLink]="['/my/orders/', value]">Szczegóły</a>
-          </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
-
-
-
-
-      <button mat-raised-button color="primary" routerLink="/my/account">Wróć</button>
-    </ng-container>
-
+    <div class="container">
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <div class="full-width">
+            <div class="row">
+              <div class="col-auto"><h2>Moje zamówienia</h2></div>
+              <div class="col"></div>
+            </div>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+        <div class="example-container mat-elevation-z8 " style="margin-top: 1rem">
+          <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="_id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?._id}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="datePlaced">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Data złożenia</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.datePlaced}} zł</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="totalOrderPrice">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Kwota</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.totalOrderPrice}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.status}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button mat-raised-button color="primary" [routerLink]="['/my/orders/', element?._id]">Szczegóły</button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+          <mat-paginator #paginator
+                         [pageSize]="10"
+                         [pageSizeOptions]="[5, 10, 20]"
+                         [showFirstLastButtons]="true">
+          </mat-paginator>
+        </div>
+        <button mat-raised-button color="primary" style="margin-top: 1rem" routerLink="/my/account">Wróć</button>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

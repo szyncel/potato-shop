@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { FormData, Shipping } from './models/form-data';
-import { CheckoutStepsService } from './checkout-steps.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {FormData, Shipping} from './models/form-data';
+import {CheckoutStepsService} from './checkout-steps.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class OrderService {
@@ -10,7 +10,8 @@ export class OrderService {
 
   constructor(
     private checkoutStepsService: CheckoutStepsService,
-    private http: HttpClient) { }
+    private http: HttpClient) {
+  }
 
 
   getAddress(): Shipping {
@@ -50,7 +51,7 @@ export class OrderService {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.post('/api/place-order', order, { headers: headers });
+    return this.http.post('/api/place-order', order, {headers: headers});
   }
 
   getOrders(userId): Observable<any> {
@@ -58,14 +59,14 @@ export class OrderService {
     const headers = new HttpHeaders()
       .set('x-auth', token);
 
-    return this.http.get(`/api/all-orders`, { headers: headers }).map(orders => orders["orders"]);
+    return this.http.get(`/api/all-orders`, {headers: headers}).map(orders => orders["orders"]);
   }
 
   getOrder(orderId): Observable<any> {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.get(`/api/order/${orderId}`, { headers: headers }).map(orders => orders["orders"]);
+    return this.http.get(`/api/order/${orderId}`, {headers: headers}).map(orders => orders["orders"]);
   }
 
   //Only for admin
@@ -80,11 +81,18 @@ export class OrderService {
     return this.http.get(`/api/admin-orders/${orderId}`).map(order => order['order']);
   }
 
-  getLastOrders(){
-    let token = localStorage.getItem('token');
+  getLastOrders() {
+    const token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.get('/api/last-orders',{ headers: headers });
+    return this.http.get('/api/last-orders', {headers: headers});
+  }
+
+  editOrder(orderId, model) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('x-auth', token);
+    return this.http.put(`/api/admin-orders/${orderId}`, model, {headers: headers});
   }
 
 }

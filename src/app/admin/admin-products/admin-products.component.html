@@ -2,7 +2,7 @@
   <mat-sidenav mode="side" opened="true">
     <app-admin-navigation></app-admin-navigation>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content style="overflow: initial">s
     <div class="container">
       <mat-toolbar class="outer-space-bottom background-transparent">
         <mat-toolbar-row>
@@ -18,29 +18,20 @@
           </div>
         </mat-toolbar-row>
       </mat-toolbar>
-
-      <div class="example-container mat-elevation-z8">
-        <mat-table #table [dataSource]="dataSource">
-
-          <!-- Position Column -->
-          <ng-container matColumnDef="tytul">
-            <mat-header-cell *matHeaderCellDef> Tytuł</mat-header-cell>
+      <div class="example-container mat-elevation-z8 mb-5">
+        <mat-table #table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Tytuł</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element?.title}}</mat-cell>
           </ng-container>
-
-          <!-- Name Column -->
-          <ng-container matColumnDef="cena">
-            <mat-header-cell *matHeaderCellDef> Cena</mat-header-cell>
+          <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Cena</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element?.price}} zł</mat-cell>
           </ng-container>
-
-          <!-- Weight Column -->
-          <ng-container matColumnDef="kategoria">
-            <mat-header-cell *matHeaderCellDef> Kategoria</mat-header-cell>
+          <ng-container matColumnDef="category">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Kategoria</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element?.category}}</mat-cell>
           </ng-container>
-
-          <!-- Symbol Column -->
           <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element">
@@ -48,10 +39,14 @@
               <mat-icon (click)="onRemoveProductDialog(element?._id)">delete</mat-icon>
             </mat-cell>
           </ng-container>
-
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
+        <mat-paginator #paginator
+                       [pageSize]="10"
+                       [pageSizeOptions]="[5, 10, 20]"
+                       [showFirstLastButtons]="true">
+        </mat-paginator>
       </div>
 
     </div>

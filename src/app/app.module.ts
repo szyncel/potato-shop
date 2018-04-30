@@ -13,7 +13,6 @@ import {AppComponent} from './app.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {AppRoutingModule} from './/app-routing.module';
 import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
 import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
 import {AuthService} from './auth.service';
@@ -26,9 +25,9 @@ import {CategoryService} from './category.service';
 import {ProductService} from './product.service';
 import {ProductsComponent} from './products/products.component';
 import {ProductFilterComponent} from './products/product-filter/product-filter.component';
-import {ProductCardComponent} from './product-card/product-card.component';
+import {ProductCardComponent} from './products/product-card/product-card.component';
 import {ShoppingCartService} from './shopping-cart.service';
-import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
+import {ProductQuantityComponent} from './products/product-quantity/product-quantity.component';
 import {OrderService} from './order.service';
 import {CheckoutStepsService} from './checkout-steps.service';
 import {CheckoutStepsGuardService} from './checkout-steps-guard.service';
@@ -43,7 +42,7 @@ import {WishlistService} from './wishlist.service';
 import {AdminOrderDetailsComponent} from './admin/admin-order-details/admin-order-details.component';
 import {UserMenuComponent} from './user/user-menu/user-menu.component';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
-import {ProductDetailsComponent} from './product-details/product-details.component';
+import {ProductDetailsComponent} from './products/product-details/product-details.component';
 import {WishlistButtonComponent} from './wishlist-button/wishlist-button.component';
 import {AdminAuthGuardService} from './admin-auth-guard.service';
 import {MaterialModule} from './material/material.module';
@@ -52,6 +51,8 @@ import {EditComponent} from './admin/admin-products/edit/edit.component';
 import {RemoveComponent} from './admin/admin-products/remove/remove.component';
 import {AdminNavigationComponent} from './admin/admin-navigation/admin-navigation.component';
 import {OrderDetailsDialogComponent} from "./admin/admin-orders/order-details/order-details.component";
+import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
+import { ProductDetailsDialogComponent } from './products/product-details-dialog/product-details-dialog.component';
 
 
 @NgModule({
@@ -59,7 +60,6 @@ import {OrderDetailsDialogComponent} from "./admin/admin-orders/order-details/or
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent,
     ShoppingCartComponent,
     WishlistComponent,
     MyOrdersComponent,
@@ -86,7 +86,9 @@ import {OrderDetailsDialogComponent} from "./admin/admin-orders/order-details/or
     EditComponent,
     RemoveComponent,
     AdminNavigationComponent,
-    OrderDetailsDialogComponent
+    OrderDetailsDialogComponent,
+    AdminCategoryComponent,
+    ProductDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +123,8 @@ import {OrderDetailsDialogComponent} from "./admin/admin-orders/order-details/or
     AddComponent,
     EditComponent,
     RemoveComponent,
-    OrderDetailsDialogComponent
+    OrderDetailsDialogComponent,
+    ProductDetailsDialogComponent
   ],
   bootstrap: [AppComponent]
 })

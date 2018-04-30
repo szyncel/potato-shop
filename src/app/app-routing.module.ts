@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
 import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
 import {MyOrdersComponent} from './my-orders/my-orders.component';
@@ -19,13 +18,13 @@ import {AdminOrdersComponent} from './admin/admin-orders/admin-orders.component'
 import {AdminUsersComponent} from './admin/admin-users/admin-users.component';
 import {AdminOrderDetailsComponent} from './admin/admin-order-details/admin-order-details.component';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
-import {ProductDetailsComponent} from './product-details/product-details.component';
+import {ProductDetailsComponent} from './products/product-details/product-details.component';
 import {AdminAuthGuardService} from './admin-auth-guard.service';
+import {AdminCategoryComponent} from "./admin/admin-category/admin-category.component";
 
 const routes: Routes = [
   {path: '', component: ProductsComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'wishlist', component: WishlistComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
@@ -39,6 +38,7 @@ const routes: Routes = [
   {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AdminAuthGuardService]},
   {path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AdminAuthGuardService]},
   {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuardService]},
+  {path: 'admin/categories', component: AdminCategoryComponent, canActivate: [AdminAuthGuardService]},
   {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService]},
   {path: 'my/orders/:id', component: OrderDetailsComponent, canActivate: [AuthGuardService]},
   {path: 'my/settings', component: UserSettingsComponent, canActivate: [AuthGuardService]},

@@ -61,8 +61,18 @@ export class OrderDetailsDialogComponent implements OnInit {
 
 
   onSubmit() {
-    console.log('test');
     console.log(this.form.value);
+    const model = {
+      status: this.form.value.status
+    }
+    this.orderService.editOrder(this.data.id, model)
+      .subscribe(res => {
+        console.log(res)
+        this.dialogRef.close();
+        this.snackBar.open('Status zamówienia zmieniony', 'Ok', {duration: 3500});
+      }, err => {
+        console.log('Error:', err.error);
+      });
 
   }
 

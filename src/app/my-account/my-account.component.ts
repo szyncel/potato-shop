@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { OrderService } from '../order.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../auth.service';
+import {OrderService} from '../order.service';
+import {MatTableDataSource} from "@angular/material";
+import {Order} from "../models/order";
 
 @Component({
   selector: 'app-my-account',
@@ -9,33 +11,27 @@ import { OrderService } from '../order.service';
 })
 export class MyAccountComponent implements OnInit {
   user: any = {};
+
   orders;
-  rows=[];
+
+  displayedColumns = ['_id', 'datePlaced', 'totalOrderPrice', 'status', 'action'];
+
+  dataSource;
 
   constructor(
     private authService: AuthService,
     private orderService: OrderService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.authService.getUser().subscribe(user => {
       this.user = user;
     });
-
-    this.orderService.getLastOrders().subscribe(orders=>{
-      this.orders=orders;
-      for (let order in orders) {
-        let o = orders[order];
-        this.rows.push({
-          nr: o._id, 
-          date: o.datePlaced, 
-          sum: `${o.totalOrderPrice} zł`, 
-          status: o.status, 
-          action: o._id
-        });
-        this.rows = [...this.rows];
-      }
-    })
+    this.orderService.getLastOrders().subscribe((orders: Order[]) => {
+      this.orders = orders;
+      this.dataSource = new MatTableDataSource(orders);
+    });
   }
 
 }

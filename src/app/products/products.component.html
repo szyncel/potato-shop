@@ -2,12 +2,6 @@
   <mat-sidenav mode="side" opened="true">
     <h2 style="padding-left: 11px; margin-bottom: 0;">Kategorie</h2>
     <app-product-filter [category]="category"></app-product-filter>
-    <!--<h2 style="padding-left: 11px; margin-bottom: 0;" >Przedział cenowy</h2>-->
-    <!--<mat-list role="list">-->
-      <!--<mat-list-item role="listitem">Item 1</mat-list-item>-->
-      <!--<mat-list-item role="listitem">Item 2</mat-list-item>-->
-      <!--<mat-list-item role="listitem">Item 3</mat-list-item>-->
-    <!--</mat-list>-->
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar class="outer-space-bottom background-transparent">
@@ -24,7 +18,7 @@
     </mat-toolbar>
     <div class="container">
       <div class="row">
-        <div class="col-md-4" *ngFor="let p of filteredProducts">
+        <div class="col-md-3" *ngFor="let p of filteredProducts">
           <app-product-card [del]="false" [wishlist]="wishlist" [product]="p"
                             [shopping-cart]="cart"
                             class="cards_item"></app-product-card>

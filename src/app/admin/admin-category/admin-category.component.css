@@ -1,8 +1,4 @@
-.mat-column-tytul {
-  max-width: 250px;
-}
-
-.mat-column-action{
+.mat-column-actions{
   overflow: initial;
   display: flex;
   justify-content: flex-end;
@@ -11,9 +7,3 @@
 .fix-icon{
   width: 130px;
 }
-
-
-
-
-
-
