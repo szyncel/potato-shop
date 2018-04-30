@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatTableDataSource} from "@angular/material";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {OrderService} from "../../../order.service";
+import {OrderService} from "../../../services/order.service";
 
 @Component({
   selector: 'app-order-details',

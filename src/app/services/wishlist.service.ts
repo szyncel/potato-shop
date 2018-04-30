@@ -1,8 +1,8 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Product } from './models/product';
-import { Wishlist } from './models/wishlist';
+import { Product } from '../shared/models/product';
+import { Wishlist } from '../shared/models/wishlist';
 
 @Injectable()
 export class WishlistService {

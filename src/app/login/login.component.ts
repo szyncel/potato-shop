@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../models/user';
+import {User} from '../shared/models/user';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../auth.service';
-import {WishlistService} from '../wishlist.service';
+import {AuthService} from '../services/auth.service';
+import {WishlistService} from '../services/wishlist.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Auth} from '../store/models/auth';
 

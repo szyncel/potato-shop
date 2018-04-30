@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
+import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../models/product';
+import { Product } from '../shared/models/product';
 import 'rxjs/add/operator/switchMap';
-import { ShoppingCartService } from '../shopping-cart.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Subscription } from 'rxjs/Subscription';
-import { WishlistService } from '../wishlist.service';
-import { Wishlist } from '../models/wishlist';
-import { AuthService } from '../auth.service';
+import { WishlistService } from '../services/wishlist.service';
+import { Wishlist } from '../shared/models/wishlist';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-products',

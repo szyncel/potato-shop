@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Category} from "../../store/models/category";
 import {Observable} from "rxjs/Observable";
-import {CategoryService} from "../../category.service";
+import {CategoryService} from "../../services/category.service";
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 
 @Component({

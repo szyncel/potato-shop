@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Shipping} from '../../models/form-data';
-import {OrderService} from '../../order.service';
+import {Shipping} from '../../shared/models/form-data';
+import {OrderService} from '../../services/order.service';
 import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({

@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Product} from "../../store/models/product";
-import {ShoppingCartService} from "../../shopping-cart.service";
+import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsComponent} from "../products.component";
 import {WishlistComponent} from "../../wishlist/wishlist.component";
-import {ProductService} from "../../product.service";
-import {WishlistService} from "../../wishlist.service";
+import {ProductService} from "../../services/product.service";
+import {WishlistService} from "../../services/wishlist.service";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";

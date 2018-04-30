@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormData } from '../../models/form-data';
+import { FormData } from '../../shared/models/form-data';
 import { Router } from '@angular/router';
-import { ShoppingCart } from '../../models/shopping-cart';
-import { OrderService } from '../../order.service';
-import { ShoppingCartService } from '../../shopping-cart.service';
-import { AuthService } from '../../auth.service';
-import { Order } from '../../models/order';
-import { Product } from '../../models/product';
+import { ShoppingCart } from '../../shared/models/shopping-cart';
+import { OrderService } from '../../services/order.service';
+import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { AuthService } from '../../services/auth.service';
+import { Order } from '../../shared/models/order';
+import { Product } from '../../shared/models/product';
 
 
 

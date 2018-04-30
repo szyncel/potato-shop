@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatCheckboxChange, MatDialogRef, MatSnackBar} from "@angular/material";
-import {ProductService} from "../../../product.service";
+import {ProductService} from "../../../services/product.service";
 
 @Component({
   selector: 'app-remove',

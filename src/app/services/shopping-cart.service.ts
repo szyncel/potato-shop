@@ -2,8 +2,8 @@ import {Injectable, Output, EventEmitter} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {ShoppingCart} from './models/shopping-cart';
-import {Product} from "./store/models/product";
+import {ShoppingCart} from '../shared/models/shopping-cart';
+import {Product} from "../store/models/product";
 
 @Injectable()
 export class ShoppingCartService {

@@ -2,8 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {AddComponent} from "../add/add.component";
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from "@angular/material";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {ProductService} from "../../../product.service";
-import {CategoryService} from "../../../category.service";
+import {ProductService} from "../../../services/product.service";
+import {CategoryService} from "../../../services/category.service";
 import {Observable} from "rxjs/Observable";
 import {Category} from "../../../store/models/category";
 

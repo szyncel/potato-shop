@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth.service';
-import {ShoppingCartService} from '../shopping-cart.service';
 import {ShoppingCart} from '../models/shopping-cart';
 import {Wishlist} from '../models/wishlist';
-import {WishlistService} from '../wishlist.service';
+import {AuthService} from "../../services/auth.service";
+import {ShoppingCartService} from "../../services/shopping-cart.service";
+import {WishlistService} from "../../services/wishlist.service";
 
 @Component({
   selector: 'app-navbar',
@@ -17,15 +17,14 @@ export class NavbarComponent implements OnInit {
   userRole;
 
 
-
   constructor(public authService: AuthService,
-    private shoppingCartService: ShoppingCartService,
-    private wishlistService: WishlistService) {
+              private shoppingCartService: ShoppingCartService,
+              private wishlistService: WishlistService) {
   }
 
   async refreshCounter() {
     (await this.shoppingCartService.getCart()).subscribe(cart => {
-      this.cart = cart
+      this.cart = cart;
     });
   }
 

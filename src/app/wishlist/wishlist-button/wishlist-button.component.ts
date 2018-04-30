@@ -1,12 +1,12 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {Wishlist} from '../models/wishlist';
-import {WishlistService} from '../wishlist.service';
-import {Product} from '../models/product';
-import {WishlistComponent} from '../wishlist/wishlist.component';
-import {ProductsComponent} from '../products/products.component';
-import {ShoppingCartService} from '../shopping-cart.service';
-import {ProductService} from '../product.service';
-import {ShoppingCart} from '../models/shopping-cart';
+import {Wishlist} from '../../shared/models/wishlist';
+import {WishlistService} from '../../services/wishlist.service';
+import {Product} from '../../shared/models/product';
+import {WishlistComponent} from '../wishlist.component';
+import {ProductsComponent} from '../../products/products.component';
+import {ShoppingCartService} from '../../services/shopping-cart.service';
+import {ProductService} from '../../services/product.service';
+import {ShoppingCart} from '../../shared/models/shopping-cart';
 
 @Component({
   selector: 'wishlist-button',

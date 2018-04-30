@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth.service';
-import {OrderService} from '../order.service';
+import {AuthService} from '../../services/auth.service';
+import {OrderService} from '../../services/order.service';
 import {MatTableDataSource} from "@angular/material";
-import {Order} from "../models/order";
+import {Order} from "../../shared/models/order";
 
 @Component({
   selector: 'app-my-account',

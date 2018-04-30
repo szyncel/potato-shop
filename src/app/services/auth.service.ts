@@ -5,8 +5,8 @@ import {Observable} from 'rxjs/Observable';
 import {JwtHelper, tokenNotExpired} from 'angular2-jwt';
 
 import 'rxjs/add/operator/map';
-import {Auth} from "./store/models/auth";
-import {User} from "./store/models/user";
+import {Auth} from "../store/models/auth";
+import {User} from "../store/models/user";
 
 @Injectable()
 export class AuthService {

@@ -3,13 +3,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
-import {MyOrdersComponent} from './my-orders/my-orders.component';
-import {MyAccountComponent} from './my-account/my-account.component';
+import {MyOrdersComponent} from './user/my-orders/my-orders.component';
+import {MyAccountComponent} from './user/my-account/my-account.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {AdminProductsComponent} from './admin/admin-products/admin-products.component';
 import {ProductFormComponent} from './admin/product-form/product-form.component';
 import {ProductsComponent} from './products/products.component';
-import {CheckoutStepsGuardService} from './checkout-steps-guard.service';
+import {CheckoutStepsGuardService} from './services/checkout-steps-guard.service';
 import {ConfirmComponent} from './checkout/confirm/confirm.component';
 import {AddressComponent} from './checkout/address/address.component';
 import {CheckoutSuccessComponent} from './checkout/checkout-success/checkout-success.component';
@@ -19,7 +19,7 @@ import {AdminUsersComponent} from './admin/admin-users/admin-users.component';
 import {AdminOrderDetailsComponent} from './admin/admin-order-details/admin-order-details.component';
 import {UserSettingsComponent} from './user/user-settings/user-settings.component';
 import {ProductDetailsComponent} from './products/product-details/product-details.component';
-import {AdminAuthGuardService} from './admin-auth-guard.service';
+import {AdminAuthGuardService} from './services/admin-auth-guard.service';
 import {AdminCategoryComponent} from "./admin/admin-category/admin-category.component";
 
 const routes: Routes = [

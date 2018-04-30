@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../product.service';
+import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { ShoppingCartService } from '../../shopping-cart.service';
-import { WishlistService } from '../../wishlist.service';
+import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { WishlistService } from '../../services/wishlist.service';
 import { ProductsComponent } from '../products.component';
 import { WishlistComponent } from '../../wishlist/wishlist.component';
-import { Product } from '../../models/product';
+import { Product } from '../../shared/models/product';
 
 @Component({
   selector: 'app-product-details',

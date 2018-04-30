@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ProductService} from '../../product.service';
+import {ProductService} from '../../services/product.service';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {Subject} from "rxjs/Subject";
 import {Product} from "../../store/models/product";

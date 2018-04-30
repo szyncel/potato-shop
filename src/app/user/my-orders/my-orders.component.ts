@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {OrderService} from '../order.service';
-import {AuthService} from '../auth.service';
+import {OrderService} from '../../services/order.service';
+import {AuthService} from '../../services/auth.service';
 import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 
 @Component({
