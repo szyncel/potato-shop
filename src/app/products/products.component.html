@@ -1,32 +1,39 @@
-
-<div class="products" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="space-around">
-
-  <div fxFlex="20">
-    <h2 class="title">Kategorie</h2>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <h2 style="padding-left: 11px; margin-bottom: 0;">Kategorie</h2>
     <app-product-filter [category]="category"></app-product-filter>
-    <h2 class="title">Przedział cenowy</h2>
-    <p>future</p>
-    <h2 class="title">Pochodzenie</h2>
-    <p>future</p>
-  </div>
-
-  <div fxFlex="75">
-    <mat-toolbar class="outer-space-bottom">
+    <!--<h2 style="padding-left: 11px; margin-bottom: 0;" >Przedział cenowy</h2>-->
+    <!--<mat-list role="list">-->
+      <!--<mat-list-item role="listitem">Item 1</mat-list-item>-->
+      <!--<mat-list-item role="listitem">Item 2</mat-list-item>-->
+      <!--<mat-list-item role="listitem">Item 3</mat-list-item>-->
+    <!--</mat-list>-->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="outer-space-bottom background-transparent">
       <mat-toolbar-row>
         <div class="full-width">
           <div class="row">
             <div class="col-auto"><h1>Lista dostepnych produktów</h1></div>
             <div class="col"></div>
-            <div class="col-auto"><span *ngIf="productsCount" class="small">Ilość produktów: {{productsCount}}</span></div>
+            <div class="col-auto"><span *ngIf="productsCount" class="small">Ilość produktów: {{productsCount}}</span>
+            </div>
           </div>
         </div>
       </mat-toolbar-row>
     </mat-toolbar>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let p of filteredProducts">
+          <app-product-card [del]="false" [wishlist]="wishlist" [product]="p"
+                            [shopping-cart]="cart"
+                            class="cards_item"></app-product-card>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
-      <ng-container *ngFor="let p of filteredProducts">
-        <app-product-card [del]="false" [wishlist]="wishlist" [product]="p" [shopping-cart]="cart"
-                          class="cards_item"></app-product-card>
-      </ng-container>
 
-  </div>
-</div>
+
+

@@ -242,5 +242,20 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 
+.container{
+  max-width: 1240px;
+}
+
+
+.mat-sidenav-container {
+  min-height: 100vh;
+}
+
+.mat-drawer{
+  width: 250px;
+}
+
+
+
 
 
