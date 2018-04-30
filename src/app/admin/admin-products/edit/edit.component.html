@@ -1,0 +1,71 @@
+<form [formGroup]="form" (submit)="form.dirty && form.valid && onSubmit()" novalidate>
+  <div mat-dialog-title>
+    <div class="row align-items-center">
+      <div class="col">Edytuj produkt</div>
+      <div class="col-auto">
+        <button type="button" mat-icon-button mat-dialog-close>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-content>
+    <div class="row">
+      <mat-form-field class="col-12">
+        <input matInput placeholder="Tytuł" formControlName="title"
+               required>
+        <mat-error *ngIf="form.get('title').hasError('required')">
+          Pole jest <strong>wymagane</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-12">
+        <mat-select formControlName="category" placeholder="Wybierz katerogie"
+                    name="category" required>
+          <mat-option *ngFor="let item of (categoryList$ | async)" [value]="item?.name">{{ item?.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('category').hasError('required')">
+          Pole jest <strong>wymagane</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-12">
+        <input matInput placeholder="Cena" formControlName="price" name="price"
+               required>
+        <mat-error *ngIf="form.get('price').hasError('required')">
+          Pole jest <strong>wymagane</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-12">
+        <input matInput placeholder="Obrazek" formControlName="imgUrl" name="imgUrl"
+               required>
+        <mat-error *ngIf="form.get('imgUrl').hasError('required')">
+          Pole jest <strong>wymagane</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row" *ngIf="form.get('imgUrl').valid">
+      <div class="col-12">
+        <p>Podgląd</p>
+        <img mat-card-image
+             [src]="form.get('imgUrl').value"
+             alt="img">
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <mat-error *ngIf="errors$">Błąd z serwera, spróbuj ponownie</mat-error>
+  </div>
+  <div mat-dialog-actions class="justify-content-end">
+    <!--<mat-spinner *ngIf="(loading$ | async)" [diameter]="24" [strokeWidth]="3"></mat-spinner>-->
+    <button matDialogClose mat-raised-button type="button">Anuluj</button>
+    <button [ngClass]="{disabled: form.invalid || form.pristine}" mat-raised-button class="col-auto"
+            color="primary">Zapisz
+    </button>
+  </div>
+</form>

@@ -1,0 +1,11 @@
+.orderReview{
+  display: flex;
+  justify-content: flex-end;
+  background: #f3f3f3;
+  padding: 10px;
+}
+
+.orderInfo {
+  overflow: hidden;
+  margin-bottom: 20px;
+}

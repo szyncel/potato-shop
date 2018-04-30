@@ -1,0 +1,69 @@
+<ng-container *ngIf="(data$ | async) as order">
+  <form [formGroup]="form" (submit)="form.valid && onSubmit()" novalidate>
+    <div mat-dialog-title>
+      <div class="row align-items-center">
+        <div class="col">Zamówienie nr <strong>{{order._id}}</strong></div>
+        <div class="col-auto">
+          <button type="button" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-content>
+      <div class="row">
+        <div class="col-12 mb-5">
+          <strong>Data zamówienia: </strong>{{order.datePlaced}}
+        </div>
+        <div class="col-12 mb-5">
+          <strong>Numer klienta: </strong>{{order._creator}}
+        </div>
+        <mat-form-field class="col-12">
+          <mat-select formControlName="status" required name="status" placeholder="Status zamówienia">
+            <mat-option *ngFor="let item of options" [value]="item.value">
+              {{ item.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('status').hasError('required')">
+            Pole jest <strong>wymagane</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <h4>Adres dostawy</h4>
+        <div class="orderInfo">
+          <span><strong>Imię i Nazwisko: </strong>{{order.shipping.firstName}} {{order.shipping.lastName}}</span>
+          <span><strong>Adres: </strong> {{order.shipping.address}}</span>
+          <span> <strong>Adres 2: </strong>{{order.shipping.code}} {{order.shipping.city}}</span>
+        </div>
+      </div>
+      <div class="col-12">
+        <h4>Zamówione produkty</h4>
+        <mat-table #table [dataSource]="dataSource" class="mb-3">
+          <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef>Tytuł</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.product.title}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef>Cena</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.totalPrice}} zł</mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+      <div class="col-12" class="orderReview">
+        <span><strong>Łączna kwota: </strong> {{order.totalOrderPrice}} zł</span>
+      </div>
+    </div>
+
+    <div mat-dialog-actions class="justify-content-end">
+      <!--<mat-spinner *ngIf="(loading$ | async)" [diameter]="24" [strokeWidth]="3"></mat-spinner>-->
+      <button matDialogClose mat-raised-button type="button">Anuluj</button>
+      <button [ngClass]="{disabled: form.invalid || form.pristine}" mat-raised-button class="col-auto"
+              color="primary">Zapisz
+      </button>
+    </div>
+
+  </form>
+</ng-container>
