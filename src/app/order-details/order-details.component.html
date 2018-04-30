@@ -1,61 +1,87 @@
-<div class="container">
-  <div class="col-3">
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
     <app-user-menu></app-user-menu>
-  </div>
-  <div class="col-8">
+  </mat-sidenav>
+  <mat-sidenav-content>
     <ng-container *ngIf="order">
-      <h1 class="title">Zamówienie nr {{order._id}} </h1>
 
-      <div class="orderInfo">
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <mat-card>
+        <mat-card-header>
+          <div class="full-width">
+            <div class="row">
+              <div class="col"><h2>Zamówienie nr {{order._id}}</h2></div>
+            </div>
+          </div>
+        </mat-card-header>
+        <div class="orderInfo">
         <span>
           <strong>Data zamówienia: </strong>{{order.datePlaced}}</span>
-        <span>
+          <span>
           <strong>Numer klienta: </strong>{{order._creator}}</span>
-        <span>
+          <span>
           <strong>Status zamówienia: </strong>{{order.status}}</span>
+        </div>
+        <mat-card-header>
+          <div class="full-width">
+            <div class="row">
+              <div class="col"><h2>Adres dostawy</h2></div>
+            </div>
+          </div>
+        </mat-card-header>
+        <div class="orderInfo">
+          <span><strong>Imię i Nazwisko: </strong>{{order.shipping.firstName}} {{order.shipping.lastName}}</span>
+          <span><strong>Adres: </strong> {{order.shipping.address}}</span>
+          <span> <strong>Adres 2: </strong>{{order.shipping.code}} {{order.shipping.city}}</span>
 
-      </div>
-
-
-      <h2 class="title">Zamówione produkty</h2>
-      <table class="itemsTable">
-        <tbody>
-          <tr *ngFor="let item of order.items">
-            <td class="pName">
-              <img [src]="item.product.imgUrl" alt="trreeelo">
-              <div class="itemInfo">
-                <a [routerLink]="['/products/', item.product.id]">{{item.product.title}}</a>
-                <div>
-                <span>Kategoria: {{item.product.category}}</span> 
-                <span>Cena: {{item.product.price}} zł</span>          
+        </div>
+        <mat-card-header>
+          <div class="full-width">
+            <div class="row">
+              <div class="col"><h2>Zamówione produkty</h2></div>
+            </div>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <table class="itemsTable">
+            <tbody>
+            <tr *ngFor="let item of order.items">
+              <td class="pName">
+                <img [src]="item.product.imgUrl" alt="trreeelo">
+                <div class="itemInfo">
+                  <a [routerLink]="['/products/', item.product.id]">{{item.product.title}}</a>
+                  <div>
+                    <span>Kategoria: {{item.product.category}}</span>
+                    <span>Cena: {{item.product.price}} zł</span>
+                  </div>
                 </div>
-              </div>
-            </td>
-            <td>
-              <strong>Ilość: {{item.count}}</strong>
-            </td>
-            <td>
-              <strong>{{item.totalPrice}} zł</strong>
-            </td>
-          </tr>
-          <tr id="orderReview">
-            <td colspan="3">
+              </td>
+              <td>
+                <strong>Ilość: {{item.count}}</strong>
+              </td>
+              <td>
+                <strong>{{item.totalPrice}} zł</strong>
+              </td>
+            </tr>
+            <tr id="orderReview">
+              <td colspan="3">
                 <span><strong>Łączna kwota: </strong> {{order.totalOrderPrice}} zł</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-     
-      <h2 class="title">Adres dostawy</h2>
-      <div class="orderInfo address">
-        <span>{{order.shipping.firstName}} {{order.shipping.lastName}}</span>
-        <span>{{order.shipping.address}}</span>
-        <span>{{order.shipping.code}} {{order.shipping.city}}</span>
-
-      </div>
-
-      <button routerLink="/my/orders">Wróć do moich zamówień</button>
-    </ng-container>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" routerLink="/my/orders">Wróć do moich zamówień</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
-
 </div>
+
+    </ng-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

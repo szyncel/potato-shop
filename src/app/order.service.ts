@@ -65,7 +65,6 @@ export class OrderService {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-
     return this.http.get(`/api/order/${orderId}`, { headers: headers }).map(orders => orders["orders"]);
   }
 
@@ -77,7 +76,7 @@ export class OrderService {
 
 
   getSingleOrder(orderId) {
-    
+
     return this.http.get(`/api/admin-orders/${orderId}`).map(order => order['order']);
   }
 

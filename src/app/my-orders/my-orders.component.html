@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="col-3">
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
     <app-user-menu></app-user-menu>
-  </div>
-  <div class="col-8">
-    <h1 class="title">Moje Zamówienia</h1>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
     <ng-container *ngIf="orders">
       <ngx-datatable class="bootstrap" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50" [rowHeight]="'auto'"
-        [rows]="rows">
+                     [rows]="rows">
         <ngx-datatable-column name="Zamówienie" prop="nr" [width]="200"></ngx-datatable-column>
         <ngx-datatable-column name="Data zamówienia" prop="date" [width]="150"></ngx-datatable-column>
         <ngx-datatable-column name="Suma" prop="sum" [width]="50"></ngx-datatable-column>
@@ -17,12 +17,25 @@
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>
-    
 
 
 
-    <button routerLink="/my/account">Wróć</button>
-  </ng-container>
-  </div>
 
-</div>
+      <button mat-raised-button color="primary" routerLink="/my/account">Wróć</button>
+    </ng-container>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+<!--<div class="container">-->
+  <!--<div class="col-3">-->
+    <!--<app-user-menu></app-user-menu>-->
+  <!--</div>-->
+  <!--<div class="col-8">-->
+    <!--<h1 class="title">Moje Zamówienia</h1>-->
+
+  <!--</div>-->
+
+<!--</div>-->
