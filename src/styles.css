@@ -263,6 +263,10 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   overflow: initial;
 }
 
+mat-icon{
+  color: #898989;
+}
+
 
 
 

@@ -1,0 +1,9 @@
+.mat-column-actions{
+  overflow: initial;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fix-icon{
+  width: 130px;
+}

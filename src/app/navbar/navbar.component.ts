@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { ShoppingCartService } from '../shopping-cart.service';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-import { ShoppingCart } from '../models/shopping-cart';
-import { Wishlist } from '../models/wishlist';
-import { WishlistService } from '../wishlist.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../auth.service';
+import {ShoppingCartService} from '../shopping-cart.service';
+import {ShoppingCart} from '../models/shopping-cart';
+import {Wishlist} from '../models/wishlist';
+import {WishlistService} from '../wishlist.service';
 
 @Component({
   selector: 'app-navbar',
