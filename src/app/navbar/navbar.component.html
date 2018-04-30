@@ -11,7 +11,7 @@
         <div class="col"></div>
         <div class="col-auto">
           <ng-container *ngIf="authService.isLoggedIn() && userRole=='admin'">
-            <button mat-button routerLink="admin/products">Admin</button>
+            <button mat-raised-button routerLink="admin/products">Admin</button>
           </ng-container>
           <ng-container *ngIf="!authService.isLoggedIn()">
             <button mat-button routerLink="/login">Zaloguj się</button>
