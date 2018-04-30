@@ -1,56 +1,38 @@
-<!--<div class="card">-->
-  <!--<div class="card_image">-->
-    <!--<img [src]="product.imgUrl" />-->
-  <!--</div>-->
-  <!--<div class="heart" *ngIf="wishlist">-->
-    <!--<wishlist-button [product]="product"></wishlist-button>-->
-  <!--</div>-->
-  <!--<div *ngIf="showDelete" class="heart">-->
-    <!--<i (click)="delFromWishlist()" class="fa fa-times fa-2" aria-hidden="true"></i>-->
-  <!--</div>-->
-  <!--<div class="card_content">-->
-    <!--<h2 class="card_heading">-->
-      <!--<a [routerLink]="['/products/', product._id]">{{product.title}}</a>-->
-    <!--</h2>-->
-    <!--<span>Odmiana: {{product.category}}</span>-->
-    <!--<span>Cena: {{product.price}} zł</span>-->
-  <!--</div>-->
-  <!--<div *ngIf="(showActions && shoppingCart) || showDelete" class="card-footer">-->
-    <!--<button mat-raised-button color="primary" *ngIf="shoppingCart.getQuantity(product)===0;else updateQuantity" (click)="addToCart(product)">Dodaj do koszyka</button>-->
-    <!--<ng-template #updateQuantity>-->
-      <!--<app-product-quantity [product]="product" [shopping-cart]="shoppingCart"></app-product-quantity>-->
-    <!--</ng-template>-->
-
-  <!--</div>-->
-<!--</div>-->
-    <mat-card class="example-card">
-      <img mat-card-image
-           [src]="product.imgUrl"
-           alt="...">
-      <mat-card-content>
-        <div class="col-6"><strong [routerLink]="['/products/', product._id]">{{product.title}}</strong></div>
-        <div class="col-auto">X</div>
-        <div class="row">
-          <div class="col-12">Odmiana: {{product.category}}</div>
-          <div class="col-12">Cena: <strong>{{product.price}} zł</strong></div>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <div class="heart" *ngIf="wishlist">
+<mat-card class="example-card outer-space-bottom">
+  <img mat-card-image
+       [src]="product.imgUrl"
+       alt="...">
+  <mat-card-content>
+    <div class="row justify-content-between align-items-baseline">
+      <div class="col-6"><h3 style="font-size: 24px;margin-top: 0;" [routerLink]="['/products/', product._id]">{{product.title}}</h3></div>
+      <div class="col-6">
+        <div *ngIf="wishlist" class="row justify-content-end">
           <wishlist-button [product]="product"></wishlist-button>
         </div>
-        <div *ngIf="showDelete" class="heart">
-          <i (click)="delFromWishlist()" class="fa fa-times fa-2" aria-hidden="true"></i>
+        <div *ngIf="showDelete" class="row justify-content-end">
+          <i (click)="delFromWishlist()" class="fa fa-times fa-2" style="font-size: 2em;" aria-hidden="true"></i>
         </div>
-      </mat-card-actions>
-      <mat-card-actions>
-        <div class="row justify-content-center" *ngIf="(showActions && shoppingCart) || showDelete">
-          <button mat-raised-button color="primary" class="full-width"
-                  *ngIf="shoppingCart.getQuantity(product)===0;else updateQuantity"
-                  (click)="addToCart(product)">Dodaj do koszyka</button>
-          <ng-template #updateQuantity>
-            <app-product-quantity class="full-width" [product]="product" [shopping-cart]="shoppingCart"></app-product-quantity>
-          </ng-template>
-        </div>
-      </mat-card-actions>
-    </mat-card>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">Odmiana: {{product.category}}</div>
+      <div class="col-12">Cena: <strong>{{product.price}} zł</strong></div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+
+  </mat-card-actions>
+  <mat-card-actions>
+    <div class="row justify-content-center" *ngIf="(showActions && shoppingCart) || showDelete">
+      <button mat-raised-button color="primary" class="full-width"
+              *ngIf="shoppingCart.getQuantity(product)===0;else updateQuantity"
+              (click)="addToCart(product)">Dodaj do koszyka
+      </button>
+      <ng-template #updateQuantity>
+        <app-product-quantity class="full-width" [product]="product"
+                              [shopping-cart]="shoppingCart"></app-product-quantity>
+      </ng-template>
+    </div>
+  </mat-card-actions>
+</mat-card>

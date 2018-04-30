@@ -1,135 +1,28 @@
 
 
-.itemsTable{
-    width: 100%;
-    border-top: 0;
-}
-
-.itemsTable tr{
-    display: flex;
-    justify-content:space-between;
-    border-bottom: 1px solid #eaeaea;
-    padding: 5px 10px;
-}
-
-.itemInfo{
-    padding: 10px;
-}
-
-.itemInfo a{
- font-weight: 600;
-}
-
-.itemInfo span{
-    display: block;
-}
-
-.itemInfo span strong{
-    font-size: 16px;
-}
-
-.pName{
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-}
-
-.end{
-    background: #f3f3f3;
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.end a{
-    cursor: pointer;
-}
-
 img {
     max-width: 200px;
     height: auto;
     vertical-align: middle;
   }
 
-  app-product-quantity{
-      padding: 10px;
-  }
 
-  #test{
-      display: flex;
-      height: 100%;
-  }
+.mat-column-count{
+max-width: 300px;
+}
 
-  .delete{
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 18px;
-      color: #404040;
-  }
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  min-width: 300px;
+}
 
-  .summary{
-      display: flex;
-      justify-content: space-evenly;
-      margin: 15px 0;
-      padding: 20px;
-  }
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
 
-  .summary button{
-      margin: 0 30px;
-  }
-/* 
-  * + * {
-    margin-top: 1.5em;
-  } */
-
-  .content {
-    margin-top: 1.5em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #ccc;
-    padding-top: 40px;
-  }
-
-  h2 {
-    font-size: 24px;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 10px;
-  }
-  
-  .content button {
-    width: 20%;
-  }
-
-  .fa {
-    color: orange;
-    font-size: 8rem;
-    
-  }
-
-  .line {
-    width: 100%;
-    padding: 20px;
-  }
-  
-  .line hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-  }
-
-  .test{
-    margin: 0;
-  }
-
-
-  .title-margin{
-    margin-top: 1.5em;
-  }
+.mat-row{
+  padding: 10px;
+}

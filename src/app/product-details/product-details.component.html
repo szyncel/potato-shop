@@ -1,26 +1,45 @@
-<div *ngIf="product && shoppingCart" class="row">
+<div *ngIf="product && shoppingCart">
+  <mat-toolbar class="outer-space-bottom">
+    <mat-toolbar-row>
+      <div class="full-width">
+        <div class="row">
+          <div class="col-auto"><h1>Szczególy produktu</h1></div>
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <mat-card>
+          <div class="row">
+            <div class="col-6">
+              <img [src]="product.imgUrl" alt="trololo">
+            </div>
+            <div class="col-4">
+              <mat-list role="list">
+                <mat-list-item role="listitem"><h1>{{product.title}}</h1></mat-list-item>
+                <mat-list-item role="listitem">Cena: <strong> {{product.price}} zł</strong></mat-list-item>
+                <mat-list-item role="listitem">
+                    Lista życzeń
+                    <wishlist-button [product]="product"></wishlist-button>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                  <div style="width:100%;">
+                    <button *ngIf="shoppingCart.getQuantity(product)===0;else updateQuantity" (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>
+                    <ng-template #updateQuantity>
+                      <app-product-quantity  [product]="product" [shopping-cart]="shoppingCart"></app-product-quantity>
+                    </ng-template>
+                  </div>
+                </mat-list-item>
+              </mat-list>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 
-  <div class="col">
-    <img [src]="product.imgUrl" alt="trololo">
-  </div>
-  <div class="right">
-    <h1 class="title">{{product.title}}</h1>
-    <div class="product-category">
-      <h2>{{product.category}}</h2>
-    </div>
-    <div class="product-price">
-      <h2 class="price">{{product.price}} zł</h2>
-    </div>
-    <div class="middle">
-      <span>Lista życzeń </span>
-      <wishlist-button  [product]="product"></wishlist-button>
-    </div>
-    <div class="bottom">
-      <button *ngIf="shoppingCart.getQuantity(product)===0;else updateQuantity" (click)="addToCart(product)" class="card_button">Dodaj do koszyka</button>
-      <ng-template #updateQuantity>
-        <app-product-quantity [product]="product" [shopping-cart]="shoppingCart"></app-product-quantity>
-      </ng-template>
-    </div>
-  </div>
+
 
 </div>

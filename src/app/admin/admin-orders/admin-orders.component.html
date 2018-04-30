@@ -1,28 +1,87 @@
-<ng-container *ngIf="orders">
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <app-admin-navigation></app-admin-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container">
+      <mat-toolbar class="outer-space-bottom background-transparent">
+        <mat-toolbar-row>
+          <div class="full-width">
+            <div class="row">
+              <div class="col-auto"><h1>Lista zamówień</h1></div>
+              <div class="col"></div>
+            </div>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
 
 
-  <h2 fxLayoutAlign="center">Zarządzanie zamówieniami</h2>
-  <hr>
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource">
 
-  <table id="customers">
-    <tr>
-      <th>Id</th>
-      <th>Data zamówienia</th>
-      <th>Suma</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let item of orders">
-      <td>{{item._id}}</td>
-      <td>{{item.datePlaced}}</td>
-      <td></td>
-      <td></td>
-      <td><a [routerLink]="['/admin/orders/', item._id]">Szczegóły</a></td>
-    </tr>
-  </table>
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> ID</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?._id}}</mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="data">
+            <mat-header-cell *matHeaderCellDef> Data</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.datePlaced}}</mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="suma">
+            <mat-header-cell *matHeaderCellDef> Suma</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.totalOrderPrice}} zł</mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element?.status}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-raised-button color="primary" (click)="onDetailsDialog(element?._id)">Szczegóły</button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+    </div>
+
+
+    <!--<ng-container *ngIf="orders">-->
+    <!--<h2 fxLayoutAlign="center">Zarządzanie zamówieniami</h2>-->
+    <!--<hr>-->
+
+    <!--<table id="customers">-->
+    <!--<tr>-->
+    <!--<th>Id</th>-->
+    <!--<th>Data zamówienia</th>-->
+    <!--<th>Suma</th>-->
+    <!--<th>Status</th>-->
+    <!--<th></th>-->
+    <!--</tr>-->
+    <!--<tr *ngFor="let item of orders">-->
+    <!--<td>{{item._id}}</td>-->
+    <!--<td>{{item.datePlaced}}</td>-->
+    <!--<td></td>-->
+    <!--<td></td>-->
+    <!--<td><a [routerLink]="['/admin/orders/', item._id]">Szczegóły</a></td>-->
+    <!--</tr>-->
+    <!--</table>-->
+    <!--</ng-container>-->
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 
 
-
-
-</ng-container>

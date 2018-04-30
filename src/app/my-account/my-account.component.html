@@ -1,23 +1,52 @@
-<div class="container">
-  <div class="col-3">
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
     <app-user-menu></app-user-menu>
-  </div>
-  <div class="col-8">
-    <h1 class="title">Moje zestawienie</h1>
-    <p class="userInfo">
-      <strong> Witaj!</strong>
-      Po zalogowaniu się na konto użytkownika masz możliwość wglądu do swoich danych oraz ich aktualizacji. Aby przejść do edycji
-      wybierz odpowiedni link.</p>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="outer-space-bottom">
+      <mat-toolbar-row>
+        <div class="full-width">
+          <div class="row">
+            <div class="col"><h1>Moje zestawienie</h1></div>
+          </div>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <mat-card class="outer-space-bottom">
+            <strong> Witaj!</strong>
+            <p class="userInfo">Po zalogowaniu się na konto użytkownika masz możliwość wglądu do swoich danych oraz ich aktualizacji. Aby przejść
+            do edycji
+            wybierz odpowiedni link.</p>
+          </mat-card>
+        </div>
+      </div>
+    </div>
 
-    <h2 class="title">
-      <span class="left">Ostatnie zamówienia</span>
-      <span class="right">
-        <a routerLink="/my/orders">Zobacz wszystko</a>
-      </span>   
-    </h2>
+
+
+
+
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <div class="full-width">
+          <div class="row">
+            <div class="col-auto"><h2>Ostatnie zamówienia</h2></div>
+            <div class="col"></div>
+            <div class="col-auto">
+              <mat-chip  routerLink="/my/orders" color="primary" selected="true" style="padding: 10px; cursor: pointer">Zobacz wszystko</mat-chip>
+            </div>
+          </div>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
     <ng-container *ngIf="orders">
-      <ngx-datatable class="bootstrap tab" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="0" [rowHeight]="'auto'"
-        [rows]="rows">
+      <ngx-datatable class="bootstrap tab" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="0"
+                     [rowHeight]="'auto'"
+                     [rows]="rows">
         <ngx-datatable-column name="Zamówienie" prop="nr" [width]="200"></ngx-datatable-column>
         <ngx-datatable-column name="Data zamówienia" prop="date" [width]="150"></ngx-datatable-column>
         <ngx-datatable-column name="Suma" prop="sum" [width]="50"></ngx-datatable-column>
@@ -28,21 +57,25 @@
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>
-    
-  </ng-container>
 
-    <h2 class="title">
-      <span class="left">Dane użytkownika</span>
-      <span class="right">
-        <a routerLink="/my/settings">Edytuj</a>
-      </span>
-    </h2>
+    </ng-container>
+
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <div class="full-width">
+          <div class="row">
+            <div class="col-auto"><h2>Dane użytkownika</h2></div>
+            <div class="col"></div>
+            <div class="col-auto">
+              <mat-chip color="primary" selected="true" style="padding: 10px; cursor: pointer" routerLink="/my/settings">Edytuj</mat-chip>
+            </div>
+          </div>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
     <div *ngIf="user" class="orderInfo address">
-      <span >{{user.name}} {{user.surname}}</span>
+      <span>{{user.name}} {{user.surname}}</span>
       <span>{{user.email}}</span>
     </div>
-
-
-
-  </div>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

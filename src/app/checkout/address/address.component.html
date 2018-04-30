@@ -1,99 +1,63 @@
-<app-checkout-navbar>
-</app-checkout-navbar>
+<app-checkout-navbar></app-checkout-navbar>
 
-<div class="col">
-  <h2 class="title big" fxLayoutAlign="center">Adres dostawy</h2>
-  <hr>
-</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <mat-card>
+        <form [formGroup]="addressForm" (submit)="addressForm.dirty && addressForm.valid && onSave()"
+              novalidate>
+          <mat-card-header>
+            <div class="row">
+              <h1 style="text-align: center">Adres dostawy</h1>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="row">
+              <mat-form-field class="col-12">
+                <input matInput placeholder="Imię" formControlName="firstName" required>
+                <mat-error *ngIf="addressForm.get('firstName').hasError('required')">
+                  Pole jest <strong>wymagane</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="col-12">
+                <input matInput placeholder="Nazwisko" formControlName="lastName" required>
+                <mat-error *ngIf="addressForm.get('lastName').hasError('required')">
+                  Pole jest <strong>wymagane</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="col-12">
+                <input matInput placeholder="Adres" formControlName="address" required>
+                <mat-error *ngIf="addressForm.get('address').hasError('required')">
+                  Pole jest <strong>wymagane</strong>
+                </mat-error>
+              </mat-form-field>
 
-<!-- ................. -->
-<div class="content">
-  <form #f="ngForm">
-    <div class="row">
-      <div class="col-25">
-        <label for="firstname">Imię*</label>
-      </div>
-      <div class="col-75">
-        <input [ngClass]="{'has-danger':firstname.touched && firstname.invalid}" class="has-danger"
-         type="text" id="firstname" name="firstname" #firstname="ngModel" [(ngModel)]="shipping.firstName" placeholder="Twoje imie.." required [rangeLength]="[3, 15]">
-         <div class="alert-danger" *ngIf="firstname.touched && firstname.invalid">
-            <div *ngIf="firstname.errors.required"><span>Pole obowiązkowe</span> </div>
-            <div *ngIf="firstname.errors.rangeLength"><span>Range error min:3 max: 15</span></div>
-          </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="lastname">Nazwisko*</label>
-      </div>
-      <div class="col-75">
-        <input [ngClass]="{'has-danger':lastname.touched && lastname.invalid}" type="text" id="lastname" name="lastname" #lastname="ngModel" [(ngModel)]="shipping.lastName" placeholder="Twoje nazwisko.." required [rangeLength]="[3, 15]">
-        <div class="alert-danger" *ngIf="lastname.touched && lastname.invalid">
-            <div *ngIf="lastname.errors.required"><span>Pole obowiązkowe</span> </div>
-            <div *ngIf="lastname.errors.rangeLength"><span>Range error min:3 max: 15</span></div>
-          </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="address">Ulica, nr domu / nr mieszkania*</label>
-      </div>
-      <div class="col-75">
-        <input [ngClass]="{'has-danger':address.touched && address.invalid}" type="text" id="address" name="address" #address="ngModel" [(ngModel)]="shipping.address" placeholder="Twój adres.." required [rangeLength]="[3, 25]">
-        <div class="alert-danger" *ngIf="address.touched && address.invalid">
-            <div *ngIf="address.errors.required"><span>Pole obowiązkowe</span> </div>
-            <div *ngIf="address.errors.rangeLength"><span>Range error min:3 max: 15</span></div>
-          </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="code">Kod pocztowy*</label>
-      </div>
-      <div class="col-75">
-        <input [ngClass]="{'has-danger':code.touched && code.invalid}" type="text" id="code" name="code" #code="ngModel" [(ngModel)]="shipping.code" placeholder="Twój kod pocztowy.." required [rangeLength]="[4, 8]">
-        <div class="alert-danger" *ngIf="code.touched && code.invalid">
-            <div *ngIf="code.errors.required"><span>Pole obowiązkowe</span> </div>
-            <div *ngIf="code.errors.rangeLength"><span>Range error min:4 max: 8</span></div>
-          </div>
-      </div>
-    </div>
+              <mat-form-field class="col-12">
+                <input matInput placeholder="Miasto" formControlName="city" required>
+                <mat-error *ngIf="addressForm.get('city').hasError('required')">
+                  Pole jest <strong>wymagane</strong>
+                </mat-error>
+              </mat-form-field>
 
-    <div class="row">
-      <div class="col-25">
-        <label for="City">Miasto*</label>
-      </div>
-      <div class="col-75">
-        <input [ngClass]="{'has-danger':city.touched && city.invalid}" type="text" id="City" name="City" #city="ngModel" [(ngModel)]="shipping.city" placeholder="Twoje miasto.." required [rangeLength]="[3, 20]">
-        <div class="alert-danger" *ngIf="city.touched && city.invalid">
-            <div *ngIf="city.errors.required"><span>Pole obowiązkowe</span> </div>
-            <div *ngIf="city.errors.rangeLength"><span>Range error min:3 max: 15</span></div>
-          </div>
-      </div>
+              <mat-form-field class="col-12">
+                <input matInput placeholder="Państwo" formControlName="country" required>
+                <mat-error *ngIf="addressForm.get('country').hasError('required')">
+                  Pole jest <strong>wymagane</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="col-12">
+                <input matInput placeholder="Kod pocztowy" formControlName="code" required>
+                <mat-error *ngIf="addressForm.get('code').hasError('required')">
+                  Pole jest <strong>wymagane</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button [disabled]="addressForm.invalid || addressForm.pristine" mat-raised-button>Dalej</button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
     </div>
-
-    <div class="row">
-      <div class="col-25">
-        <label for="Country">Kraj*</label>
-      </div>
-      <div class="col-75">
-        <select  id="Country" name="Country" #country="ngModel" [(ngModel)]="shipping.country" required>
-          <option value="Polska">Polska</option>
-          <option value="Chiny">Chiny</option>
-          <option value="Murzyny">Murzyny</option>
-        </select>
-        <div class="alert-danger" *ngIf="country.touched && country.invalid">
-            <div *ngIf="country.errors.required"><span>Pole obowiązkowe</span> </div>
-          </div>
-      </div>
-    </div>
-    <div id="inf">
-        <span>*pola obowiązkowe</span>
-    </div>
-    
-    
-    <div class="row">
-        <button [disabled]="f.invalid" [ngClass]="{'disabled':f.invalid}" type="button" (click)="goToNext(f)">Dalej</button>
-    </div>
-  </form>
+  </div>
 </div>

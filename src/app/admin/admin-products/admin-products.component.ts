@@ -1,31 +1,83 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../product.service';
-// import { NgProgress } from 'ngx-progressbar';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ProductService} from '../../product.service';
+import {MatDialog, MatTableDataSource} from "@angular/material";
+import {Subject} from "rxjs/Subject";
+import {Product} from "../../store/models/product";
+import {Observable} from "rxjs/Observable";
+import {AddComponent} from "./add/add.component";
+import {EditComponent} from "./edit/edit.component";
+import {RemoveComponent} from "./remove/remove.component";
+
 
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit {
-  productsList$;
+export class AdminProductsComponent implements OnInit, OnDestroy {
+
+  productsList$: Observable<Product[]>;
+
+  displayedColumns = ['tytul', 'cena', 'kategoria', 'action'];
+
+  dataSource;
+
+
+  /** Event emitter, który wskazuje do kiedy robić emisję na wszystkie obserwatory tego komponentu */
+  private destroyed$: Subject<boolean> = new Subject();
 
   constructor(
     private productService: ProductService,
-    // public ngProgress: NgProgress
+    private dialog: MatDialog
   ) {
-    this.productsList$=this.productService.getAll();
-    // this.productService.getAll()
-    // .subscribe(products=>{
-    //   console.log(products);    
-    // })
-   }
 
-  ngOnInit() {
-    // this.productService.getAll()
-    // .subscribe(products=>{
-    //   this.productsList$=products;     
-    // })
   }
 
+  ngOnInit() {
+    this.refreshProductList();
+  }
+
+  refreshProductList() {
+    this.productsList$ = this.productService.getAll();
+    this.productsList$.subscribe((res: Product[]) => {
+      this.dataSource = new MatTableDataSource(res);
+    });
+  }
+
+  /** Angular ngOnDestroy lifecycle hook */
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+  }
+
+  onAddProductDialog() {
+    let dialogRef = this.dialog.open(AddComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.refreshProductList();
+      dialogRef = null;
+    });
+  }
+
+  onEditProductDialog(productId) {
+    let dialogRef = this.dialog.open(EditComponent, {
+      width: '400px',
+      data: {id: productId}
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.refreshProductList();
+      dialogRef = null;
+    });
+  }
+
+  onRemoveProductDialog(productId) {
+    let dialogRef = this.dialog.open(RemoveComponent, {
+      width: '400px',
+      data: {id: productId}
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.refreshProductList();
+      dialogRef = null;
+    });
+  }
 }

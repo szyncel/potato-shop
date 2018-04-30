@@ -1,0 +1,36 @@
+<form [formGroup]="form" (submit)="form.valid && onSubmit()" novalidate>
+  <div matDialogTitle>
+    <div class="full-width">
+      <div class="row">
+        <div class="col">
+          <span data-name="title-text">Usuwanie produktu</span>
+        </div>
+        <div class="col-auto">
+          <button data-name="dialog-close" id="dialog-close" type="button" tabindex="0"
+                  mat-icon-button matDialogClose>
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div matDialogContent>
+    <div class="outer-space-top outer-space-bottom">
+      <mat-checkbox (change)="onConfirmationChange($event)"> Rozumiem, że usuwam wybrany produkt.</mat-checkbox>
+    </div>
+  </div>
+  <div matDialogActions>
+    <div class="full-width">
+      <div class="row justify-content-end">
+          <div class="col-auto">
+            <button matDialogClose mat-raised-button type="button"> Anuluj</button>
+          </div>
+          <div class="col-auto">
+            <button [disabled]="!isConfirmed" [ngClass]="{ disabled: form.invalid }"
+                    mat-raised-button color="warn"> Usuń katalog
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>
+</form>

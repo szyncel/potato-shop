@@ -1,30 +1,38 @@
-<ng-container *ngIf="order">
-    <h2>Nr zamówienia {{order._id}}</h2>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <app-admin-navigation></app-admin-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-container *ngIf="order">
+      <h2>Nr zamówienia {{order._id}}</h2>
 
-  <p>Data zamówienia: {{order.datePlaced}}</p>
-  <p>Numer klienta: {{order._creator}}</p>
-  <p>Status zamówienia: "Przygotowanie"</p>
+      <p>Data zamówienia: {{order.datePlaced}}</p>
+      <p>Numer klienta: {{order._creator}}</p>
+      <p>Status zamówienia: "Przygotowanie"</p>
 
-  <h3>Zamówione produkty</h3>
-  <table id="customers">
-    <tr>
-      <th>Nazwa</th>
-      <th>Cena</th>
+      <h3>Zamówione produkty</h3>
+      <table id="customers">
+        <tr>
+          <th>Nazwa</th>
+          <th>Cena</th>
 
-    </tr>
-    <tr *ngFor="let item of order.items">
-      <td>{{item.product.title}}</td>
-      <td>{{item.totalPrice}}</td>
-    </tr>
-  </table>
-  <p>Łączna kwota: "123123"</p>
-
-
-  <p>Adres dostawy</p>
-  <p>{{order.shipping.firstName}} {{order.shipping.lastName}}</p>
-  <p>{{order.shipping.address}}</p>
-  <p>{{order.shipping.code}} {{order.shipping.city}}</p>
-</ng-container>
+        </tr>
+        <tr *ngFor="let item of order.items">
+          <td>{{item.product.title}}</td>
+          <td>{{item.totalPrice}}</td>
+        </tr>
+      </table>
+      <p>Łączna kwota: "123123"</p>
 
 
-<button routerLink="/admin/orders">Wróć do wszystkich zamówień</button>
+      <p>Adres dostawy</p>
+      <p>{{order.shipping.firstName}} {{order.shipping.lastName}}</p>
+      <p>{{order.shipping.address}}</p>
+      <p>{{order.shipping.code}} {{order.shipping.city}}</p>
+    </ng-container>
+    <button routerLink="/admin/orders">Wróć do wszystkich zamówień</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+

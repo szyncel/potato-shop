@@ -1,19 +1,7 @@
+/*.mat-sidenav-container {*/
+  /*min-height: 100vh;*/
+/*}*/
 
-@media screen and (min-width: 42em) and (max-width: 60em) {
-  .cards_item {
-    width: 50%;
-  }
-  .no-flexbox .cards_item:nth-child(2n+1) {
-    clear: both;
-  }
-}
-
-@media screen and (min-width: 60em) {
-  .cards_item {
-    width: 33.3333%;
-  }
-  .no-flexbox .cards_item:nth-child(3n+1) {
-    clear: both;
-  }
-}
-
+/*.mat-drawer{*/
+  /*width: 250px;*/
+/*}*/

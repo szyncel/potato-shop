@@ -1,12 +1,12 @@
-import { Injectable, EventEmitter, Output } from '@angular/core';
-import { User } from './models/user';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import {EventEmitter, Injectable, Output} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {JwtHelper, tokenNotExpired} from 'angular2-jwt';
 
 import 'rxjs/add/operator/map';
 import {Auth} from "./store/models/auth";
+import {User} from "./store/models/user";
 
 @Injectable()
 export class AuthService {
@@ -15,7 +15,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+  }
 
 
   change() {
@@ -28,10 +29,10 @@ export class AuthService {
 
 
   get currentUser() {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (!token) return null;
 
-    let jwtHelper = new JwtHelper();
+    const jwtHelper = new JwtHelper();
     return jwtHelper.decodeToken(token);
   }
 
@@ -41,7 +42,7 @@ export class AuthService {
   }
 
   signin(user: Auth): Observable<any> {
-    return this.http.post('/api/users/login', user, { observe: 'response' })
+    return this.http.post('/api/users/login', user, {observe: 'response'})
       .map(response => {
         const res: any = response.body;
         if (res.token) {
@@ -63,34 +64,34 @@ export class AuthService {
 
 
   getUser() {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.get('/api/users/me', { headers: headers });
+    return this.http.get('/api/users/me', {headers: headers});
   }
 
   updateUser(user: User) {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.put('/api/users/update', user, { headers: headers });
+    return this.http.put('/api/users/update', user, {headers: headers});
   }
 
   changeEmail(data) {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
 
-    return this.http.put('/api/users/update-email', data, { headers: headers });
+    return this.http.put('/api/users/update-email', data, {headers: headers});
   }
 
 
-  changePassword(data) {
-    let token = localStorage.getItem('token');
+  changePassword(data: User) {
+    const token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
 
-    return this.http.put('/api/users/update-password', data, { headers: headers });
+    return this.http.put('/api/users/update-password', data, {headers: headers});
   }
 
 }

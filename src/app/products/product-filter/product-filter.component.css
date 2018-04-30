@@ -1,4 +1,6 @@
-
+.mat-list-item{
+  outline: none;
+}
 
 .active {
   background: orange;
@@ -55,7 +57,10 @@ li.filter label{
   height: 14px;
   border: 1px solid #c3c2c9;
   background: #fff;
-  /* border-radius: 2px; */
+   border-radius: 2px;
+
+
+
 }
 
 
@@ -66,7 +71,7 @@ input[type=checkbox]{
     color: #f3f3f3;
     text-align: center;
     line-height: 15px;
-  
+
 }
 
 

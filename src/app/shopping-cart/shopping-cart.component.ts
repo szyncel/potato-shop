@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from '../shopping-cart.service';
-import { ShoppingCart } from '../models/shopping-cart';
-import { Product } from '../models/product';
+import {Component, OnInit} from '@angular/core';
+import {ShoppingCartService} from '../shopping-cart.service';
+import {ShoppingCart} from '../models/shopping-cart';
+import {Product} from '../models/product';
+import {MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,13 +10,27 @@ import { Product } from '../models/product';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
+
+  displayedColumns = ['image', 'name', 'count', 'action'];
+
+  dataSource;
+
   cart: ShoppingCart;
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  constructor(private shoppingCartService: ShoppingCartService) {
+  }
+
+
+  ngOnInit() {
+    this.refreshShoppingCart();
+  }
 
 
   async refreshShoppingCart() {
-    (await this.shoppingCartService.getCart()).subscribe(cart => this.cart = cart)
+    (await this.shoppingCartService.getCart()).subscribe(cart => {
+      this.cart = cart
+      this.dataSource = new MatTableDataSource(this.cart.items);
+    })
   }
 
   async clearCart() {
@@ -30,9 +45,5 @@ export class ShoppingCartComponent implements OnInit {
       this.refreshShoppingCart();
       this.shoppingCartService.change();
     });
-  }
-
-  ngOnInit() {
-    this.refreshShoppingCart();
   }
 }
