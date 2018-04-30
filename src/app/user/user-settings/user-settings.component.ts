@@ -56,6 +56,8 @@ export class UserSettingsComponent implements OnInit {
     this.authService.updateUser(model).subscribe(res => {
       this.snackBar.open('Edycja przebiegła pomyślnie', 'Ok', {duration: 3500});
       // this.router.navigate(['my/account']);
+    }, err => {
+      this.personalErrors = err.error;
     })
 
   }

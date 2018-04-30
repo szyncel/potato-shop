@@ -1,26 +1,57 @@
 <ng-container *ngIf="!user else main">
   <h2 class="title big"> Zaloguj sie aby mieć dostęp do listy życzeń</h2>
 </ng-container>
-<ng-template #main >
-    <ng-container  *ngIf="wishlist && cart && wishlistLength">
-        <h2 class="title big" fxLayoutAlign="center">MOJA LISTA ŻYCZEŃ({{wishlist.totalItemsCount}})</h2>
-        <hr>
-        <ul class="cards">
-          <ng-container *ngFor="let p of wishlist.items">
-            <app-product-card [del]="true" [product]="p.product" [shopping-cart]="cart" class="cards_item"></app-product-card>
-          </ng-container>
-        </ul>
-      </ng-container>
-      <ng-container *ngIf="!wishlistLength">
-          <h2 class="title big">MOJA LISTA ŻYCZEŃ</h2>
-        <div class="content">
-            <i class="fa fa-heart-o"></i>
-            <h2 class="title big">TWOJA LISTA JEST JESZCZE PUSTA</h2>
-            <div class="line">
-                <hr>
-            </div>
-            <button routerLink="/">KONTYNUUJ ZAKUPY</button>
+<ng-template #main>
+  <ng-container *ngIf="wishlist && cart && wishlistLength">
+    <mat-toolbar class="outer-space-bottom">
+      <mat-toolbar-row>
+        <div class="full-width">
+          <div class="row">
+            <div class="col-auto"><h1>Moja lista życzeń</h1></div>
+            <div class="col"></div>
+            <div class="col-auto">Ilość: {{wishlist.totalItemsCount}}</div>
+          </div>
         </div>
-      </ng-container>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3" *ngFor="let p of wishlist.items">
+          <app-product-card [del]="true" [product]="p.product" [shopping-cart]="cart"
+                            class="cards_item"></app-product-card>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!wishlistLength">
+    <div class="row justify-content-center">
+      <div class="col"><h1 style="text-align: center">TWOJA LISTA JEST PUSTA</h1></div>
+    </div>
+    <div class="row justify-content-center">
+      <button mat-raised-button color="primary" routerLink="/">KONTYNUUJ ZAKUPY</button>
+    </div>
+  </ng-container>
+
+  <!--looool-->
+  <!--<ng-container  *ngIf="wishlist && cart && wishlistLength">-->
+  <!--<h2 class="title big" fxLayoutAlign="center">MOJA LISTA ŻYCZEŃ({{wishlist.totalItemsCount}})</h2>-->
+  <!--<hr>-->
+  <!--<ul class="cards">-->
+  <!--<ng-container *ngFor="let p of wishlist.items">-->
+  <!--<app-product-card [del]="true" [product]="p.product" [shopping-cart]="cart" class="cards_item"></app-product-card>-->
+  <!--</ng-container>-->
+  <!--</ul>-->
+  <!--</ng-container>-->
+  <!--<ng-container *ngIf="!wishlistLength">-->
+  <!--<h2 class="title big">MOJA LISTA ŻYCZEŃ</h2>-->
+  <!--<div class="content">-->
+  <!--<i class="fa fa-heart-o"></i>-->
+  <!--<h2 class="title big">TWOJA LISTA JEST JESZCZE PUSTA</h2>-->
+  <!--<div class="line">-->
+  <!--<hr>-->
+  <!--</div>-->
+  <!--<button routerLink="/">KONTYNUUJ ZAKUPY</button>-->
+  <!--</div>-->
+  <!--</ng-container>-->
 </ng-template>
 

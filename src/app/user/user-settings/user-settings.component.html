@@ -1,135 +1,273 @@
-<div class="container">
-  <app-user-menu></app-user-menu>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <app-user-menu></app-user-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="outer-space-bottom">
+      <mat-toolbar-row>
+        <div class="full-width">
+          <div class="row">
+            <div class="col"><h1>Moje dane</h1></div>
+          </div>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
 
-  <mat-toolbar>
-    <mat-toolbar-row>
-      <div class="full-width">
-        <div class="row">
-          <div class="col"><h1>Moje dane</h1></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" >
+          <form [formGroup]="personalDataForm" (submit)="personalDataForm.dirty && personalDataForm.valid && onSaveData()"
+                novalidate>
+            <mat-card class="outer-space-bottom">
+              <mat-card-header>
+                <div class="full-width">
+                  <div class="row align-items-center">
+                    <div class="col">Dane osobowe</div>
+                  </div>
+                </div>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="row">
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Imię" formControlName="name" required>
+                    <mat-error *ngIf="personalDataForm.get('name').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Nazwisko" formControlName="surname" required>
+                    <mat-error *ngIf="personalDataForm.get('surname').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+              <mat-error *ngIf="personalErrors">{{ personalErrors.error}}</mat-error>
+              </mat-card-actions>
+              <mat-card-actions>
+                <button [disabled]="personalDataForm.invalid || personalDataForm.pristine" mat-raised-button class="col-auto"
+                        color="primary">Zapisz
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </form>
+        </div>
+        <div class="col-md-6" >
+          <form [formGroup]="emailForm" (submit)="emailForm.dirty && emailForm.valid && onChangeEmail()" novalidate>
+            <mat-card class="outer-space-bottom">
+              <mat-card-header>
+                <div class="full-width">
+                  <div class="row align-items-center">
+                    <div class="col">Zmiana adresu Email</div>
+                  </div>
+                </div>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="row">
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Adres Email" formControlName="email" required email>
+                    <mat-error
+                      *ngIf="emailForm.get('email').hasError('email') && !emailForm.get('email').hasError('required')">
+                      Wprowadź poprawny adres Email
+                    </mat-error>
+                    <mat-error *ngIf="emailForm.get('email').hasError('required')">
+                      Pole jest <strong>wymagany</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="col-12">
+                    <input matInput type="password" placeholder="Hasło" formControlName="password" required>
+                    <mat-error *ngIf="emailForm.get('password').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+                <mat-error *ngIf="emailErrors">{{ emailErrors.error}}</mat-error>
+              </mat-card-actions>
+              <mat-card-actions>
+                <button [disabled]=" emailForm.invalid || emailForm.pristine" mat-raised-button class="col-auto"
+                        color="primary">Zapisz
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </form>
+
+        </div>
+        <div class="col-md-6" >
+          <form [formGroup]="passwordForm" (submit)="passwordForm.dirty && passwordForm.valid && onChangePassword()"
+                novalidate>
+            <mat-card class="outer-space-bottom">
+              <mat-card-header>
+                <div class="full-width">
+                  <div class="row align-items-center">
+                    <div class="col">Zmiana hasła</div>
+                  </div>
+                </div>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="row">
+                  <mat-form-field class="col-12">
+                    <input matInput type="password" placeholder="Stare hasło" formControlName="oldPassword" required>
+                    <mat-error *ngIf="passwordForm.get('oldPassword').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="col-12">
+                    <input matInput type="password" placeholder="Nowe hasło" formControlName="newPassword" required>
+                    <mat-error *ngIf="passwordForm.get('newPassword').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="col-12">
+                    <input matInput type="password" placeholder="Powtórz hasło" formControlName="repeatPassword" required>
+                    <mat-error *ngIf="passwordForm.get('repeatPassword').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+                <mat-error *ngIf="passwordErrors">{{ passwordErrors.error}}</mat-error>
+              </mat-card-actions>
+              <mat-card-actions>
+                <button [disabled]="passwordForm.invalid || passwordForm.pristine" mat-raised-button class="col-auto"
+                        color="primary">Zapisz
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </form>
         </div>
       </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
+    </div>
 
-  <form [formGroup]="personalDataForm" (submit)="personalDataForm.dirty && personalDataForm.valid && onSaveData()"
-        novalidate>
-    <mat-card>
-      <mat-card-header>
-        <div class="full-width">
-          <div class="row align-items-center">
-            <div class="col">Dane osobowe</div>
-          </div>
-        </div>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="row">
-          <mat-form-field class="col-12">
-            <input matInput placeholder="Imię" formControlName="name" required>
-            <mat-error *ngIf="personalDataForm.get('name').hasError('required')">
-              Pole jest <strong>wymagane</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="col-12">
-            <input matInput placeholder="Nazwisko" formControlName="surname" required>
-            <mat-error *ngIf="personalDataForm.get('surname').hasError('required')">
-              Pole jest <strong>wymagane</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-      <!--<mat-card-actions>-->
-      <!--<mat-error *ngIf="error; let error">{{ error}}</mat-error>-->
-      <!--</mat-card-actions>-->
-      <mat-card-actions>
-        <button [disabled]="personalDataForm.invalid || personalDataForm.pristine" mat-raised-button class="col-auto"
-                color="primary">Zapisz
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
-  <form [formGroup]="passwordForm" (submit)="passwordForm.dirty && passwordForm.valid && onChangePassword()"
-        novalidate>
-    <mat-card>
-      <mat-card-header>
-        <div class="full-width">
-          <div class="row align-items-center">
-            <div class="col">Zmiana hasła</div>
-          </div>
-        </div>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="row">
-          <mat-form-field class="col-12">
-            <input matInput type="password" placeholder="Stare hasło" formControlName="oldPassword" required>
-            <mat-error *ngIf="passwordForm.get('oldPassword').hasError('required')">
-              Pole jest <strong>wymagane</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="col-12">
-            <input matInput type="password" placeholder="Nowe hasło" formControlName="newPassword" required>
-            <mat-error *ngIf="passwordForm.get('newPassword').hasError('required')">
-              Pole jest <strong>wymagane</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="col-12">
-            <input matInput type="password" placeholder="Powtórz hasło" formControlName="repeatPassword" required>
-            <mat-error *ngIf="passwordForm.get('repeatPassword').hasError('required')">
-              Pole jest <strong>wymagane</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <mat-error *ngIf="passwordErrors">{{ passwordErrors.error}}</mat-error>
-      </mat-card-actions>
-      <mat-card-actions>
-        <button [disabled]="passwordForm.invalid || passwordForm.pristine" mat-raised-button class="col-auto"
-                color="primary">Zapisz
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
-  <form [formGroup]="emailForm" (submit)="emailForm.dirty && emailForm.valid && onChangeEmail()" novalidate>
-    <mat-card>
-      <mat-card-header>
-        <div class="full-width">
-          <div class="row align-items-center">
-            <div class="col">Zmiana adresu Email</div>
-          </div>
-        </div>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="row">
-          <mat-form-field class="col-12">
-            <input matInput placeholder="Adres Email" formControlName="email" required email>
-            <mat-error
-              *ngIf="emailForm.get('email').hasError('email') && !emailForm.get('email').hasError('required')">
-              Wprowadź poprawny adres Email
-            </mat-error>
-            <mat-error *ngIf="emailForm.get('email').hasError('required')">
-              Pole jest <strong>wymagany</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="col-12">
-            <input matInput type="password" placeholder="Hasło" formControlName="password" required>
-            <mat-error *ngIf="emailForm.get('password').hasError('required')">
-              Pole jest <strong>wymagane</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <mat-error *ngIf="emailErrors">{{ emailErrors.error}}</mat-error>
-      </mat-card-actions>
-      <mat-card-actions>
-        <button [disabled]=" emailForm.invalid || emailForm.pristine" mat-raised-button class="col-auto"
-                color="primary">Zapisz
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+    <!--<div class="row justify-content-center">-->
+      <!--<div class="col-8">-->
 
-  <button mat-raised-button color="primary" routerLink="/my/account">Wróć</button>
+        <!--<form [formGroup]="personalDataForm" (submit)="personalDataForm.dirty && personalDataForm.valid && onSaveData()"-->
+              <!--novalidate>-->
+          <!--<mat-card class="outer-space-bottom">-->
+            <!--<mat-card-header>-->
+              <!--<div class="full-width">-->
+                <!--<div class="row align-items-center">-->
+                  <!--<div class="col">Dane osobowe</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</mat-card-header>-->
+            <!--<mat-card-content>-->
+              <!--<div class="row">-->
+                <!--<mat-form-field class="col-12">-->
+                  <!--<input matInput placeholder="Imię" formControlName="name" required>-->
+                  <!--<mat-error *ngIf="personalDataForm.get('name').hasError('required')">-->
+                    <!--Pole jest <strong>wymagane</strong>-->
+                  <!--</mat-error>-->
+                <!--</mat-form-field>-->
+                <!--<mat-form-field class="col-12">-->
+                  <!--<input matInput placeholder="Nazwisko" formControlName="surname" required>-->
+                  <!--<mat-error *ngIf="personalDataForm.get('surname').hasError('required')">-->
+                    <!--Pole jest <strong>wymagane</strong>-->
+                  <!--</mat-error>-->
+                <!--</mat-form-field>-->
+              <!--</div>-->
+            <!--</mat-card-content>-->
+            <!--&lt;!&ndash;<mat-card-actions>&ndash;&gt;-->
+            <!--&lt;!&ndash;<mat-error *ngIf="error; let error">{{ error}}</mat-error>&ndash;&gt;-->
+            <!--&lt;!&ndash;</mat-card-actions>&ndash;&gt;-->
+            <!--<mat-card-actions>-->
+              <!--<button [disabled]="personalDataForm.invalid || personalDataForm.pristine" mat-raised-button class="col-auto"-->
+                      <!--color="primary">Zapisz-->
+              <!--</button>-->
+            <!--</mat-card-actions>-->
+          <!--</mat-card>-->
+        <!--</form>-->
+        <!--<form [formGroup]="passwordForm" (submit)="passwordForm.dirty && passwordForm.valid && onChangePassword()"-->
+              <!--novalidate>-->
+          <!--<mat-card class="outer-space-bottom">-->
+            <!--<mat-card-header>-->
+              <!--<div class="full-width">-->
+                <!--<div class="row align-items-center">-->
+                  <!--<div class="col">Zmiana hasła</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</mat-card-header>-->
+            <!--<mat-card-content>-->
+              <!--<div class="row">-->
+                <!--<mat-form-field class="col-12">-->
+                  <!--<input matInput type="password" placeholder="Stare hasło" formControlName="oldPassword" required>-->
+                  <!--<mat-error *ngIf="passwordForm.get('oldPassword').hasError('required')">-->
+                    <!--Pole jest <strong>wymagane</strong>-->
+                  <!--</mat-error>-->
+                <!--</mat-form-field>-->
+                <!--<mat-form-field class="col-12">-->
+                  <!--<input matInput type="password" placeholder="Nowe hasło" formControlName="newPassword" required>-->
+                  <!--<mat-error *ngIf="passwordForm.get('newPassword').hasError('required')">-->
+                    <!--Pole jest <strong>wymagane</strong>-->
+                  <!--</mat-error>-->
+                <!--</mat-form-field>-->
+                <!--<mat-form-field class="col-12">-->
+                  <!--<input matInput type="password" placeholder="Powtórz hasło" formControlName="repeatPassword" required>-->
+                  <!--<mat-error *ngIf="passwordForm.get('repeatPassword').hasError('required')">-->
+                    <!--Pole jest <strong>wymagane</strong>-->
+                  <!--</mat-error>-->
+                <!--</mat-form-field>-->
+              <!--</div>-->
+            <!--</mat-card-content>-->
+            <!--<mat-card-actions>-->
+              <!--<mat-error *ngIf="passwordErrors">{{ passwordErrors.error}}</mat-error>-->
+            <!--</mat-card-actions>-->
+            <!--<mat-card-actions>-->
+              <!--<button [disabled]="passwordForm.invalid || passwordForm.pristine" mat-raised-button class="col-auto"-->
+                      <!--color="primary">Zapisz-->
+              <!--</button>-->
+            <!--</mat-card-actions>-->
+          <!--</mat-card>-->
+        <!--</form>-->
+        <!--<form [formGroup]="emailForm" (submit)="emailForm.dirty && emailForm.valid && onChangeEmail()" novalidate>-->
+          <!--<mat-card class="outer-space-bottom">-->
+            <!--<mat-card-header>-->
+              <!--<div class="full-width">-->
+                <!--<div class="row align-items-center">-->
+                  <!--<div class="col">Zmiana adresu Email</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</mat-card-header>-->
+            <!--<mat-card-content>-->
+              <!--<div class="row">-->
+                <!--<mat-form-field class="col-12">-->
+                  <!--<input matInput placeholder="Adres Email" formControlName="email" required email>-->
+                  <!--<mat-error-->
+                    <!--*ngIf="emailForm.get('email').hasError('email') && !emailForm.get('email').hasError('required')">-->
+                    <!--Wprowadź poprawny adres Email-->
+                  <!--</mat-error>-->
+                  <!--<mat-error *ngIf="emailForm.get('email').hasError('required')">-->
+                    <!--Pole jest <strong>wymagany</strong>-->
+                  <!--</mat-error>-->
+                <!--</mat-form-field>-->
+                <!--<mat-form-field class="col-12">-->
+                  <!--<input matInput type="password" placeholder="Hasło" formControlName="password" required>-->
+                  <!--<mat-error *ngIf="emailForm.get('password').hasError('required')">-->
+                    <!--Pole jest <strong>wymagane</strong>-->
+                  <!--</mat-error>-->
+                <!--</mat-form-field>-->
+              <!--</div>-->
+            <!--</mat-card-content>-->
+            <!--<mat-card-actions>-->
+              <!--<mat-error *ngIf="emailErrors">{{ emailErrors.error}}</mat-error>-->
+            <!--</mat-card-actions>-->
+            <!--<mat-card-actions>-->
+              <!--<button [disabled]=" emailForm.invalid || emailForm.pristine" mat-raised-button class="col-auto"-->
+                      <!--color="primary">Zapisz-->
+              <!--</button>-->
+            <!--</mat-card-actions>-->
+          <!--</mat-card>-->
+        <!--</form>-->
 
-</div>
+      <!--</div>-->
+    <!--</div>-->
+
+
+    <button mat-raised-button color="primary" routerLink="/my/account">Wróć</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
