@@ -1,14 +1,3 @@
-.content{
-    width: 50%;
-    max-width: 50%;
-    margin: 0 auto;
-}
-
-.col{
-    width: 80%;
-    max-width: 80%;
-    margin: 0 auto;
-}
 
 
 app-checkout-navbar{
@@ -18,35 +7,4 @@ app-checkout-navbar{
     margin: 0 auto;
 }
 
-/* ..................... */
-
-* {
-    box-sizing: border-box;
-}
-
-input[type=text], select, textarea {
-    margin:0;
-    width: 100%;
-    padding: 12px;
-    resize: vertical;
-}
-
-.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
-
-
-#inf{
-    /* margin-top: 10px; */
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-
-.has-danger{
-    border: 1px solid rgba(216, 33, 33, 0.842);
-  }
 

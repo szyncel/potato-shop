@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Shipping} from '../../models/form-data';
 import {OrderService} from '../../order.service';
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-address',
@@ -12,27 +13,47 @@ export class AddressComponent implements OnInit {
 
   shipping: Shipping;
 
-  form: any;
+  addressForm: FormGroup;
 
   constructor(
     private router: Router,
-    private orderService: OrderService) {
+    private orderService: OrderService,
+    private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    // console.log(this.orderService.getAddress());
+    this.createForm();
     this.shipping = this.orderService.getAddress();
-    console.log('Adres załadowany');
+    this.initFormValues();
   }
 
-  save(form: any) {
-    this.orderService.setAddress(this.shipping);
-  }
-
-  goToNext(form: any) {
-    if (form.valid) {
-      this.save(form);
+  onSave() {
+    const form = this.addressForm.value;
+    if (this.addressForm.valid) {
+      this.orderService.setAddress(form);
       this.router.navigate(['/checkout/confirm']);
     }
+  }
+
+  private createForm() {
+    this.addressForm = this.fb.group({
+      firstName: null,
+      lastName: null,
+      address: null,
+      city: null,
+      country: null,
+      code: null
+    });
+  }
+
+  private initFormValues() {
+    this.addressForm.patchValue({
+      firstName: this.shipping.firstName,
+      lastName: this.shipping.lastName,
+      address: this.shipping.address,
+      city: this.shipping.city,
+      country: this.shipping.country,
+      code: this.shipping.code
+    });
   }
 }
