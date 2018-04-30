@@ -47,6 +47,11 @@ import {ProductDetailsComponent} from './product-details/product-details.compone
 import {WishlistButtonComponent} from './wishlist-button/wishlist-button.component';
 import {AdminAuthGuardService} from './admin-auth-guard.service';
 import {MaterialModule} from './material/material.module';
+import {AddComponent} from './admin/admin-products/add/add.component';
+import {EditComponent} from './admin/admin-products/edit/edit.component';
+import {RemoveComponent} from './admin/admin-products/remove/remove.component';
+import {AdminNavigationComponent} from './admin/admin-navigation/admin-navigation.component';
+import {OrderDetailsDialogComponent} from "./admin/admin-orders/order-details/order-details.component";
 
 
 @NgModule({
@@ -76,7 +81,12 @@ import {MaterialModule} from './material/material.module';
     UserMenuComponent,
     UserSettingsComponent,
     ProductDetailsComponent,
-    WishlistButtonComponent
+    WishlistButtonComponent,
+    AddComponent,
+    EditComponent,
+    RemoveComponent,
+    AdminNavigationComponent,
+    OrderDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +116,12 @@ import {MaterialModule} from './material/material.module';
     ProductDetailsComponent,
     AdminAuthGuardService,
     {provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true}
+  ],
+  entryComponents: [
+    AddComponent,
+    EditComponent,
+    RemoveComponent,
+    OrderDetailsDialogComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,24 +1,63 @@
-<p>
-  admin-products works!
-</p>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <app-admin-navigation></app-admin-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container">
+      <mat-toolbar class="outer-space-bottom background-transparent">
+        <mat-toolbar-row>
+          <div class="full-width">
+            <div class="row">
+              <div class="col-auto"><h1>Lista produktów</h1></div>
+              <div class="col"></div>
+              <div class="col-auto">
+                <button mat-raised-button color="primary" (click)="onAddProductDialog()">Nowy produkt</button>
+                <!--routerLink="/admin/products/new"-->
+              </div>
+            </div>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="tytul">
+            <mat-header-cell *matHeaderCellDef> Tytuł</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.title}}</mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="cena">
+            <mat-header-cell *matHeaderCellDef> Cena</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.price}} zł</mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="kategoria">
+            <mat-header-cell *matHeaderCellDef> Kategoria</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.category}}</mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <mat-icon class="fix-icon" (click)="onEditProductDialog(element?._id)">mode edit</mat-icon>
+              <mat-icon (click)="onRemoveProductDialog(element?._id)">delete</mat-icon>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 
-<button routerLink="/admin/products/new" class="btn-orange">NOWY PRODUKT</button>
 
 
-<h2>Lista produktów</h2><hr>
-<table id="customers">
-    <tr>
-      <th>Tytuł</th>
-      <th>Cena</th>
-      <th>Kategoria</th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let p of productsList$ | async">
-      <td>{{p.title}}</td>
-      <td>{{p.price}}</td>
-      <td>{{p.category}}</td>
-      <td><a [routerLink]="['/admin/products/', p._id]">Edit</a></td>
-    </tr>
-    
-  </table>
