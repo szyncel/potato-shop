@@ -1,4 +1,5 @@
-const express = require('express');
+const express = require('express'),
+  cors = require('cors');
 const router = express.Router();
 const _ = require('lodash');
 const {
@@ -37,6 +38,8 @@ const {
 } = require('../models/wishlist.model');
 
 const moment = require('moment');
+
+
 
 
 /* .............USERS............. */

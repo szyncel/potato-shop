@@ -14,20 +14,22 @@ export class ProductService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get('/api/product')
+    //http://localhost:3000
+    //let url = '';
+    return this.http.get('http://localhost:3000/api/product')
       .map(res => res["product"]);
   }
 
   get(productId) {
-    return this.http.get(`/api/product/${productId}`)
+    return this.http.get(`http://localhost:3000/api/product/${productId}`)
       .map(res => res["product"]);
   }
 
   update(productId, product) {
-    return this.http.put(`/api/product/${productId}`, product);
+    return this.http.put(`http://localhost:3000/api/product/${productId}`, product);
   }
 
   delete(productId) {
-    return this.http.delete(`/api/product/${productId}`);
+    return this.http.delete(`http://localhost:3000/api/product/${productId}`);
   }
 }

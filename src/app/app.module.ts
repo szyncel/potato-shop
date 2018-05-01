@@ -53,6 +53,7 @@ import {AdminNavigationComponent} from './admin/admin-navigation/admin-navigatio
 import {OrderDetailsDialogComponent} from "./admin/admin-orders/order-details/order-details.component";
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { ProductDetailsDialogComponent } from './products/product-details-dialog/product-details-dialog.component';
+import { UserOrderDetailsComponent } from './user/my-orders/user-order-details/user-order-details.component';
 
 
 @NgModule({
@@ -88,7 +89,8 @@ import { ProductDetailsDialogComponent } from './products/product-details-dialog
     AdminNavigationComponent,
     OrderDetailsDialogComponent,
     AdminCategoryComponent,
-    ProductDetailsDialogComponent
+    ProductDetailsDialogComponent,
+    UserOrderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -124,7 +126,8 @@ import { ProductDetailsDialogComponent } from './products/product-details-dialog
     EditComponent,
     RemoveComponent,
     OrderDetailsDialogComponent,
-    ProductDetailsDialogComponent
+    ProductDetailsDialogComponent,
+    UserOrderDetailsComponent
   ],
   bootstrap: [AppComponent]
 })

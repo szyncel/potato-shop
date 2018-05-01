@@ -29,6 +29,7 @@ export class AuthService {
 
 
   get currentUser() {
+    console.log('current role?');
     const token = localStorage.getItem('token');
     if (!token) return null;
 
@@ -37,12 +38,12 @@ export class AuthService {
   }
 
   signup(user: User): Observable<User> {
-    return this.http.post<User>('/api/users', user)
+    return this.http.post<User>('http://localhost:3000/api/users', user)
       .map(res => res);
   }
 
   signin(user: Auth): Observable<any> {
-    return this.http.post('/api/users/login', user, {observe: 'response'})
+    return this.http.post('http://localhost:3000/api/users/login', user, {observe: 'response'})
       .map(response => {
         const res: any = response.body;
         if (res.token) {
@@ -67,14 +68,14 @@ export class AuthService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.get('/api/users/me', {headers: headers});
+    return this.http.get('http://localhost:3000/api/users/me', {headers: headers});
   }
 
   updateUser(user: User) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.put('/api/users/update', user, {headers: headers});
+    return this.http.put('http://localhost:3000/api/users/update', user, {headers: headers});
   }
 
   changeEmail(data) {
@@ -82,7 +83,7 @@ export class AuthService {
     const headers = new HttpHeaders()
       .set('x-auth', token);
 
-    return this.http.put('/api/users/update-email', data, {headers: headers});
+    return this.http.put('http://localhost:3000/api/users/update-email', data, {headers: headers});
   }
 
 
@@ -91,7 +92,7 @@ export class AuthService {
     const headers = new HttpHeaders()
       .set('x-auth', token);
 
-    return this.http.put('/api/users/update-password', data, {headers: headers});
+    return this.http.put('http://localhost:3000/api/users/update-password', data, {headers: headers});
   }
 
 }

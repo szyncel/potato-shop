@@ -1,13 +1,11 @@
 require('./server/config/config');
 // Get dependencies
-const express = require('express');
+const express = require('express'),
+  cors = require('cors');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
-
-
-
 
 
 // Get our API routes
@@ -15,11 +13,15 @@ const api = require('./server/routes/api');
 
 const app = express();
 
+app.use(cors());
+
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+
+
 
 
 // Point static path to dist

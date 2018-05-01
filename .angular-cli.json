@@ -21,8 +21,8 @@
       "styles": [
         "../node_modules/font-awesome/css/font-awesome.css",
         "theming/_bootstrap-custom.scss",
-        "styles.css",
-        "theming/customTheme.scss"
+        "theming/customTheme.scss",
+        "styles.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

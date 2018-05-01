@@ -51,7 +51,7 @@ export class OrderService {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.post('/api/place-order', order, {headers: headers});
+    return this.http.post('http://localhost:3000/api/place-order', order, {headers: headers});
   }
 
   getOrders(userId): Observable<any> {
@@ -59,40 +59,40 @@ export class OrderService {
     const headers = new HttpHeaders()
       .set('x-auth', token);
 
-    return this.http.get(`/api/all-orders`, {headers: headers}).map(orders => orders["orders"]);
+    return this.http.get(`http://localhost:3000/api/all-orders`, {headers: headers}).map(orders => orders["orders"]);
   }
 
   getOrder(orderId): Observable<any> {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.get(`/api/order/${orderId}`, {headers: headers}).map(orders => orders["orders"]);
+    return this.http.get(`http://localhost:3000/api/order/${orderId}`, {headers: headers}).map(orders => orders["orders"]);
   }
 
   //Only for admin
 
   getAllOrders(): Observable<any> {
-    return this.http.get('/api/admin-orders');
+    return this.http.get('http://localhost:3000/api/admin-orders');
   }
 
 
   getSingleOrder(orderId) {
 
-    return this.http.get(`/api/admin-orders/${orderId}`).map(order => order['order']);
+    return this.http.get(`http://localhost:3000/api/admin-orders/${orderId}`).map(order => order['order']);
   }
 
   getLastOrders() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.get('/api/last-orders', {headers: headers});
+    return this.http.get('http://localhost:3000/api/last-orders', {headers: headers});
   }
 
   editOrder(orderId, model) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.put(`/api/admin-orders/${orderId}`, model, {headers: headers});
+    return this.http.put(`http://localhost:3000/api/admin-orders/${orderId}`, model, {headers: headers});
   }
 
 }

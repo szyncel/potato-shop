@@ -21,21 +21,21 @@ export class ShoppingCartService {
   }
 
   private create() {
-    return this.http.post('/api/shopping-carts', {
+    return this.http.post('http://localhost:3000/api/shopping-carts', {
       dateCreated: new Date().getTime()
     });
   }
 
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCart();
-    let cart: Observable<any> = await this.http.get(`/api/shopping-carts/${cartId}`);
+    let cart: Observable<any> = await this.http.get(`http://localhost:3000/api/shopping-carts/${cartId}`);
     return cart.map(cartItem => new ShoppingCart(cartItem.shoppingCart.items));
   }
 
 
   async clearCart() {
     let cartId = await this.getOrCreateCart();
-    let res: Observable<any> = await this.http.delete(`/api/shopping-carts/${cartId}`);
+    let res: Observable<any> = await this.http.delete(`http://localhost:3000/api/shopping-carts/${cartId}`);
     return res;
   }
 
@@ -51,16 +51,16 @@ export class ShoppingCartService {
 
   async decrasseCart(product: Product) {
     const cartId = await this.getOrCreateCart();
-    return this.http.patch('/api/shopping-carts/decrasse', {id: cartId, product: product}).toPromise();
+    return this.http.patch('http://localhost:3000/api/shopping-carts/decrasse', {id: cartId, product: product}).toPromise();
   }
 
   async addToCart(product: Product) {
     let cartId = await this.getOrCreateCart();
-    return this.http.patch('/api/shopping-carts/add', {id: cartId, product: product}).toPromise();
+    return this.http.patch('http://localhost:3000/api/shopping-carts/add', {id: cartId, product: product}).toPromise();
   }
 
   async removeFromCart(product: Product) {
     let cartId = await this.getOrCreateCart();
-    return this.http.patch('/api/shopping-carts/delete', {id: cartId, product: product}).toPromise();
+    return this.http.patch('http://localhost:3000/api/shopping-carts/delete', {id: cartId, product: product}).toPromise();
   }
 }

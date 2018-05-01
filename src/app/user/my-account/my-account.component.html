@@ -65,7 +65,9 @@
             <ng-container matColumnDef="action">
               <mat-header-cell *matHeaderCellDef></mat-header-cell>
               <mat-cell *matCellDef="let element">
-                <button mat-raised-button color="primary" [routerLink]="['/my/orders/', element?._id]">Szczegóły</button>
+                <button mat-raised-button color="primary"
+                        (click)="onDetailsDialog(element?._id)">Szczegóły
+                </button>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

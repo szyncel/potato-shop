@@ -1,18 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {OrderService} from '../../services/order.service';
-import {MatDialog, MatTableDataSource} from "@angular/material";
-import {OrderDetailsDialogComponent} from "./order-details/order-details.component";
+import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../../services/order.service';
+import { MatDialog, MatTableDataSource } from '@angular/material';
+import { OrderDetailsDialogComponent } from './order-details/order-details.component';
 
 @Component({
   selector: 'app-admin-orders',
   templateUrl: './admin-orders.component.html',
-  styleUrls: ['./admin-orders.component.css']
+  styleUrls: [ './admin-orders.component.css' ]
 })
 export class AdminOrdersComponent implements OnInit {
 
   orders$;
 
-  displayedColumns = ['id', 'data', 'suma', 'status', 'actions'];
+  displayedColumns = [ 'id', 'data', 'suma', 'status', 'actions' ];
 
   dataSource;
 
@@ -33,10 +33,10 @@ export class AdminOrdersComponent implements OnInit {
     });
   }
 
-  onDetailsDialog(orderId) {
+  onDetailsDialog( orderId ) {
     let dialogRef = this.dialog.open(OrderDetailsDialogComponent, {
       width: '600px',
-      data: {id: orderId}
+      data: {id: orderId, editable: true}
     });
     dialogRef.afterClosed().subscribe(() => {
       this.loadOrderList();

@@ -39,6 +39,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.refreshUser();
     if (!this.cart) this.refreshCounter();
     this.shoppingCartService.getEmittedValue()
       .subscribe(item => this.refreshCounter());
@@ -47,7 +48,7 @@ export class NavbarComponent implements OnInit {
     this.wishlistService.getEmittedValue()
       .subscribe(i => this.refreshWishCounter())
 
-    this.authService.getEmittedValue().subscribe(i => this.refreshUser())
+    this.authService.getEmittedValue().subscribe(i => this.refreshUser());
 
   };
 

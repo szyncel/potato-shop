@@ -1,105 +1,143 @@
-<app-checkout-navbar></app-checkout-navbar>
-
-<mat-toolbar class="outer-space-bottom">
-  <mat-toolbar-row>
-    <div class="full-width">
-      <div class="row">
-        <div class="col-auto"><h1>Sprawdź i złóż zamówienie</h1></div>
-        <div class="col"></div>
-        <div class="col-auto">
-          <button mat-raised-button color="primary" (click)="placeOrder()">Złóż zamówienie</button>
-        </div>
-      </div>
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar>
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-      <mat-card>
-        <mat-card-header>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <app-checkout-navbar></app-checkout-navbar>
+  </mat-sidenav>
+  <mat-sidenav-content style="overflow: initial">
+    <div class="container">
+      <mat-toolbar class="outer-space-bottom">
+        <mat-toolbar-row>
           <div class="full-width">
             <div class="row">
-              <div class="col-auto"><h2>Zamówienie</h2></div>
+              <div class="col-auto"><h1>Sprawdź i złóż zamówienie</h1></div>
+              <div class="col"></div>
+              <div class="col-auto">
+                <button mat-raised-button color="primary" (click)="placeOrder()">Złóż zamówienie</button>
+              </div>
             </div>
           </div>
-        </mat-card-header>
-        <mat-card-content>
-          <ng-container *ngIf="cart">
-            <table class="itemsTable">
-              <tbody>
-              <tr *ngFor="let item of cart.items">
-                <td class="pName">
-                  <img [src]="item.product.imgUrl" alt="trreeelo">
-                  <div class="itemInfo">
-                <span>
-                  <strong> {{item.product.title}}</strong>
-                </span>
-
-                    <div>
-                      <span>Kategoria: {{item.product.category}}</span>
-                      <span>
-                    Ilość: {{item.count}}
-                        <!-- <app-product-quantity [product]="item.product" [shopping-cart]="cart"></app-product-quantity> -->
-                  </span>
-
-                      <span>
-                    <strong>{{item.totalPrice}} zł</strong>
-                  </span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+        <div class="row">
+          <div class="col-12">
+            <mat-card>
+              <mat-card-header>
+                <div class="full-width">
+                  <div class="row">
+                    <div class="col-auto"><h2>Adres dostawy</h2></div>
+                    <div class="col"></div>
+                    <div class="col-auto">
+                      <button mat-raised-button routerLink="/checkout/address">
+                        Edytuj
+                      </button>
                     </div>
                   </div>
-                </td>
-                <td id="test">
-                  <span class="delete" (click)="removeFromCart(item.product)">X</span>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </ng-container>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div class="col-6">
-      <mat-card class="outer-space-bottom">
-        <mat-card-header>
-          <div class="full-width">
-            <div class="row">
-              <div class="col-auto"><h2>Adres dostawy</h2></div>
-              <div class="col"></div>
-              <div class="col-auto"><a routerLink="/checkout/address">Edytuj</a></div>
-            </div>
+                </div>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-12">
+                    <strong>Imie: </strong>{{shipping.firstName}}
+                  </div>
+                  <div class="col-12">
+                    <strong>Nazwisko: </strong>{{shipping.lastName}}
+                  </div>
+                  <div class="col-12">
+                    <strong>Ulica, nr domu / nr mieszkania: </strong>{{shipping.address}}
+                  </div>
+                  <div class="col-12">
+                    <strong>Kod pocztowy: </strong>{{shipping.code}}
+                  </div>
+                  <div class="col-12">
+                    <strong>Miasto: </strong>{{shipping.city}}
+                  </div>
+                  <div class="col-12">
+                    <strong>Państwo: </strong>{{shipping.country}}
+                  </div>
+                </div>
+              </mat-card-content>
+              <mat-card-header>
+                <div class="full-width">
+                  <div class="row">
+                    <div class="col-auto"><h2>Zamówienie</h2></div>
+                  </div>
+                </div>
+              </mat-card-header>
+              <mat-card-content>
+                <ng-container *ngIf="cart">
+                  <div class="example-container mat-elevation-z8 outer-space-bottom">
+                    <mat-table #table [dataSource]="dataSource">
+                      <ng-container matColumnDef="image">
+                        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                        <mat-cell *matCellDef="let element"><img [src]="element?.product.imgUrl"
+                                                                 [alt]="element?.product._id">
+                        </mat-cell>
+                      </ng-container>
+                      <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                          <div class="row">
+                            <div class="col-12"><a [routerLink]="['/products/', element?.product._id]">{{element?.product.title}}</a>
+                            </div>
+                            <div class="col-12">Kategoria: {{element?.product.category}}</div>
+                            <div class="col-12">Cena: <strong>{{element?.totalPrice}} zł</strong></div>
+                          </div>
+                        </mat-cell>
+                      </ng-container>
+                      <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                          <div class="row justify-content-end" style="margin-right: 10px;">
+                            <mat-icon style="margin-right: 3px;" (click)="removeFromCart(element?.product)">delete
+                            </mat-icon>
+                          </div>
+                        </mat-cell>
+                      </ng-container>
+                      <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
+                      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                  </div>
+                  <!--<table class="itemsTable">-->
+                  <!--<tbody>-->
+                  <!--<tr *ngFor="let item of cart.items">-->
+                  <!--<td class="pName">-->
+                  <!--<img [src]="item.product.imgUrl" alt="trreeelo">-->
+                  <!--<div class="itemInfo">-->
+                  <!--<strong> {{item.product.title}}</strong>-->
+                  <!--<div>-->
+                  <!--<span>Kategoria: {{item.product.category}}</span>-->
+                  <!--<span>-->
+                  <!--Ilość: {{item.count}}-->
+                  <!--&lt;!&ndash; <app-product-quantity [product]="item.product" [shopping-cart]="cart"></app-product-quantity> &ndash;&gt;-->
+                  <!--</span>-->
+                  <!--<span>-->
+                  <!--<strong>{{item.totalPrice}} zł</strong>-->
+                  <!--</span>-->
+                  <!--</div>-->
+                  <!--</div>-->
+                  <!--</td>-->
+                  <!--<td id="test">-->
+                  <!--<span class="delete" (click)="removeFromCart(item.product)">X</span>-->
+                  <!--</td>-->
+                  <!--</tr>-->
+                  <!--</tbody>-->
+                  <!--</table>-->
+                </ng-container>
+              </mat-card-content>
+              <mat-card-actions>
+                <div class="row align-items-baseline">
+                  <div class="col-auto" *ngIf="cart "><h2>Łączna kwota: {{cart.totalPrice}} zł</h2></div>
+                  <div class="col"></div>
+                  <div class="col-auto">
+                    <button mat-raised-button color="primary" (click)="placeOrder()">Złóż zamówienie</button>
+                  </div>
+                </div>
+              </mat-card-actions>
+            </mat-card>
           </div>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="row">
-            <div class="col-12">
-              <strong>Imie: </strong>{{shipping.firstName}}
-            </div>
-            <div class="col-12">
-              <strong>Nazwisko: </strong>{{shipping.lastName}}
-            </div>
-            <div class="col-12">
-              <strong>Ulica, nr domu / nr mieszkania: </strong>{{shipping.address}}
-            </div>
-            <div class="col-12">
-              <strong>Kod pocztowy: </strong>{{shipping.code}}
-            </div>
-            <div class="col-12">
-              <strong>Miasto: </strong>{{shipping.city}}
-            </div>
-            <div class="col-12">
-              <strong>Państwo: </strong>{{shipping.country}}
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-      <mat-card>
-        <div class="final">
-          <h3 class="title2">Łączna kwota</h3>
-          <span *ngIf="cart ">{{cart.totalPrice}} zł</span>
+
         </div>
-        <button mat-raised-button color="primary" (click)="placeOrder()">Złóż zamówienie</button>
-      </mat-card>
+
     </div>
-  </div>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

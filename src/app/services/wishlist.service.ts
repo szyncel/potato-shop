@@ -23,12 +23,12 @@ export class WishlistService {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-      let test= await this.http.get('/api/wishlist', { headers: headers }).map(wishlist=>wishlist['wishlist']).toPromise();
+      let test= await this.http.get('http://localhost:3000/api/wishlist', { headers: headers }).map(wishlist=>wishlist['wishlist']).toPromise();
 
     if(test.length){
       return new Wishlist(test[0].items);
     }else{
-      let test2:any=await this.http.post('/api/wishlist',{test:"nic"}, { headers: headers }).toPromise();
+      let test2:any=await this.http.post('http://localhost:3000/api/wishlist',{test:"nic"}, { headers: headers }).toPromise();
       return new Wishlist(test2.items);
     }
   }
@@ -37,7 +37,7 @@ export class WishlistService {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.post('/api/wishlist/add', product, { headers: headers }).toPromise();
+    return this.http.post('http://localhost:3000/api/wishlist/add', product, { headers: headers }).toPromise();
   }
 
 
@@ -45,6 +45,6 @@ export class WishlistService {
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders()
       .set('x-auth', token);
-    return this.http.post('/api/wishlist/remove', product, { headers: headers }).toPromise();
+    return this.http.post('http://localhost:3000/api/wishlist/remove', product, { headers: headers }).toPromise();
   }
 }

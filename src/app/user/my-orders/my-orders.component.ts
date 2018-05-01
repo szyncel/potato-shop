@@ -1,19 +1,21 @@
-import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {OrderService} from '../../services/order.service';
-import {AuthService} from '../../services/auth.service';
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { OrderService } from '../../services/order.service';
+import { AuthService } from '../../services/auth.service';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { OrderDetailsDialogComponent } from '../../admin/admin-orders/order-details/order-details.component';
+import { UserOrderDetailsComponent } from './user-order-details/user-order-details.component';
 
 @Component({
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
-  styleUrls: ['./my-orders.component.css'],
+  styleUrls: [ './my-orders.component.css' ],
   encapsulation: ViewEncapsulation.None
 })
 export class MyOrdersComponent implements OnInit {
   orders;
   userId: string;
 
-  displayedColumns = ['_id', 'datePlaced', 'totalOrderPrice', 'status', 'action'];
+  displayedColumns = [ '_id', 'datePlaced', 'totalOrderPrice', 'status', 'action' ];
 
   dataSource;
 
@@ -22,7 +24,8 @@ export class MyOrdersComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private dialog: MatDialog ) {
     this.userId = this.authService.currentUser._id;
   }
 
@@ -32,6 +35,17 @@ export class MyOrdersComponent implements OnInit {
       this.dataSource = new MatTableDataSource(orders);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    });
+  }
+
+
+  onDetailsDialog( orderId ) {
+    let dialogRef = this.dialog.open(UserOrderDetailsComponent, {
+      width: '600px',
+      data: {id: orderId}
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      dialogRef = null;
     });
   }
 }

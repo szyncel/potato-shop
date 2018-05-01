@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {OrderService} from '../../services/order.service';
-import {MatTableDataSource} from "@angular/material";
+import { MatDialog, MatTableDataSource } from '@angular/material';
 import {Order} from "../../shared/models/order";
+import { UserOrderDetailsComponent } from '../my-orders/user-order-details/user-order-details.component';
 
 @Component({
   selector: 'app-my-account',
@@ -20,7 +21,8 @@ export class MyAccountComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private dialog: MatDialog
   ) {
   }
 
@@ -31,6 +33,16 @@ export class MyAccountComponent implements OnInit {
     this.orderService.getLastOrders().subscribe((orders: Order[]) => {
       this.orders = orders;
       this.dataSource = new MatTableDataSource(orders);
+    });
+  }
+
+  onDetailsDialog( orderId ) {
+    let dialogRef = this.dialog.open(UserOrderDetailsComponent, {
+      width: '600px',
+      data: {id: orderId}
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      dialogRef = null;
     });
   }
 

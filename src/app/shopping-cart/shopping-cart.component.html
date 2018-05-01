@@ -1,93 +1,105 @@
 <div class="container">
-  <mat-card>
 
 
-<ng-container *ngIf="cart && cart.totalItemsCount else emptyBag">
+  <ng-container *ngIf="cart && cart.totalItemsCount else emptyBag">
 
-<mat-card-header>
-  <div class="full-width">
-    <div class="row">
-      <div class="col"><h1>Koszyk</h1></div>
-      <div class="col-auto">Ilość przedmiótów: {{cart.totalItemsCount}}
-      </div>
-    </div>
-  </div>
-</mat-card-header>
-
-  <mat-card-content>
-    <mat-table #table [dataSource]="dataSource">
-      <ng-container matColumnDef="image">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element"><img [src]="element?.product.imgUrl" [alt]="element?.product._id"></mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <div class="row">
-            <div class="col-12"><a [routerLink]="['/products/', element?.product._id]">{{element?.product.title}}</a></div>
-            <div class="col-12">Kategoria: {{element?.product.category}}</div>
-            <div class="col-12">Cena: <strong>{{element?.totalPrice}} zł</strong></div>
+    <mat-toolbar class="background-transparent outer-space-bottom">
+      <div class="full-width">
+        <div class="row justify-content-center">
+          <div class="col"><h1>Koszyk</h1></div>
+          <div class="col-auto">Ilość przedmiotów: {{cart.totalItemsCount}}
           </div>
-        </mat-cell>
-      </ng-container>
+        </div>
+      </div>
+    </mat-toolbar>
 
-      <ng-container matColumnDef="count">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <app-product-quantity [product]="element?.product" [shopping-cart]="cart"></app-product-quantity>
-        </mat-cell>
-      </ng-container>
 
-      <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <div class="row justify-content-end">
+    <div class="example-container mat-elevation-z8 outer-space-bottom">
+      <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="image">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element"><img [src]="element?.product.imgUrl" [alt]="element?.product._id">
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div class="row">
+              <div class="col-12"><a [routerLink]="['/products/', element?.product._id]">{{element?.product.title}}</a>
+              </div>
+              <div class="col-12">Kategoria: {{element?.product.category}}</div>
+              <div class="col-12">Cena: <strong>{{element?.totalPrice}} zł</strong></div>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="count">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <app-product-quantity [product]="element?.product" [shopping-cart]="cart"></app-product-quantity>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div class="row justify-content-end" style="margin-right: 10px;">
               <mat-icon style="margin-right: 3px;" (click)="removeFromCart(element?.product)">delete</mat-icon>
-          </div>
-
-        </mat-cell>
-      </ng-container>
-      <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-    </mat-table>
-  </mat-card-content>
-  <mat-card-actions>
-      <div class="row">
-        <div class="col"><a (click)="clearCart()">Wyczyść koszyk</a></div>
-        <div class="col-auto"><strong>Łączna kwota: </strong> {{cart.totalPrice}} zł</div>
-      </div>
-  </mat-card-actions>
-  <mat-card-actions>
-      <button color="primary" mat-raised-button routerLink="/">Kontynuuj zakupy</button>
-      <button color="primary"
-              mat-raised-button
-        *ngIf="cart.items.length"
-        routerLink="/checkout/address"
-      >Przejdź do kasy
-      </button>
-  </mat-card-actions>
-</ng-container>
-
-<ng-template #emptyBag>
-<mat-card-content>
-  <h2>KOSZYK</h2>
-  <!--<div class="row">-->
-    <!--<div class="col justify-content-center"><i class="fa fa-shopping-bag"></i></div>-->
-  <!--</div>-->
-  <div class="row justify-content-center">
-    <div class="col"><h1 style="text-align: center">TWÓJ KOSZYK JEST JESZCZE PUSTY</h1> </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <button mat-raised-button color="primary" routerLink="/">KONTYNUUJ ZAKUPY</button>
+            </div>
+          </mat-cell>
+        </ng-container>
+        <!--<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
     </div>
-  </div>
 
+    <mat-toolbar>
+      <div class="full-width">
+        <div class="row justify-content-center">
+          <div class="col">
+            <button mat-raised-button color="warn" (click)="clearCart()">
+              Wyczyść koszyk
+            </button>
+          </div>
+          <div class="col-auto"><strong>Łączna kwota: </strong> {{cart.totalPrice}} zł
+          </div>
+        </div>
+      </div>
+    </mat-toolbar>
 
+    <mat-toolbar>
+      <div class="full-width">
+        <div class="row justify-content-center">
+          <div class="col"></div>
+          <div class="col-auto">
+            <button color="primary" mat-raised-button routerLink="/">Kontynuuj zakupy</button>
+            <button color="primary"
+                    mat-raised-button
+                    *ngIf="cart.items.length"
+                    routerLink="/checkout/address"
+            >Przejdź do kasy
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-toolbar>
 
+  </ng-container>
 
-</mat-card-content>
-</ng-template>
-  </mat-card>
+  <ng-template #emptyBag>
+
+    <h2>KOSZYK</h2>
+    <!--<div class="row">-->
+    <!--<div class="col justify-content-center"><i class="fa fa-shopping-bag"></i></div>-->
+    <!--</div>-->
+    <div class="row justify-content-center">
+      <div class="col"><h1 style="text-align: center">TWÓJ KOSZYK JEST JESZCZE PUSTY</h1></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button mat-raised-button color="primary" routerLink="/">KONTYNUUJ ZAKUPY</button>
+      </div>
+    </div>
+
+  </ng-template>
 </div>

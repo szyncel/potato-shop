@@ -1,16 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from '../shared/models/user';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../services/auth.service';
-import {WishlistService} from '../services/wishlist.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Auth} from '../store/models/auth';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../shared/models/user';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { WishlistService } from '../services/wishlist.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Auth } from '../store/models/auth';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: [ './login.component.css' ]
 })
 export class LoginComponent implements OnInit {
 
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -49,8 +51,9 @@ export class LoginComponent implements OnInit {
           this.registerForm.reset();
           this.registerForm.clearValidators();
           this.registerForm.markAsUntouched();
-          const msg: any = res;
-          alert(msg.message);
+          //const msg: any = res;
+          this.snackBar.open('Rejestracja przebiegła pomyślnie', 'Ok', {duration: 3500});
+          //alert(msg.message);
         },
         error => {
           this.registerError = error.error.title;
@@ -65,12 +68,13 @@ export class LoginComponent implements OnInit {
       password: form.Haslo
     }as Auth;
     this.authService.signin(model)
-      .subscribe((res) => {
+      .subscribe(( res ) => {
+        this.snackBar.open('Logowanie pomyślne', 'Ok', {duration: 3500});
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
         this.wishlistService.change();
         this.authService.change();
-        this.router.navigate([returnUrl || '/']);
-      }, (err) => {
+        this.router.navigate([ returnUrl || '/' ]);
+      }, ( err ) => {
         this.error = err.error.error;
       });
   }

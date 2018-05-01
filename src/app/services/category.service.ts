@@ -12,7 +12,7 @@ export class CategoryService {
   }
 
   getCategories() {
-    return this.http.get('/api/category')
+    return this.http.get('http://localhost:3000/api/category')
       .map(res => res["category"])
   }
 }

@@ -17,11 +17,11 @@
             <button mat-button routerLink="/login">Zaloguj się</button>
           </ng-container>
           <ng-container *ngIf="authService.isLoggedIn()">
-            <button mat-button [matMenuTriggerFor]="menu">Moje konto</button>
+            <button mat-button [matMenuTriggerFor]="menu" id="myMenu">Moje konto</button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item routerLink="/my/account">Moje zestawienie</button>
               <button mat-menu-item routerLink="/my/orders">Moje zamówienia</button>
-              <button mat-menu-item *ngIf="authService.isLoggedIn()" (click)="logout()">Wyloguj się</button>
+              <button mat-menu-item *ngIf="authService.isLoggedIn()" (click)="logout()" id="logout">Wyloguj się</button>
             </mat-menu>
           </ng-container>
           <button mat-button routerLink="/wishlist">Lista życzeń
