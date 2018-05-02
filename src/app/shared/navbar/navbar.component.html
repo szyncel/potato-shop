@@ -14,24 +14,31 @@
             <button mat-raised-button routerLink="admin/products">Admin</button>
           </ng-container>
           <ng-container *ngIf="!authService.isLoggedIn()">
-            <button mat-button routerLink="/login">Zaloguj się</button>
+            <button mat-button routerLink="/login"><mat-icon>account_box</mat-icon>
+              Zaloguj się
+            </button>
           </ng-container>
           <ng-container *ngIf="authService.isLoggedIn()">
-            <button mat-button [matMenuTriggerFor]="menu" id="myMenu">Moje konto</button>
+            <button mat-button [matMenuTriggerFor]="menu" id="myMenu">
+              <mat-icon>account_box</mat-icon>
+              Moje konto
+            </button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item routerLink="/my/account">Moje zestawienie</button>
               <button mat-menu-item routerLink="/my/orders">Moje zamówienia</button>
               <button mat-menu-item *ngIf="authService.isLoggedIn()" (click)="logout()" id="logout">Wyloguj się</button>
             </mat-menu>
           </ng-container>
-          <button mat-button routerLink="/wishlist">Lista życzeń
+          <button mat-button routerLink="/wishlist">
+            <mat-icon>favorite</mat-icon>Lista życzeń
             <sup *ngIf="wishlist && wishlist.totalItemsCount && authService.isLoggedIn()">
               <mat-chip>{{wishlist.totalItemsCount}}</mat-chip>
             </sup>
           </button>
 
 
-          <button mat-button routerLink="/shopping-cart">Koszyk
+          <button mat-button routerLink="/shopping-cart">
+            <mat-icon>shopping_cart</mat-icon>Koszyk
             <sup *ngIf="cart && cart.totalItemsCount">
               <mat-chip>{{cart.totalItemsCount}}</mat-chip>
             </sup>

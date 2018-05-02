@@ -54,6 +54,9 @@ import {OrderDetailsDialogComponent} from "./admin/admin-orders/order-details/or
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { ProductDetailsDialogComponent } from './products/product-details-dialog/product-details-dialog.component';
 import { UserOrderDetailsComponent } from './user/my-orders/user-order-details/user-order-details.component';
+import { RemoveItemConfirmComponent } from './shopping-cart/remove-item-confirm/remove-item-confirm.component';
+import { ClearCartConfirmComponent } from './shopping-cart/clear-cart-confirm/clear-cart-confirm.component';
+import { DelWishlistConfirmComponent } from './products/product-card/del-wishlist-confirm/del-wishlist-confirm.component';
 
 
 @NgModule({
@@ -90,7 +93,10 @@ import { UserOrderDetailsComponent } from './user/my-orders/user-order-details/u
     OrderDetailsDialogComponent,
     AdminCategoryComponent,
     ProductDetailsDialogComponent,
-    UserOrderDetailsComponent
+    UserOrderDetailsComponent,
+    RemoveItemConfirmComponent,
+    ClearCartConfirmComponent,
+    DelWishlistConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +133,10 @@ import { UserOrderDetailsComponent } from './user/my-orders/user-order-details/u
     RemoveComponent,
     OrderDetailsDialogComponent,
     ProductDetailsDialogComponent,
-    UserOrderDetailsComponent
+    UserOrderDetailsComponent,
+    RemoveItemConfirmComponent,
+    ClearCartConfirmComponent,
+    DelWishlistConfirmComponent
   ],
   bootstrap: [AppComponent]
 })
