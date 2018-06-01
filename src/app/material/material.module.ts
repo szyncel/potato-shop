@@ -19,7 +19,8 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatStepperModule
 } from '@angular/material';
 
 
@@ -46,7 +47,8 @@ import {
     MatSortModule,
     MatChipsModule,
     MatSelectModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatStepperModule
   ],
   exports: [
     MatButtonModule,
@@ -69,7 +71,8 @@ import {
     MatSortModule,
     MatChipsModule,
     MatSelectModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatStepperModule
 
   ],
   entryComponents: []

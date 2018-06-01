@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../auth.service';
-import {WishlistService} from '../wishlist.service';
-import {Wishlist} from '../models/wishlist';
-import {ShoppingCart} from '../models/shopping-cart';
-import {ShoppingCartService} from '../shopping-cart.service';
+import {AuthService} from '../services/auth.service';
+import {WishlistService} from '../services/wishlist.service';
+import {Wishlist} from '../shared/models/wishlist';
+import {ShoppingCart} from '../shared/models/shopping-cart';
+import {ShoppingCartService} from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-wishlist',

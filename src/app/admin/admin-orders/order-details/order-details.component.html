@@ -12,10 +12,10 @@
     </div>
     <div mat-dialog-content>
       <div class="row">
-        <div class="col-12 mb-5">
+        <div class="col-12">
           <strong>Data zamówienia: </strong>{{order.datePlaced}}
         </div>
-        <div class="col-12 mb-5">
+        <div class="col-12 outer-space-bottom">
           <strong>Numer klienta: </strong>{{order._creator}}
         </div>
         <mat-form-field class="col-12">
@@ -30,7 +30,7 @@
         </mat-form-field>
       </div>
       <div class="col-12">
-        <h4>Adres dostawy</h4>
+        <h4 style="color:#ffa726;">Adres dostawy</h4>
         <div class="orderInfo">
           <span><strong>Imię i Nazwisko: </strong>{{order.shipping.firstName}} {{order.shipping.lastName}}</span>
           <span><strong>Adres: </strong> {{order.shipping.address}}</span>
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="col-12">
-        <h4>Zamówione produkty</h4>
+        <h4 style="color:#ffa726;">Zamówione produkty</h4>
         <mat-table #table [dataSource]="dataSource" class="mb-3">
           <ng-container matColumnDef="title">
             <mat-header-cell *matHeaderCellDef>Tytuł</mat-header-cell>
@@ -52,13 +52,11 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
       </div>
-      <div class="col-12" class="orderReview">
-        <span><strong>Łączna kwota: </strong> {{order.totalOrderPrice}} zł</span>
+      <div class="col-12">
+        <h4 style="color:#ffa726;">Łączna kwota: <strong style="color: black">{{order.totalOrderPrice}} zł</strong></h4>
       </div>
     </div>
-
     <div mat-dialog-actions class="justify-content-end">
-      <!--<mat-spinner *ngIf="(loading$ | async)" [diameter]="24" [strokeWidth]="3"></mat-spinner>-->
       <button matDialogClose mat-raised-button type="button">Anuluj</button>
       <button [ngClass]="{disabled: form.invalid || form.pristine}" mat-raised-button class="col-auto"
               color="primary">Zapisz

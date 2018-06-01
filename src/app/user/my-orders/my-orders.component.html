@@ -1,0 +1,71 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <app-user-menu></app-user-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container">
+      <mat-toolbar class="background-transparent">
+        <mat-toolbar-row>
+          <div class="full-width">
+            <div class="row">
+              <div class="col-auto"><h2>Moje zamówienia</h2></div>
+              <div class="col"></div>
+            </div>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <ng-container *ngIf="dataSource; else loading">
+        <div class="example-container mat-elevation-z8 " style="margin-top: 1rem">
+          <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="_id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?._id}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="datePlaced">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Data złożenia</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.datePlaced}} zł</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="totalOrderPrice">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Kwota</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.totalOrderPrice}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.status}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <!--[routerLink]="['/my/orders/', element?._id]"-->
+                <button mat-raised-button color="primary" (click)="onDetailsDialog(element?._id)">Szczegóły</button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+          <mat-paginator #paginator
+                         [pageSize]="10"
+                         [pageSizeOptions]="[5, 10, 20]"
+                         [showFirstLastButtons]="true">
+          </mat-paginator>
+        </div>
+      </ng-container>
+      <ng-template #loading>
+        <mat-spinner></mat-spinner>
+      </ng-template>
+      <button mat-raised-button color="primary" style="margin-top: 1rem" routerLink="/my/account">Wróć</button>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<!--<div class="container">-->
+<!--<div class="col-3">-->
+<!--<app-user-menu></app-user-menu>-->
+<!--</div>-->
+<!--<div class="col-8">-->
+<!--<h1 class="title">Moje Zamówienia</h1>-->
+
+<!--</div>-->
+
+<!--</div>-->

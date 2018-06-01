@@ -132,7 +132,7 @@ userSchema.statics.findbyCredentials = function (email, password) {
   }).then((user) => {
     if (!user) {
       return Promise.reject({
-        error: 'User could not be found'
+        error: 'Użytkownik nie istnieje'
       });
     }
 
@@ -142,7 +142,7 @@ userSchema.statics.findbyCredentials = function (email, password) {
           resolve(user);
         } else {
           reject({
-            error: 'Wrong password'
+            error: 'Niepoprawne hasło'
           });
         }
       });

@@ -12,7 +12,8 @@
           <wishlist-button [product]="product"></wishlist-button>
         </div>
         <div *ngIf="showDelete" class="row justify-content-end">
-          <i (click)="delFromWishlist()" class="fa fa-times fa-2" style="font-size: 2em;" aria-hidden="true"></i>
+          <mat-icon (click)="delFromWishlist()">delete_forever</mat-icon>
+          <!--<i (click)="delFromWishlist()" class="fa fa-times fa-2" style="font-size: 2em;" aria-hidden="true"></i>-->
         </div>
       </div>
     </div>
@@ -27,7 +28,7 @@
   </mat-card-actions>
   <mat-card-actions>
     <div class="row justify-content-center" *ngIf="(showActions && shoppingCart) || showDelete">
-      <button mat-raised-button color="primary" class="full-width"
+      <button id="add" mat-raised-button color="primary" class="full-width"
               *ngIf="shoppingCart.getQuantity(product)===0;else updateQuantity"
               (click)="addToCart(product)">Dodaj do koszyka
       </button>

@@ -1,0 +1,19 @@
+.toolbar-container {
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+  position: relative;
+  z-index: 2;
+}
+
+.mat-chip {
+  padding: 2px 5px 2px 5px;
+  border-radius: 16px;
+  background-color: white;
+  font-weight: bold;
+}
+
+.mat-icon{
+  color: #ffffff;
+}
+
+
+

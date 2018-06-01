@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
+import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../models/product';
+import { Product } from '../shared/models/product';
 import 'rxjs/add/operator/switchMap';
-import { ShoppingCartService } from '../shopping-cart.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Subscription } from 'rxjs/Subscription';
-import { WishlistService } from '../wishlist.service';
-import { Wishlist } from '../models/wishlist';
-import { AuthService } from '../auth.service';
+import { WishlistService } from '../services/wishlist.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: [ './products.component.css' ]
 })
 export class ProductsComponent implements OnInit {
 
@@ -30,6 +29,7 @@ export class ProductsComponent implements OnInit {
 
   subscription: Subscription;
 
+
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit {
   ) {
     this.productService.getAll()
       .switchMap(products => {
-        this.productsCount=products.length;
+        this.productsCount = products.length;
         this.products = products;
         return this.route.queryParamMap;
       })
@@ -47,28 +47,28 @@ export class ProductsComponent implements OnInit {
         this.category = params.get('category');
         this.filteredProducts = (this.category) ?
           this.products.filter(p => p.category === this.category) : this.products;
-      })
+      });
   }
 
   async refreshData() {
     this.subscription = (await this.shoppingCartService.getCart()).subscribe(cart => {
-      this.cart = cart
+      this.cart = cart;
     });
   }
 
   refreshWishlist() {
     let user = this.authService.isLoggedIn();
     if (user) {
-      this.wishlistService.getWishList().then(wishlist =>this.wishlist = wishlist);
+      this.wishlistService.getWishList().then(wishlist => this.wishlist = wishlist);
     } else {
-      this.wishlist=null;
+      this.wishlist = null;
     }
   }
 
   async ngOnInit() {
     await this.refreshData();
     this.refreshWishlist();
-    this.wishlistService.getEmittedValue().subscribe(i=>this.refreshWishlist());
+    this.wishlistService.getEmittedValue().subscribe(i => this.refreshWishlist());
   }
 
   ngOnDestroy() {//Potrzebne?

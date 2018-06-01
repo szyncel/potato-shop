@@ -1,63 +1,69 @@
-<app-checkout-navbar></app-checkout-navbar>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <app-checkout-navbar></app-checkout-navbar>
+  </mat-sidenav>
+  <mat-sidenav-content style="overflow: initial">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <mat-card>
+            <form [formGroup]="addressForm" (submit)="addressForm.dirty && addressForm.valid && onSave()"
+                  novalidate>
+              <mat-card-header>
+                <div class="row">
+                  <h1 style="text-align: center">Adres dostawy</h1>
+                </div>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="row">
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Imię" formControlName="firstName" required>
+                    <mat-error *ngIf="addressForm.get('firstName').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Nazwisko" formControlName="lastName" required>
+                    <mat-error *ngIf="addressForm.get('lastName').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Adres" formControlName="address" required>
+                    <mat-error *ngIf="addressForm.get('address').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-8">
-      <mat-card>
-        <form [formGroup]="addressForm" (submit)="addressForm.dirty && addressForm.valid && onSave()"
-              novalidate>
-          <mat-card-header>
-            <div class="row">
-              <h1 style="text-align: center">Adres dostawy</h1>
-            </div>
-          </mat-card-header>
-          <mat-card-content>
-            <div class="row">
-              <mat-form-field class="col-12">
-                <input matInput placeholder="Imię" formControlName="firstName" required>
-                <mat-error *ngIf="addressForm.get('firstName').hasError('required')">
-                  Pole jest <strong>wymagane</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field class="col-12">
-                <input matInput placeholder="Nazwisko" formControlName="lastName" required>
-                <mat-error *ngIf="addressForm.get('lastName').hasError('required')">
-                  Pole jest <strong>wymagane</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field class="col-12">
-                <input matInput placeholder="Adres" formControlName="address" required>
-                <mat-error *ngIf="addressForm.get('address').hasError('required')">
-                  Pole jest <strong>wymagane</strong>
-                </mat-error>
-              </mat-form-field>
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Miasto" formControlName="city" required>
+                    <mat-error *ngIf="addressForm.get('city').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
 
-              <mat-form-field class="col-12">
-                <input matInput placeholder="Miasto" formControlName="city" required>
-                <mat-error *ngIf="addressForm.get('city').hasError('required')">
-                  Pole jest <strong>wymagane</strong>
-                </mat-error>
-              </mat-form-field>
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Państwo" formControlName="country" required>
+                    <mat-error *ngIf="addressForm.get('country').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Kod pocztowy" formControlName="code" required>
+                    <mat-error *ngIf="addressForm.get('code').hasError('required')">
+                      Pole jest <strong>wymagane</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+                <button [disabled]="addressForm.invalid || addressForm.pristine" mat-raised-button>Dalej</button>
+              </mat-card-actions>
+            </form>
+          </mat-card>
+        </div>
+      </div>
 
-              <mat-form-field class="col-12">
-                <input matInput placeholder="Państwo" formControlName="country" required>
-                <mat-error *ngIf="addressForm.get('country').hasError('required')">
-                  Pole jest <strong>wymagane</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field class="col-12">
-                <input matInput placeholder="Kod pocztowy" formControlName="code" required>
-                <mat-error *ngIf="addressForm.get('code').hasError('required')">
-                  Pole jest <strong>wymagane</strong>
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </mat-card-content>
-          <mat-card-actions>
-            <button [disabled]="addressForm.invalid || addressForm.pristine" mat-raised-button>Dalej</button>
-          </mat-card-actions>
-        </form>
-      </mat-card>
     </div>
-  </div>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

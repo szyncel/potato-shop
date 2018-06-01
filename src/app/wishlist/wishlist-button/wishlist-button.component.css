@@ -1,0 +1,19 @@
+.fa-2 {
+  font-size: 2em;
+  color: orange;
+  cursor: pointer;
+}
+
+.mat-icon{
+  cursor: default;
+}
+
+/*.card {*/
+  /*position: relative;*/
+/*}*/
+
+/*.heart {*/
+  /*position: absolute;*/
+  /*left: 87%;*/
+  /*top: 2px;*/
+/*}*/

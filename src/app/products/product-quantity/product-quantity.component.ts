@@ -1,11 +1,11 @@
 import {Component, Input} from '@angular/core';
 
 import {ProductDetailsComponent} from '../product-details/product-details.component';
-import {ShoppingCart} from "../../models/shopping-cart";
-import {ShoppingCartService} from "../../shopping-cart.service";
+import {ShoppingCart} from "../../shared/models/shopping-cart";
+import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ShoppingCartComponent} from "../../shopping-cart/shopping-cart.component";
 import {WishlistComponent} from "../../wishlist/wishlist.component";
-import {NavbarComponent} from "../../navbar/navbar.component";
+import {NavbarComponent} from "../../shared/navbar/navbar.component";
 import {ProductsComponent} from "../products.component";
 import {Product} from "../../store/models/product";
 

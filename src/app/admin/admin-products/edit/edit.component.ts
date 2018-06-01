@@ -1,16 +1,15 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {AddComponent} from "../add/add.component";
-import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from "@angular/material";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {ProductService} from "../../../product.service";
-import {CategoryService} from "../../../category.service";
-import {Observable} from "rxjs/Observable";
-import {Category} from "../../../store/models/category";
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ProductService } from '../../../services/product.service';
+import { CategoryService } from '../../../services/category.service';
+import { Observable } from 'rxjs/Observable';
+import { Category } from '../../../store/models/category';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: [ './edit.component.css' ]
 })
 export class EditComponent implements OnInit {
 
@@ -69,7 +68,7 @@ export class EditComponent implements OnInit {
         imgUrl: product.imgUrl,
         price: product.price,
         title: product.title
-      })
+      });
     });
   }
 

@@ -1,9 +1,4 @@
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/themes/dark.css';
-@import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 
 /* CSS Normalize */
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
@@ -168,41 +163,6 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 /* ......layout......... */
-
-.footer {
-  background: #eceaeb;
-  padding: 1.5rem;
-  text-transform: uppercase;
-  color: #3a3a3a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ngx-datatable */
-
-.ngx-datatable.bootstrap .datatable-body .datatable-body-row.datatable-row-even {
-  background-color: white;
-
-}
-
-.ngx-datatable.bootstrap {
-  border: 2px solid #f3f3f3;
-}
-
-.datatable-header-cell {
-  font-weight: bolder;
-  background: #f3f3f3;
-
-}
-
-.ngx-datatable.bootstrap .datatable-header .datatable-header-cell {
-  border-bottom: 1px solid orange;
-}
-
-.ngx-datatable.bootstrap .datatable-footer .page-count {
-  color: white;
-}
 
 .orderInfo {
   overflow: hidden;

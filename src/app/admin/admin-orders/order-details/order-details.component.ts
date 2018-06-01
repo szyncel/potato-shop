@@ -1,12 +1,12 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatTableDataSource} from "@angular/material";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {OrderService} from "../../../order.service";
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatTableDataSource } from '@angular/material';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { OrderService } from '../../../services/order.service';
 
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.component.html',
-  styleUrls: ['./order-details.component.css']
+  styleUrls: [ './order-details.component.css' ]
 })
 export class OrderDetailsDialogComponent implements OnInit {
 
@@ -14,7 +14,7 @@ export class OrderDetailsDialogComponent implements OnInit {
 
   form: FormGroup;
 
-  displayedColumns = ['title', 'price'];
+  displayedColumns = [ 'title', 'price' ];
 
   dataSource;
 
@@ -64,10 +64,10 @@ export class OrderDetailsDialogComponent implements OnInit {
     console.log(this.form.value);
     const model = {
       status: this.form.value.status
-    }
+    };
     this.orderService.editOrder(this.data.id, model)
       .subscribe(res => {
-        console.log(res)
+        console.log(res);
         this.dialogRef.close();
         this.snackBar.open('Status zamówienia zmieniony', 'Ok', {duration: 3500});
       }, err => {

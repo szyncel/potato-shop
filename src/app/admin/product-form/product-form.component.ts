@@ -1,9 +1,9 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {CategoryService} from '../../category.service';
-import {ProductService} from '../../product.service';
+import {CategoryService} from '../../services/category.service';
+import {ProductService} from '../../services/product.service';
 import {Router} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
-import {Product} from '../../models/product';
+import {Product} from '../../shared/models/product';
 
 @Component({
   selector: 'app-product-form',
