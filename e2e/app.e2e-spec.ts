@@ -12,4 +12,9 @@ describe('potato-shop App', () => {
     expect(page.getParagraphText()).toEqual('Lista dostepnych produktów');
   });
 
+  it('should navigate to wishlist', () => {
+    page.navigateToWishlist();
+    expect(page.getParagraphText()).toEqual('Zaloguj sie aby mieć dostęp do listy życzeń');
+  });
+
 });

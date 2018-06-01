@@ -5,6 +5,7 @@ import { Product } from '../shared/models/product';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { RemoveItemConfirmComponent } from './remove-item-confirm/remove-item-confirm.component';
 import { ClearCartConfirmComponent } from './clear-cart-confirm/clear-cart-confirm.component';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -19,6 +20,10 @@ export class ShoppingCartComponent implements OnInit {
 
   cart: ShoppingCart;
 
+  loading: boolean;
+
+  isEmpty: boolean;
+
   constructor(
     private shoppingCartService: ShoppingCartService,
     private dialog: MatDialog
@@ -30,9 +35,12 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   async refreshShoppingCart() {
+    this.loading = true;
     (await this.shoppingCartService.getCart()).subscribe(cart => {
       this.cart = cart;
+      this.isEmpty = _.isEmpty(cart.items);
       this.dataSource = new MatTableDataSource(this.cart.items);
+      this.loading = false;
     });
   }
 

@@ -3,7 +3,7 @@
     <app-user-menu></app-user-menu>
   </mat-sidenav>
   <mat-sidenav-content style="overflow: initial">
-    <mat-toolbar class="outer-space-bottom">
+    <mat-toolbar class="outer-space-bottom background-transparent">
       <mat-toolbar-row>
         <div class="full-width">
           <div class="row">
@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <mat-toolbar>
+      <mat-toolbar class="background-transparent">
         <mat-toolbar-row>
           <div class="full-width">
             <div class="row">
@@ -42,7 +42,7 @@
         </mat-toolbar-row>
       </mat-toolbar>
 
-      <ng-container *ngIf="orders">
+      <ng-container *ngIf="orders; else loadingSpinner">
 
         <div class="example-container mat-elevation-z8 " style="margin-top: 1rem">
           <mat-table #table [dataSource]="dataSource" matSort>
@@ -76,6 +76,9 @@
         </div>
 
       </ng-container>
+      <ng-template #loadingSpinner>
+        <mat-spinner></mat-spinner>
+      </ng-template>
 
       <mat-toolbar class="outer-space-bottom background-transparent" style="margin-top:1rem;">
         <mat-toolbar-row>
@@ -92,11 +95,13 @@
           </div>
         </mat-toolbar-row>
       </mat-toolbar>
-      <div *ngIf="user" class="orderInfo address">
+      <div *ngIf="!loading && user; else userLoading" class="orderInfo address">
         <span>{{user.name}} {{user.surname}}</span>
         <span>{{user.email}}</span>
       </div>
-
+      <ng-container *ngIf="loading">
+        <mat-spinner></mat-spinner>
+      </ng-container>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

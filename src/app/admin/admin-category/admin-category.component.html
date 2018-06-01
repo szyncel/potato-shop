@@ -18,29 +18,33 @@
         </mat-toolbar-row>
       </mat-toolbar>
 
-      <div class="example-container mat-elevation-z8 mb-5">
-        <mat-table #table [dataSource]="dataSource" matSort>
-          <ng-container matColumnDef="_id">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element?._id}}</mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element?.name}}</mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <mat-icon class="fix-icon" (click)="onEditProductDialog(element?._id)">mode edit</mat-icon>
-              <mat-icon (click)="onRemoveProductDialog(element?._id)">delete</mat-icon>
-            </mat-cell>
-          </ng-container>
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+      <ng-container *ngIf="dataSource; else loading">
 
-      </div>
-
+        <div class="example-container mat-elevation-z8 mb-5">
+          <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="_id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> ID</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?._id}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.name}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+              <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <mat-icon class="fix-icon" (click)="onEditProductDialog(element?._id)">mode edit</mat-icon>
+                <mat-icon (click)="onRemoveProductDialog(element?._id)">delete</mat-icon>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </ng-container>
+      <ng-template #loading>
+        <mat-spinner></mat-spinner>
+      </ng-template>
 
     </div>
   </mat-sidenav-content>

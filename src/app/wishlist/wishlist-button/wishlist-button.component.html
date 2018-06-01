@@ -1,10 +1,10 @@
 <ng-container *ngIf="wishlist && shoppingCart">
   <ng-container *ngIf="getTest()">
     <!--<i class="fa fa-heart fa-2" (click)="addToWishlist(product)" aria-hidden="true"></i>-->
-    <mat-icon color="primary" (click)="addToWishlist(product)">favorite</mat-icon>
+    <mat-icon class="wishlist" color="primary" (click)="addToWishlist(product)">favorite</mat-icon>
   </ng-container>
   <ng-container *ngIf="!getTest()">
     <!--<i class="fa fa-heart-o fa-2" (click)="addToWishlist(product)"></i>-->
-    <mat-icon color="primary" (click)="addToWishlist(product)">favorite_border</mat-icon>
+    <mat-icon class="wishlist" color="primary" (click)="addToWishlist(product)">favorite_border</mat-icon>
   </ng-container>
 </ng-container>

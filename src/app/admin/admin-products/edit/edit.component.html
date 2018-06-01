@@ -50,9 +50,9 @@
       </mat-form-field>
     </div>
     <div class="row" *ngIf="form.get('imgUrl').valid">
-      <div class="col-12">
+      <div class="col-12 justify-content-center">
         <p>Podgląd</p>
-        <img mat-card-image
+        <img class="img" mat-card-image
              [src]="form.get('imgUrl').value"
              alt="img">
       </div>
@@ -64,7 +64,7 @@
   <div mat-dialog-actions class="justify-content-end">
     <!--<mat-spinner *ngIf="(loading$ | async)" [diameter]="24" [strokeWidth]="3"></mat-spinner>-->
     <button matDialogClose mat-raised-button type="button">Anuluj</button>
-    <button [ngClass]="{disabled: form.invalid || form.pristine}" mat-raised-button class="col-auto"
+    <button id="editProduct" [ngClass]="{disabled: form.invalid || form.pristine}" mat-raised-button class="col-auto"
             color="primary">Zapisz
     </button>
   </div>

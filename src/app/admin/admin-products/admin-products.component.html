@@ -11,7 +11,7 @@
               <div class="col-auto"><h1>Lista produktów</h1></div>
               <div class="col"></div>
               <div class="col-auto">
-                <button mat-raised-button color="primary" (click)="onAddProductDialog()">Nowy produkt</button>
+                <button id="add" mat-raised-button color="primary" (click)="onAddProductDialog()">Nowy produkt</button>
                 <!--routerLink="/admin/products/new"-->
               </div>
             </div>
@@ -22,21 +22,21 @@
         <mat-table #table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="title">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Tytuł</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element?.title}}</mat-cell>
+            <mat-cell *matCellDef="let element">{{element?.title}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="price">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Cena</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element?.price}} zł</mat-cell>
+            <mat-cell *matCellDef="let element">{{element?.price}} zł</mat-cell>
           </ng-container>
           <ng-container matColumnDef="category">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Kategoria</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element?.category}}</mat-cell>
+            <mat-cell *matCellDef="let element">{{element?.category}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <mat-icon class="fix-icon" (click)="onEditProductDialog(element?._id)">mode edit</mat-icon>
-              <mat-icon (click)="onRemoveProductDialog(element?._id)">delete</mat-icon>
+              <mat-icon class="edit fix-icon" (click)="onEditProductDialog(element?._id)">mode edit</mat-icon>
+              <mat-icon class="delete" (click)="onRemoveProductDialog(element?._id)">delete</mat-icon>
             </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -48,7 +48,6 @@
                        [showFirstLastButtons]="true">
         </mat-paginator>
       </div>
-
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

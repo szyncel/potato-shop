@@ -40,10 +40,11 @@ export class WishlistButtonComponent implements OnInit {
   }
 
   async delFromWishlist() {
-    await this.wishlistService.removeFromWishlist(this.product);
-    await this.refresh();
-    this.wishlistComponent.updateWishlist();
-    this.wishlistService.change();
+    this.wishlistService.removeFromWishlist(this.product).subscribe(res => {
+      this.wishlistComponent.updateWishlist();
+      this.wishlistService.change();
+      this.refresh();
+    });
   }
 
   async refresh() {

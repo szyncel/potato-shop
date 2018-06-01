@@ -1,4 +1,4 @@
-import { $, browser, by, element } from 'protractor';
+import { $, browser, by, element, protractor } from 'protractor';
 
 export class LoginPo {
   userInput;
@@ -38,7 +38,7 @@ export class LoginPo {
     return this.matTab.last().click();
   }
 
-  navigateToLogin(){
+  navigateToLogin() {
     return this.matTab.first().click();
   }
 
@@ -50,6 +50,16 @@ export class LoginPo {
     this.userInput.sendKeys(user);
     this.passInput.sendKeys(pass);
     return this.submitButton.click();
+  }
+
+  logout() {
+    const EC = protractor.ExpectedConditions;
+    const test = element(by.id('myMenu'));
+    test.click();
+    browser.sleep(500);
+    const waitFor = element(by.id('logout'));
+    browser.wait(EC.visibilityOf(waitFor), 5000);
+    return waitFor.click();
   }
 
 

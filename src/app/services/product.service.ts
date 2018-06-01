@@ -10,7 +10,7 @@ export class ProductService {
   }
 
   create(product: any): Observable<any> {
-    return this.http.post('/api/product', product);
+    return this.http.post('http://localhost:3000/api/product', product);
   }
 
   getAll(): Observable<any> {

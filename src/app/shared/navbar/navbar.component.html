@@ -1,5 +1,5 @@
 <div class="toolbar-container">
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" style="height:56px;">
     <div class="full-width">
       <div class="row align-items-center">
         <div class="col-auto">
@@ -14,7 +14,8 @@
             <button mat-raised-button routerLink="admin/products">Admin</button>
           </ng-container>
           <ng-container *ngIf="!authService.isLoggedIn()">
-            <button mat-button routerLink="/login"><mat-icon>account_box</mat-icon>
+            <button id="testSelenium" mat-button routerLink="/login">
+              <mat-icon>account_box</mat-icon>
               Zaloguj się
             </button>
           </ng-container>
@@ -30,7 +31,8 @@
             </mat-menu>
           </ng-container>
           <button mat-button routerLink="/wishlist">
-            <mat-icon>favorite</mat-icon>Lista życzeń
+            <mat-icon>favorite</mat-icon>
+            Lista życzeń
             <sup *ngIf="wishlist && wishlist.totalItemsCount && authService.isLoggedIn()">
               <mat-chip>{{wishlist.totalItemsCount}}</mat-chip>
             </sup>
@@ -38,11 +40,19 @@
 
 
           <button mat-button routerLink="/shopping-cart">
-            <mat-icon>shopping_cart</mat-icon>Koszyk
+            <mat-icon>shopping_cart</mat-icon>
+            Koszyk
             <sup *ngIf="cart && cart.totalItemsCount">
               <mat-chip>{{cart.totalItemsCount}}</mat-chip>
             </sup>
           </button>
+          <!--<button  mat-icon-button [mat-menu-trigger-for]="menu">-->
+            <!--<mat-icon>more_vert</mat-icon>-->
+          <!--</button>-->
+          <!--<mat-menu x-position="before" #menu="matMenu">-->
+            <!--<button mat-menu-item>Option 1</button>-->
+            <!--<button mat-menu-item>Option 2</button>-->
+          <!--</mat-menu>-->
         </div>
       </div>
     </div>

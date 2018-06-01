@@ -1,7 +1,15 @@
 <div class="container">
-
-
-  <ng-container *ngIf="cart && cart.totalItemsCount else emptyBag">
+  <ng-container *ngIf="loading">
+    <mat-toolbar class="background-transparent outer-space-bottom">
+      <div class="full-width">
+        <div class="row justify-content-center">
+          <div class="col"><h1>Koszyk</h1></div>
+        </div>
+      </div>
+    </mat-toolbar>
+    <mat-spinner></mat-spinner>
+  </ng-container>
+  <ng-container *ngIf="!loading && cart && cart.totalItemsCount">
 
     <mat-toolbar class="background-transparent outer-space-bottom">
       <div class="full-width">
@@ -83,23 +91,15 @@
         </div>
       </div>
     </mat-toolbar>
-
   </ng-container>
-
-  <ng-template #emptyBag>
-
-    <h2>KOSZYK</h2>
-    <!--<div class="row">-->
-    <!--<div class="col justify-content-center"><i class="fa fa-shopping-bag"></i></div>-->
-    <!--</div>-->
+  <ng-container *ngIf="isEmpty">
     <div class="row justify-content-center">
-      <div class="col"><h1 style="text-align: center">TWÓJ KOSZYK JEST JESZCZE PUSTY</h1></div>
+      <div class="col"><h1 style="text-align: center">Twój koszyk jest jeszcze pusty</h1></div>
     </div>
     <div class="row">
       <div class="col">
-        <button mat-raised-button color="primary" routerLink="/">KONTYNUUJ ZAKUPY</button>
+        <button mat-raised-button color="primary" routerLink="/">Kontynuj zakupy</button>
       </div>
     </div>
-
-  </ng-template>
+  </ng-container>
 </div>

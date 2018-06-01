@@ -1,26 +1,28 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ProductService} from '../../services/product.service';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
-import {Subject} from "rxjs/Subject";
-import {Product} from "../../store/models/product";
-import {Observable} from "rxjs/Observable";
-import {AddComponent} from "./add/add.component";
-import {EditComponent} from "./edit/edit.component";
-import {RemoveComponent} from "./remove/remove.component";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ProductService } from '../../services/product.service';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Subject } from 'rxjs/Subject';
+import { Product } from '../../store/models/product';
+import { Observable } from 'rxjs/Observable';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
+import { RemoveComponent } from './remove/remove.component';
+import { merge, startWith, switchMap } from 'rxjs/operators';
 
 
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
-  styleUrls: ['./admin-products.component.css']
+  styleUrls: [ './admin-products.component.css' ]
 })
 export class AdminProductsComponent implements OnInit {
 
   productsList$: Observable<Product[]>;
 
-  displayedColumns = ['title', 'price', 'category', 'action'];
+  displayedColumns = [ 'title', 'price', 'category', 'action' ];
 
   dataSource;
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -41,7 +43,7 @@ export class AdminProductsComponent implements OnInit {
 
   refreshProductList() {
     this.productsList$ = this.productService.getAll();
-    this.productsList$.subscribe((res: Product[]) => {
+    this.productsList$.subscribe(( res: Product[] ) => {
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -58,7 +60,7 @@ export class AdminProductsComponent implements OnInit {
     });
   }
 
-  onEditProductDialog(productId) {
+  onEditProductDialog( productId ) {
     let dialogRef = this.dialog.open(EditComponent, {
       width: '400px',
       data: {id: productId}
@@ -69,7 +71,7 @@ export class AdminProductsComponent implements OnInit {
     });
   }
 
-  onRemoveProductDialog(productId) {
+  onRemoveProductDialog( productId ) {
     let dialogRef = this.dialog.open(RemoveComponent, {
       width: '400px',
       data: {id: productId}

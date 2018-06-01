@@ -40,8 +40,6 @@ const {
 const moment = require('moment');
 
 
-
-
 /* .............USERS............. */
 
 router.post('/users', (req, res) => { //Register
@@ -61,7 +59,7 @@ router.post('/users', (req, res) => { //Register
     });
   }).catch((e) => {
     res.status(400).json({
-      title: 'Error',
+      title: 'Istnieje już taki użytkownik',
       error: e
     });
   })
@@ -165,7 +163,6 @@ router.get('/category', (req, res) => {
 
 router.post('/product', (req, res) => {
   var body = _.pick(req.body, ['title', 'price', 'category', 'imgUrl']);
-  // console.log(body);
   var product = new Product({
     title: body.title,
     price: body.price,
@@ -182,7 +179,9 @@ router.post('/product', (req, res) => {
 
 
 router.get('/product', (req, res) => {
-  Product.find().then((product) => {
+  Product.find().sort({
+    _id: -1
+  }).then((product) => {
     res.send({
       product
     });
@@ -255,7 +254,6 @@ router.post('/shopping-carts', (req, res) => { //Create shopping cart
   var shoppingCart = new ShoppingCart({
     dateCreated: req.body.dateCreated
   })
-  console.log('testE');
   shoppingCart.save().then((doc) => {
     res.status(200).send(doc);
   }, (e) => {
@@ -271,12 +269,9 @@ router.get('/shopping-carts/:id', (req, res) => { //get shopping cart?
       info: "invalidId"
     });
   }
-  console.log(cartId);
   ShoppingCart.findOne({
     _id: cartId
   }).then((shoppingCart) => {
-    console.log(shoppingCart);
-    // var id = shoppingCart._id;
     if (!shoppingCart) {
       return res.status(404).send({
         message: "shopping Cart not found"
@@ -287,7 +282,6 @@ router.get('/shopping-carts/:id', (req, res) => { //get shopping cart?
     });
 
   }).catch((e) => {
-    console.log('test');
     res.status(400).send({
       title: "Info",
       error: e
@@ -299,8 +293,6 @@ router.get('/shopping-carts/:id', (req, res) => { //get shopping cart?
 router.patch('/shopping-carts/add', async (req, res) => { //add product to shopping cart
   var shoppingCartId = req.body.id;
   var product = req.body.product;
-
-  // console.log(`Test: `, product._id);
 
   //check if item exist
   const test = await ShoppingCart.find({
@@ -571,7 +563,6 @@ router.get('/order/:id', authenticate, (req, res) => {
 // .....................Wishlist..............//
 router.post('/wishlist', authenticate, async (req, res) => { //Create wishlist
 
-  console.log(req);
   var wishlist = new Wishlist({
     _creator: req.user._id
   });

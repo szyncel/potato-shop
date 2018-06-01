@@ -25,10 +25,7 @@ describe('login/register page', () => {
 
 
   it('should test success login', () => {
-    const EC = protractor.ExpectedConditions;
     page.login('test@test.pl', 'qweqwe');
-    // expect(page.errorMessage.isDisplayed()).toBe(true);
-    // console.log(submit.getText());
 
     expect(mainPage.getParagraphText()).toEqual('Lista dostepnych produktów');
     //
@@ -38,28 +35,22 @@ describe('login/register page', () => {
 
 
   it('should logout success', () => {
-    const EC = protractor.ExpectedConditions;
-    const test = element(by.id('myMenu'));
-    test.click();
-    browser.sleep(500);
-    const waitFor = element(by.id('logout'));
-    browser.wait(EC.visibilityOf(waitFor), 5000);
-    waitFor.click();
+    page.logout();
     expect(mainPage.getParagraphText()).toEqual('Lista dostepnych produktów');
-    //should show snackbar;
+    const submit = element(by.css('.mat-simple-snackbar-action'));
+    expect(submit.isDisplayed()).toBe(true);
   });
 
   it('should display message for invalid credentials', () => {
     page.navigateToregister();
     const EC = protractor.ExpectedConditions;
-    browser.wait(EC.visibilityOf(page.registerButton), 5000);
-    // browser.sleep(1000);
+    browser.wait(EC.visibilityOf(page.registerButton), 5000);//browser.waitForAngular(); ??
     page.register('Mateusz', 'Testowy', 'test@test.pl', 'qweqwe');
     expect(page.registerButton.isDisplayed()).toBe(true);
     expect(page.errorMessage.isDisplayed()).toBe(true);
   });
 
-
+  /** @todo za każdym razem przed testami trzeba zmienić adres email */
   it('should show snackbar after register success and return to login panel', () => {
     page.navigateToregister();
     const EC = protractor.ExpectedConditions;
@@ -69,7 +60,6 @@ describe('login/register page', () => {
     expect(page.errorMessage.isDisplayed()).toBe(true);
     const submit = element(by.css('.mat-simple-snackbar-action'));
     expect(submit.isDisplayed()).toBe(true);
-    // submit.click();
   });
 
 

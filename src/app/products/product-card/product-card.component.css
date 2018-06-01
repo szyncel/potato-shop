@@ -2,6 +2,10 @@
   max-width: 300px;
 }
 
+/*.example-card img {*/
+  /*max-height: 172px;*/
+/*}*/
+
 .example-header-image {
   background-size: cover;
   height: 150px;

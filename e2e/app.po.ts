@@ -5,6 +5,10 @@ export class AppPage {
     return browser.get('/');
   }
 
+  navigateToWishlist() {
+    return browser.get('/wishlist');
+  }
+
   navigateToLoginPage(){
     return browser.get('/login');
   }

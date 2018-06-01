@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar class="background-transparent">
   <mat-toolbar-row>
     <div class="full-width">
       <div class="row">
@@ -25,7 +25,7 @@
               <mat-card-content>
                 <div class="row">
                   <mat-form-field class="col-12">
-                    <input matInput placeholder="Adres Email" formControlName="Email" required email>
+                    <input name="Email" matInput placeholder="Adres Email" formControlName="Email" required email>
                     <mat-error
                       *ngIf="loginForm.get('Email').hasError('email') && !loginForm.get('Email').hasError('required')">
                       Wprowadź poprawny adres Email
@@ -35,7 +35,8 @@
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field class="col-12">
-                    <input matInput type="password" placeholder="Hasło" formControlName="Haslo" required>
+                    <input name="Password" matInput type="password" placeholder="Hasło" formControlName="Haslo"
+                           required>
                     <mat-error *ngIf="loginForm.get('Haslo').hasError('required')">
                       Pole jest <strong>wymagane</strong>
                     </mat-error>
@@ -43,10 +44,11 @@
                 </div>
               </mat-card-content>
               <mat-card-actions>
-                <mat-error *ngIf="error; let error">{{ error}}</mat-error>
+                <!--<mat-error id="seleniumError">Error</mat-error>-->
+                <mat-error id="error" *ngIf="error; let error">{{ error}}</mat-error>
               </mat-card-actions>
               <mat-card-actions>
-                <button [ngClass]="{disabled: loginForm.invalid || loginForm.pristine}" mat-raised-button
+                <button name="login" [ngClass]="{disabled: loginForm.invalid || loginForm.pristine}" mat-raised-button
                         class="col-auto"
                         color="primary">Zaloguj
                 </button>
@@ -68,19 +70,19 @@
               <mat-card-content>
                 <div class="row">
                   <mat-form-field class="col-12">
-                    <input matInput placeholder="Imię" formControlName="name" required>
+                    <input name="name" matInput placeholder="Imię" formControlName="name" required>
                     <mat-error *ngIf="registerForm.get('name').hasError('required')">
                       Pole jest <strong>wymagane</strong>
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field class="col-12">
-                    <input matInput placeholder="Nazwisko" formControlName="surname" required>
+                    <input name="surname" matInput placeholder="Nazwisko" formControlName="surname" required>
                     <mat-error *ngIf="registerForm.get('surname').hasError('required')">
                       Pole jest <strong>wymagane</strong>
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field class="col-12">
-                    <input matInput placeholder="Email" formControlName="email" required email>
+                    <input name="email" matInput placeholder="Email" formControlName="email" required email>
                     <mat-error
                       *ngIf="registerForm.get('email').hasError('email') && !registerForm.get('email').hasError('required')">
                       Wprowadź poprawny adres Email
@@ -90,7 +92,7 @@
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field class="col-12">
-                    <input matInput type="password" placeholder="Hasło" formControlName="password" required>
+                    <input name="password" matInput type="password" placeholder="Hasło" formControlName="password" required>
                     <mat-error *ngIf="registerForm.get('password').hasError('required')">
                       Pole jest <strong>wymagane</strong>
                     </mat-error>
@@ -98,10 +100,10 @@
                 </div>
               </mat-card-content>
               <mat-card-actions>
-                <mat-error *ngIf="registerError; let error">{{ error}}</mat-error>
+                <mat-error id="error" *ngIf="registerError; let error">{{ error}}</mat-error>
               </mat-card-actions>
               <mat-card-actions>
-                <button [ngClass]="{disabled: registerForm.invalid || registerForm.pristine}" mat-raised-button
+                <button name="register" [ngClass]="{disabled: registerForm.invalid || registerForm.pristine}" mat-raised-button
                         class="col-auto"
                         color="primary">Zarejestruj
                 </button>

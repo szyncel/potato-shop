@@ -1,15 +1,15 @@
-import {Injectable, Output, EventEmitter} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {ShoppingCart} from '../shared/models/shopping-cart';
-import {Product} from "../store/models/product";
+import { ShoppingCart } from '../shared/models/shopping-cart';
+import { Product } from '../store/models/product';
 
 @Injectable()
 export class ShoppingCartService {
   @Output() test: EventEmitter<any> = new EventEmitter();
 
-  constructor(private http: HttpClient) {
+  constructor( private http: HttpClient ) {
   }
 
   change() {
@@ -49,17 +49,17 @@ export class ShoppingCartService {
     return cartId;
   }
 
-  async decrasseCart(product: Product) {
+  async decrasseCart( product: Product ) {
     const cartId = await this.getOrCreateCart();
     return this.http.patch('http://localhost:3000/api/shopping-carts/decrasse', {id: cartId, product: product}).toPromise();
   }
 
-  async addToCart(product: Product) {
+  async addToCart( product: Product ) {
     let cartId = await this.getOrCreateCart();
     return this.http.patch('http://localhost:3000/api/shopping-carts/add', {id: cartId, product: product}).toPromise();
   }
 
-  async removeFromCart(product: Product) {
+  async removeFromCart( product: Product ) {
     let cartId = await this.getOrCreateCart();
     return this.http.patch('http://localhost:3000/api/shopping-carts/delete', {id: cartId, product: product}).toPromise();
   }

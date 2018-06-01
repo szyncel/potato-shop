@@ -29,7 +29,6 @@ export class AuthService {
 
 
   get currentUser() {
-    console.log('current role?');
     const token = localStorage.getItem('token');
     if (!token) return null;
 

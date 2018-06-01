@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {CategoryService} from "../../../services/category.service";
-import {MatDialogRef, MatSnackBar} from "@angular/material";
-import {Observable} from "rxjs/Observable";
-import {Category} from "../../../store/models/category";
-import {ProductService} from "../../../services/product.service";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { CategoryService } from '../../../services/category.service';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
+import { Category } from '../../../store/models/category';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  styleUrls: [ './add.component.css' ]
 })
 export class AddComponent implements OnInit {
   categoryList$: Observable<Category[]>;
