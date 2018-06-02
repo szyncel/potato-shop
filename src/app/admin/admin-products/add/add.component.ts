@@ -42,7 +42,7 @@ export class AddComponent implements OnInit {
     };
     this.productService.create(model).subscribe(data => {
       this.dialogRef.close();
-      this.snackBar.open('Dodano produkt', 'Ok', {duration: 3500});
+      this.snackBar.open('Dodano produkt', 'Ok', {duration: 1500});
     }, err => {
       this.errors$ = err.error;
       console.log('Error:', err.error);

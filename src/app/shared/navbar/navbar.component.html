@@ -27,7 +27,7 @@
             <mat-menu #menu="matMenu">
               <button mat-menu-item routerLink="/my/account">Moje zestawienie</button>
               <button mat-menu-item routerLink="/my/orders">Moje zamówienia</button>
-              <button mat-menu-item *ngIf="authService.isLoggedIn()" (click)="logout()" id="logout">Wyloguj się</button>
+              <button mat-menu-item *ngIf="authService.isLoggedIn()" (click)="logout()" name="logout" id="logout">Wyloguj się</button>
             </mat-menu>
           </ng-container>
           <button mat-button routerLink="/wishlist">
@@ -37,8 +37,6 @@
               <mat-chip>{{wishlist.totalItemsCount}}</mat-chip>
             </sup>
           </button>
-
-
           <button mat-button routerLink="/shopping-cart">
             <mat-icon>shopping_cart</mat-icon>
             Koszyk
@@ -46,82 +44,8 @@
               <mat-chip>{{cart.totalItemsCount}}</mat-chip>
             </sup>
           </button>
-          <!--<button  mat-icon-button [mat-menu-trigger-for]="menu">-->
-            <!--<mat-icon>more_vert</mat-icon>-->
-          <!--</button>-->
-          <!--<mat-menu x-position="before" #menu="matMenu">-->
-            <!--<button mat-menu-item>Option 1</button>-->
-            <!--<button mat-menu-item>Option 2</button>-->
-          <!--</mat-menu>-->
         </div>
       </div>
     </div>
   </mat-toolbar>
 </div>
-
-<!--<div class="nav">-->
-<!--<div class="nav-left">-->
-<!--<a routerLink="/">-->
-<!--POTATO-->
-<!--<i class="fa fa-shopping-cart "></i>-->
-<!--</a>-->
-<!--</div>-->
-<!--<div class="nav-mobile" fxHide="false" fxHide.gt-sm>-->
-
-<!--<a id="nav-toggle" href="#!">-->
-<!--<i class="fa fa-bars fa-3" aria-hidden="true"></i>-->
-<!--</a>-->
-<!--</div>-->
-<!--<div class="nav-right" fxShow="false" fxShow.gt-sm>-->
-<!--<ul class="list">-->
-<!--<ng-container *ngIf="authService.isLoggedIn() && userRole=='admin'">-->
-<!--<li>-->
-<!--<a routerLink="admin/products" class="single">Admin Produkty</a>-->
-<!--</li>-->
-<!--</ng-container>-->
-<!--<li class="dropdown">-->
-
-
-<!--<ng-container *ngIf="!authService.isLoggedIn()">-->
-<!--<a class="dropbtn" routerLink="/login" fxLayout="column" fxLayoutAlign="center center">-->
-<!--<i class="fa fa-user fa-2" aria-hidden="true"></i>-->
-<!--Zaloguj sie-->
-<!--</a>-->
-<!--</ng-container>-->
-<!--<ng-container *ngIf="authService.isLoggedIn()">-->
-<!--<a class="dropbtn" routerLink="/my/account" fxLayout="column" fxLayoutAlign="center center">-->
-<!--<i class="fa fa-user fa-2" aria-hidden="true"></i>-->
-<!--Moje konto-->
-<!--</a>-->
-<!--</ng-container>-->
-
-<!--<div class="dropdown-content">-->
-<!--<a routerLink="/my/account">Moje zestawienie</a>-->
-<!--<a routerLink="/my/orders">Moje zamówienia</a>-->
-<!--<a *ngIf="authService.isLoggedIn()" (click)="logout()">Wyloguj sie</a>-->
-<!--</div>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a routerLink="/wishlist" fxLayout="column" fxLayoutAlign="center center">-->
-<!--<i class="fa fa-heart fa-2" aria-hidden="true"></i>-->
-<!--<span>Lista życzeń</span>-->
-<!--<ng-container *ngIf="wishlist && wishlist.totalItemsCount && authService.isLoggedIn()">-->
-<!--<span class="counter">{{wishlist.totalItemsCount}}</span>-->
-<!--</ng-container>-->
-<!--</a>-->
-
-<!--</li>-->
-
-<!--<li>-->
-<!--<a routerLink="/shopping-cart" fxLayout="column" fxLayoutAlign="center center">-->
-<!--<i class="fa fa-shopping-bag fa-2" aria-hidden="true"></i>-->
-<!--<span>Koszyk</span>-->
-<!--<ng-container *ngIf="cart && cart.totalItemsCount">-->
-<!--<span class="counter">{{cart.totalItemsCount}}</span>-->
-<!--</ng-container>-->
-<!--</a>-->
-<!--</li>-->
-
-<!--</ul>-->
-<!--</div>-->
-<!--</div>-->

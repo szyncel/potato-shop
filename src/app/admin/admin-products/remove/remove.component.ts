@@ -33,7 +33,7 @@ export class RemoveComponent implements OnInit {
     this.productService.delete(this.data.id)
       .subscribe(data => {
         this.dialogRef.close();
-        this.snackBar.open('Usunięto produkt', 'Ok', {duration: 3500});
+        this.snackBar.open('Usunięto produkt', 'Ok', {duration: 1500});
       }, err => {
         this.errors$ = err.error;
         console.log('Error:', err.error);

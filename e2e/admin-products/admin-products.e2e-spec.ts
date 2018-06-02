@@ -1,30 +1,28 @@
 import { AdminProductsPage } from './admin-products.po';
-import { LoginPo } from '../login/login.po';
 import { browser, by, element } from 'protractor';
+import * as faker from 'faker';
 
-fdescribe('Admin products page', () => {
+describe('Admin products page', () => {
   let page: AdminProductsPage;
-  let loginPage: LoginPo;
 
   beforeEach(() => {
     page = new AdminProductsPage();
-    loginPage = new LoginPo();
+    page.visit('/admin/products');
+  });
+
+  afterEach(() => {
+    page.logout();
   });
 
   it('should add product', () => {
-
-    /** @todo zmiana nazwy przy nowym teście */
     const product = {
-      title: 'Test16',
+      title: faker.commerce.product(),
       category: 'stary',
       price: '123',
       imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTde-W7pUT1z_9wYU79Wa-g0ucTyNeekgS91FRqmh7OTKTwgzz9'
     };
-
-    loginPage.navigateToLoginPage();
-    loginPage.login('test@test.pl', 'qweqwe');
+    page.login('test@test.pl', 'qweqwe');
     browser.waitForAngular();
-    page.navigateToAdminProducts();
     page.openAddDialog();
     page.addProduct(product);
     browser.waitForAngular();
@@ -35,18 +33,13 @@ fdescribe('Admin products page', () => {
     expect(cells.get(2).getText()).toEqual(product.category);
   });
 
-
   it('should edit product', () => {
-
-    /** @todo zmiana nazwy przy nowym teście */
     const product = {
-      title: 'Test16_Edit',
+      title: faker.commerce.product(),
       category: 'młody',
     };
-    loginPage.navigateToLoginPage();
-    loginPage.login('test@test.pl', 'qweqwe');
+    page.login('test@test.pl', 'qweqwe');
     browser.waitForAngular();
-    page.navigateToAdminProducts();
     page.openEditDialog();
     page.editProduct(product);
     browser.waitForAngular();
@@ -57,12 +50,8 @@ fdescribe('Admin products page', () => {
   });
 
   it('should delete first product from list', () => {
-
-    loginPage.navigateToLoginPage();
-    loginPage.login('test@test.pl', 'qweqwe');
+    page.login('test@test.pl', 'qweqwe');
     browser.waitForAngular();
-    page.navigateToAdminProducts();
-
     const rows = element.all(by.css('.mat-row')).first();
     const cells = rows.all(by.css('mat-cell'));
     const oldTitle = cells.get(0).getText();
@@ -71,5 +60,4 @@ fdescribe('Admin products page', () => {
     browser.waitForAngular();
     expect(oldTitle).not.toEqual(cells.get(0).getText());
   });
-
 });

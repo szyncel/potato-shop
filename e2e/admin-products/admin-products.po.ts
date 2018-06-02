@@ -1,21 +1,31 @@
 import { $, browser, by, element } from 'protractor';
-import { AppPage } from '../app.po';
+import { BasePage } from '../base.page';
 
-export class AdminProductsPage extends AppPage {
+export class AdminProductsPage extends BasePage {
+
+  /** */
   newButton;
+  /** */
   addProductButton;
+  /** */
   editButtons;
+  /** */
   editProductButton;
+  /** */
   deleteButtons;
+  /** */
   deleteProductButton;
-
+  /** */
   confirmCheckBox;
-
+  /** */
   titleInput;
+  /** */
   categorySelectInput;
+  /** */
   priceInput;
+  /** */
   imgInput;
-
+  /** */
   rows;
 
   constructor() {
@@ -32,25 +42,24 @@ export class AdminProductsPage extends AppPage {
     this.confirmCheckBox = element(by.css('.mat-checkbox'));
     this.deleteProductButton = element(by.id('deleteProduct'));
     this.rows = element.all(by.css('.mat-row')).first();
-
   }
 
-  navigateToAdminProducts() {
-    return browser.get('/admin/products');
-  }
-
+  /** */
   openAddDialog() {
     this.newButton.click(); // open dialog
   }
 
+  /** */
   openEditDialog() {
     this.editButtons.click();
   }
 
+  /** */
   openDeleteDialog() {
     this.deleteButtons.click();
   }
 
+  /** */
   addProduct( product ) {
     this.titleInput.sendKeys(product.title); // form
     this.categorySelectInput.click();
@@ -60,6 +69,7 @@ export class AdminProductsPage extends AppPage {
     return this.addProductButton.click();
   }
 
+  /** */
   editProduct( product ) {
     this.titleInput.clear().then(() => {
       this.titleInput.sendKeys(product.title);
@@ -69,6 +79,7 @@ export class AdminProductsPage extends AppPage {
     return this.editProductButton.click();
   }
 
+  /** */
   removeProduct() {
     this.confirmCheckBox.click();
     browser.sleep(1000);

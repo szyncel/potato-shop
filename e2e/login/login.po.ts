@@ -1,68 +1,45 @@
-import { $, browser, by, element, protractor } from 'protractor';
+import { by, element } from 'protractor';
+import { BasePage } from '../base.page';
 
-export class LoginPo {
-  userInput;
-  passInput;
-  submitButton;
+export class LoginPo extends BasePage {
+  
+  /** */
   errorMessage;
+  /** */
   matTab;
+  /** */
   registerButton;
+  /** */
   nameInput;
+  /** */
   surnameInput;
+  /** */
   emailInput2;
+  /** */
   passwordInput2;
-  registerErrors;
 
   constructor() {
-    this.userInput = element(by.css('input[formControlName=Email]'));
-    this.passInput = element(by.css('input[formControlName=Haslo]'));
-    this.submitButton = element(by.buttonText('Zaloguj'));
+    super();
     this.errorMessage = element(by.css('mat-error'));
-
-    this.matTab = element.all(by.css('.mat-tab-label')); //mamy to!
+    this.matTab = element.all(by.css('.mat-tab-label'));
     this.nameInput = element(by.css('input[formControlName=name]'));
     this.surnameInput = element(by.css('input[formControlName=surname]'));
     this.emailInput2 = element(by.css('input[formControlName=email]'));
     this.passwordInput2 = element(by.css('input[formControlName=password]'));
     this.registerButton = element(by.buttonText('Zarejestruj'));
-    //this.registerErrors = element(by.css('mat-error'));
-
-
   }
 
-  navigateToLoginPage() {
-    return browser.get('/login');
-  }
-
-  navigateToregister() {
+  /** */
+  navigateToRegister() {
     return this.matTab.last().click();
   }
 
+  /** */
   navigateToLogin() {
     return this.matTab.first().click();
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
-  }
-
-  login( user, pass ) {
-    this.userInput.sendKeys(user);
-    this.passInput.sendKeys(pass);
-    return this.submitButton.click();
-  }
-
-  logout() {
-    const EC = protractor.ExpectedConditions;
-    const test = element(by.id('myMenu'));
-    test.click();
-    browser.sleep(500);
-    const waitFor = element(by.id('logout'));
-    browser.wait(EC.visibilityOf(waitFor), 5000);
-    return waitFor.click();
-  }
-
-
+  /** */
   register( name, surname, email, pass ) {
     this.nameInput.sendKeys(name);
     this.surnameInput.sendKeys(surname);
@@ -70,5 +47,4 @@ export class LoginPo {
     this.passwordInput2.sendKeys(pass);
     return this.registerButton.click();
   }
-
 }

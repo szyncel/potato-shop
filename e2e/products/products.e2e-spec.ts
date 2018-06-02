@@ -1,49 +1,50 @@
 import { ProductsPage } from './products.po';
-import { LoginPo } from '../login/login.po';
+import { browser } from 'protractor';
 
 describe('products page', () => {
   let page: ProductsPage;
-  let loginPage: LoginPo;
 
   beforeEach(() => {
     page = new ProductsPage();
-    loginPage = new LoginPo();
-    page.navigateTo();
+    page.visit('/');
   });
 
-  /** @TODO rozbić na dwa testy */
+  afterEach(() => {
+  });
+
   it('should add products to shopping cart', () => {
     const btns = page.addToCartButton;
     const incBtns = page.incerasseQuantityButton;
-    const decBtns = page.decrasseQuantityButton;
     const quantity = page.cartQuantity;
-
-    page.addProduct(btns.get(0)).then(() => {
-      return page.addProduct(btns.get(0));
-    });
+    page.addProduct(btns.get(0));
     page.changeQuantity(incBtns.get(0));
-    page.changeQuantity(incBtns.get(0));
-    page.changeQuantity(incBtns.get(1));
-    page.changeQuantity(decBtns.get(1));
-    expect(quantity.getText()).toEqual('4');
+    expect(quantity.getText()).toEqual('2');
   });
 
+  it('should remove product from shopping cart', () => {
+    const decBtns = page.decrasseQuantityButton;
+    const quantity = page.cartQuantity;
+    page.changeQuantity(decBtns.get(0));
+    page.changeQuantity(decBtns.get(0));
+    expect(quantity.isPresent()).toBeFalsy();
+  });
 
-  /** @TODO rozbić na dwa testy */
-  it('should add and remove product to wishlist', () => {
-    /** 1.Login
-     *  2. Add first product to wishlist
-     *  3. Add second product to wishlist
-     *  4. Remove first product from wishlist */
+  it('should add products to wishlist', () => {
     const btns = page.wishlistButton;
     const quantity = page.wishlistQuantity;
-    loginPage.navigateToLoginPage();
-    loginPage.login('test@test.pl', 'qweqwe');
+    page.visit('/login');
+    browser.waitForAngular();
+    page.login('test@test.pl', 'qweqwe');
+    browser.waitForAngular();
     page.wishlistClick(btns.get(0));
-    page.wishlistClick(btns.get(1)).then(() => {
-      page.wishlistClick(btns.get(1));
-    });
     expect(quantity.getText()).toEqual('1');
   });
 
+  it('should remove products to wishlist', () => {
+    const btns = page.wishlistButton;
+    const quantity = page.wishlistQuantity;
+    browser.waitForAngular();
+    page.wishlistClick(btns.get(0));
+    expect(quantity.isPresent()).toBeFalsy();
+  });
 });
