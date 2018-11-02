@@ -3,17 +3,11 @@ import { BasePage } from '../base.page';
 
 export class ProductsPage extends BasePage {
 
-  /** */
   addToCartButton;
-  /** */
   incerasseQuantityButton;
-  /** */
   decrasseQuantityButton;
-  /** */
   wishlistButton;
-  /** */
   cartQuantity;
-  /** */
   wishlistQuantity;
 
   constructor() {

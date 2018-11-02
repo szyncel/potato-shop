@@ -9,6 +9,7 @@ import { OrderService } from '../services/order.service';
 })
 /** @deprecated user OrderDetailsDialog instead */
 export class OrderDetailsComponent implements OnInit {
+
   order;
   id;
 

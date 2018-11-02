@@ -3,29 +3,17 @@ import { BasePage } from '../base.page';
 
 export class AdminProductsPage extends BasePage {
 
-  /** */
   newButton;
-  /** */
   addProductButton;
-  /** */
   editButtons;
-  /** */
   editProductButton;
-  /** */
   deleteButtons;
-  /** */
   deleteProductButton;
-  /** */
   confirmCheckBox;
-  /** */
   titleInput;
-  /** */
   categorySelectInput;
-  /** */
   priceInput;
-  /** */
   imgInput;
-  /** */
   rows;
 
   constructor() {
@@ -44,32 +32,27 @@ export class AdminProductsPage extends BasePage {
     this.rows = element.all(by.css('.mat-row')).first();
   }
 
-  /** */
   openAddDialog() {
-    this.newButton.click(); // open dialog
+    this.newButton.click();
   }
 
-  /** */
   openEditDialog() {
     this.editButtons.click();
   }
 
-  /** */
   openDeleteDialog() {
     this.deleteButtons.click();
   }
 
-  /** */
   addProduct( product ) {
-    this.titleInput.sendKeys(product.title); // form
+    this.titleInput.sendKeys(product.title);
     this.categorySelectInput.click();
-    $(`.mat-option[ng-reflect-value="stary"]`).click();
+    $(`.mat-option[ng-reflect-value=${product.category}]`).click();
     this.priceInput.sendKeys(product.price);
     this.imgInput.sendKeys(product.imgUrl);
-    return this.addProductButton.click();
+    this.addProductButton.click();
   }
 
-  /** */
   editProduct( product ) {
     this.titleInput.clear().then(() => {
       this.titleInput.sendKeys(product.title);
@@ -79,11 +62,9 @@ export class AdminProductsPage extends BasePage {
     return this.editProductButton.click();
   }
 
-  /** */
   removeProduct() {
     this.confirmCheckBox.click();
-    browser.sleep(1000);
+    browser.sleep(1000); // todo nieeeeeee
     this.deleteProductButton.click();
   }
-
 }

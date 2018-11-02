@@ -1,12 +1,12 @@
-import {EventEmitter, Injectable, Output} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {JwtHelper, tokenNotExpired} from 'angular2-jwt';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 
 import 'rxjs/add/operator/map';
-import {Auth} from "../store/models/auth";
-import {User} from "../store/models/user";
+import { Auth } from '../store/models/auth';
+import { User } from '../store/models/user';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +17,6 @@ export class AuthService {
     private router: Router
   ) {
   }
-
 
   change() {
     this.test.emit(true);

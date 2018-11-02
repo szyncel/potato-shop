@@ -14,23 +14,17 @@ describe('Admin products page', () => {
     page.logout();
   });
 
-  it('should add product', () => {
-    const product = {
-      title: faker.commerce.product(),
+  fit('should add product', () => {
+    const productMock = {
+      title: faker.commerce.productName(),
       category: 'stary',
-      price: '123',
-      imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTde-W7pUT1z_9wYU79Wa-g0ucTyNeekgS91FRqmh7OTKTwgzz9'
+      price: faker.commerce.price(),
+      imgUrl: faker.image.food(),
     };
     page.login('test@test.pl', 'qweqwe');
-    browser.waitForAngular();
     page.openAddDialog();
-    page.addProduct(product);
-    browser.waitForAngular();
-    const rows = element.all(by.css('.mat-row')).first();
-    const cells = rows.all(by.css('mat-cell'));
-    expect(cells.get(0).getText()).toEqual(product.title);
-    expect(cells.get(1).getText()).toEqual(product.price + ' zł');
-    expect(cells.get(2).getText()).toEqual(product.category);
+    page.addProduct(productMock);
+    expect(page.getSnackBarText()).toContain('Dodano produkt');
   });
 
   it('should edit product', () => {

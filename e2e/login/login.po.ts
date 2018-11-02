@@ -2,20 +2,13 @@ import { by, element } from 'protractor';
 import { BasePage } from '../base.page';
 
 export class LoginPo extends BasePage {
-  
-  /** */
+
   errorMessage;
-  /** */
   matTab;
-  /** */
   registerButton;
-  /** */
   nameInput;
-  /** */
   surnameInput;
-  /** */
   emailInput2;
-  /** */
   passwordInput2;
 
   constructor() {

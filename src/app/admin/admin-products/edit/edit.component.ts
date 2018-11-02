@@ -14,13 +14,9 @@ import { Category } from '../../../store/models/category';
 export class EditComponent implements OnInit {
 
   categoryList$: Observable<Category[]>;
-
   form: FormGroup;
-
   errors$;
-
   data$;
-
 
   constructor(
     private categoryService: CategoryService,
