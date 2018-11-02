@@ -39,7 +39,6 @@ export class OrderDetailsDialogComponent implements OnInit {
     this.initValues();
   }
 
-
   initValues() {
     this.data$.subscribe(order => {
       console.log(order);
@@ -51,7 +50,6 @@ export class OrderDetailsDialogComponent implements OnInit {
     });
 
   }
-
 
   createForm() {
     this.form = this.fb.group({

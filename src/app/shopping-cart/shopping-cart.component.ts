@@ -15,13 +15,9 @@ import * as _ from 'lodash';
 export class ShoppingCartComponent implements OnInit {
 
   displayedColumns = [ 'image', 'name', 'count', 'action' ];
-
   dataSource;
-
   cart: ShoppingCart;
-
   loading: boolean;
-
   isEmpty: boolean;
 
   constructor(

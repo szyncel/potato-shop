@@ -14,13 +14,9 @@ import { Category } from '../../../store/models/category';
 export class EditComponent implements OnInit {
 
   categoryList$: Observable<Category[]>;
-
   form: FormGroup;
-
   errors$;
-
   data$;
-
 
   constructor(
     private categoryService: CategoryService,
@@ -51,7 +47,7 @@ export class EditComponent implements OnInit {
     this.productService.update(this.data.id, model)
       .subscribe(data => {
         this.dialogRef.close();
-        this.snackBar.open('Edycja przebiegła pomyślnie', 'Ok', {duration: 3500});
+        this.snackBar.open('Edycja przebiegła pomyślnie', 'Ok', {duration: 1500});
       }, err => {
         this.errors$ = err.error;
         console.log('Error:', err.error);

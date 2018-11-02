@@ -1,21 +1,19 @@
 import { $, browser, by, element } from 'protractor';
-import { AppPage } from '../app.po';
+import { BasePage } from '../base.page';
 
-export class AdminProductsPage extends AppPage {
+export class AdminProductsPage extends BasePage {
+
   newButton;
   addProductButton;
   editButtons;
   editProductButton;
   deleteButtons;
   deleteProductButton;
-
   confirmCheckBox;
-
   titleInput;
   categorySelectInput;
   priceInput;
   imgInput;
-
   rows;
 
   constructor() {
@@ -32,15 +30,10 @@ export class AdminProductsPage extends AppPage {
     this.confirmCheckBox = element(by.css('.mat-checkbox'));
     this.deleteProductButton = element(by.id('deleteProduct'));
     this.rows = element.all(by.css('.mat-row')).first();
-
-  }
-
-  navigateToAdminProducts() {
-    return browser.get('/admin/products');
   }
 
   openAddDialog() {
-    this.newButton.click(); // open dialog
+    this.newButton.click();
   }
 
   openEditDialog() {
@@ -52,12 +45,12 @@ export class AdminProductsPage extends AppPage {
   }
 
   addProduct( product ) {
-    this.titleInput.sendKeys(product.title); // form
+    this.titleInput.sendKeys(product.title);
     this.categorySelectInput.click();
-    $(`.mat-option[ng-reflect-value="stary"]`).click();
+    $(`.mat-option[ng-reflect-value=${product.category}]`).click();
     this.priceInput.sendKeys(product.price);
     this.imgInput.sendKeys(product.imgUrl);
-    return this.addProductButton.click();
+    this.addProductButton.click();
   }
 
   editProduct( product ) {
@@ -71,8 +64,7 @@ export class AdminProductsPage extends AppPage {
 
   removeProduct() {
     this.confirmCheckBox.click();
-    browser.sleep(1000);
+    browser.sleep(1000); // todo nieeeeeee
     this.deleteProductButton.click();
   }
-
 }
